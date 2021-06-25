@@ -1,8 +1,11 @@
+import Nav from './components/Nav/Nav'
+import ArrayVisualizer from './components/ArrayVisualizer/ArrayVisualizer';
 
 function App() {
   return (
     <div>
-      Algorithm Visualizer
+      <Nav />
+      <ArrayVisualizer />
     </div>
   );
 }

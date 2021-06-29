@@ -1,13 +1,12 @@
-import Nav from './components/Nav/Nav'
+import Nav from './components/Nav/Nav';
 import ArrayVisualizer from './components/ArrayVisualizer/ArrayVisualizer';
 
 function App() {
-  return (
-    <div>
-      <Nav />
-      <ArrayVisualizer />
-    </div>
-  );
+	return (
+		<div>
+			<ArrayVisualizer />
+		</div>
+	);
 }
 
 export default App;

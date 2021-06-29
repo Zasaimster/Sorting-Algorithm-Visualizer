@@ -2,23 +2,28 @@ import React from 'react';
 import ArrayBar from './ArrayBar';
 import Nav from '../Nav/Nav';
 
-import {nSquaredComparisonTest, bubbleSort} from '../../algorithms/algorithms';
+import {
+	nSquaredComparisonTest,
+	bubbleSort,
+	insertionSort,
+	selectionSort,
+	quickSort,
+	mergeSort,
+} from '../../algorithms/algorithms';
 
 import './ArrayVisualizer.css';
 
 const DEFAULT_SIZE = 30;
-const ITERATION_SPEED = 10;
+const ITERATION_SPEED = 500;
 
 const DEFAULT_COLOR = '#006eff';
 const CURRENT_INDEX_COLOR = 'green';
 const CURRENT_COMPARISON_COLOR = 'grey';
 const SWAP_COLOR = 'red';
 
-let timer = null;
-
 class ArrayVisualizer extends React.Component {
 	state = {
-		currentAlgorithm: 'bubbleSort',
+		currentAlgorithm: 'mergeSort',
 		array: [],
 		visualizedSteps: [],
 		vsIndex: 0,
@@ -29,10 +34,6 @@ class ArrayVisualizer extends React.Component {
 		this.initializeArrays();
 	};
 
-	componentWillUnmount = () => {
-		clearTimeout(timer);
-	};
-
 	playAlgorithm = () => {
 		if (this.state.playAlgorithm) {
 			const {visualizedSteps, vsIndex} = this.state;
@@ -40,15 +41,16 @@ class ArrayVisualizer extends React.Component {
 				this.visualizeNextIteration();
 			}
 
-			/*while (this.state.vsIndex < visualizedSteps.length) {
+			/*
+			https://stackoverflow.com/a/37728255
+			//although, this method wouldn't work either so I used an interval instead
+			while (this.state.vsIndex < visualizedSteps.length) {
 			console.log('?');
 			setTimeout(() => {
 				this.visualizeNextIteration();
 				console.log('bruh');
 			}, 100 * this.state.vsIndex);
 			}
-			https://stackoverflow.com/a/37728255
-			//although, this method wouldn't work either so I used an interval instead
 			*/
 
 			var interval = setInterval(() => {
@@ -144,7 +146,20 @@ class ArrayVisualizer extends React.Component {
 			case 'bubbleSort':
 				visualizedSteps = bubbleSort(tempArray);
 				break;
+			case 'insertionSort':
+				visualizedSteps = insertionSort(tempArray);
+				break;
+			case 'selectionSort':
+				visualizedSteps = selectionSort(tempArray);
+				break;
+			case 'quickSort':
+				visualizedSteps = quickSort(tempArray);
+				break;
+			case 'mergeSort':
+				visualizedSteps = mergeSort(tempArray);
+				break;
 			default:
+				console.log('this algorithm has not been implemented yet');
 				return;
 		}
 		this.setState({visualizedSteps}, () =>
@@ -167,6 +182,11 @@ class ArrayVisualizer extends React.Component {
 						this.setState(
 							{playAlgorithm: !this.state.playAlgorithm},
 							() => this.playAlgorithm()
+						)
+					}
+					chooseAlgorithm={(e) =>
+						this.setState({currentAlgorithm: e.target.value}, () =>
+							this.getVisualizedSteps()
 						)
 					}
 				/>

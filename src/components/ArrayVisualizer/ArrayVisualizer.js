@@ -1,6 +1,6 @@
 import React from 'react';
-import ArrayBar from './ArrayBar';
 import Nav from '../Nav/Nav';
+import {default as BasicVisualization} from './Visualizations/Basic';
 
 import {
 	nSquaredComparisonTest,
@@ -14,7 +14,7 @@ import {
 import './ArrayVisualizer.css';
 
 const DEFAULT_SIZE = 30;
-const ITERATION_SPEED = 500;
+const ITERATION_SPEEDS = [1000, 500, 100, 15, 3];
 
 const DEFAULT_COLOR = '#006eff';
 const CURRENT_INDEX_COLOR = 'green';
@@ -23,11 +23,13 @@ const SWAP_COLOR = 'red';
 
 class ArrayVisualizer extends React.Component {
 	state = {
-		currentAlgorithm: 'mergeSort',
+		currentAlgorithm: 'bubbleSort',
 		array: [],
 		visualizedSteps: [],
 		vsIndex: 0,
-		playAlgorithm: false,
+		isSorting: false,
+		arrSize: DEFAULT_SIZE,
+		sortingSpeed: ITERATION_SPEEDS[2],
 	};
 
 	componentDidMount = () => {
@@ -35,12 +37,8 @@ class ArrayVisualizer extends React.Component {
 	};
 
 	playAlgorithm = () => {
-		if (this.state.playAlgorithm) {
-			const {visualizedSteps, vsIndex} = this.state;
-			if (vsIndex === 0) {
-				this.visualizeNextIteration();
-			}
-
+		if (this.state.isSorting) {
+			const {visualizedSteps} = this.state;
 			/*
 			https://stackoverflow.com/a/37728255
 			//although, this method wouldn't work either so I used an interval instead
@@ -57,10 +55,10 @@ class ArrayVisualizer extends React.Component {
 				this.visualizeNextIteration();
 				if (
 					this.state.vsIndex === visualizedSteps.length ||
-					!this.state.playAlgorithm
+					!this.state.isSorting
 				)
 					clearInterval(interval);
-			}, ITERATION_SPEED);
+			}, this.state.sortingSpeed);
 		}
 	};
 
@@ -74,7 +72,7 @@ class ArrayVisualizer extends React.Component {
 		this.setState({vsIndex: vsIndex + 1}, () => {
 			if (this.state.vsIndex === this.state.visualizedSteps.length) {
 				this.resetPreviousColors();
-				this.setState({playAlgorithm: false});
+				this.setState({isSorting: false});
 			}
 		});
 	};
@@ -95,7 +93,7 @@ class ArrayVisualizer extends React.Component {
 		} else {
 			compareBarStyle.fill = SWAP_COLOR;
 
-			if (this.state.playAlgorithm) {
+			if (this.state.isSorting) {
 				let array = [...this.state.array];
 				const temp = array[compareBar];
 				array[compareBar] = array[currBar];
@@ -130,10 +128,13 @@ class ArrayVisualizer extends React.Component {
 
 	initializeArrays = () => {
 		let array = [];
-		for (var i = 0; i < DEFAULT_SIZE; i++) {
+		for (var i = 0; i < this.state.arrSize; i++) {
 			array[i] = this.getRandomValue(10, 500);
 		}
-		this.setState({array}, () => this.getVisualizedSteps());
+		this.setState({array}, () => {
+			console.log(array);
+			this.getVisualizedSteps();
+		});
 	};
 
 	getVisualizedSteps = () => {
@@ -173,15 +174,14 @@ class ArrayVisualizer extends React.Component {
 	}
 
 	render() {
-		const {array} = this.state;
+		const {array, currentAlgorithm} = this.state;
 		return (
 			<>
 				<Nav
 					visualizeNextIteration={this.visualizeNextIteration}
 					setPlayAlgorithm={() =>
-						this.setState(
-							{playAlgorithm: !this.state.playAlgorithm},
-							() => this.playAlgorithm()
+						this.setState({isSorting: !this.state.isSorting}, () =>
+							this.playAlgorithm()
 						)
 					}
 					chooseAlgorithm={(e) =>
@@ -189,13 +189,27 @@ class ArrayVisualizer extends React.Component {
 							this.getVisualizedSteps()
 						)
 					}
+					handleSize={(e) => {
+						this.setState({arrSize: e.target.value}, () =>
+							this.initializeArrays()
+						);
+					}}
+					handleSpeed={(e) => {
+						this.setState({
+							sortingSpeed: ITERATION_SPEEDS[e.target.value - 1],
+						});
+					}}
 				/>
 				<div className='array-wrapper'>
-					{array.map((val, index) => (
-						<ArrayBar key={index} val={val}>
-							{val}
-						</ArrayBar>
-					))}
+					{(currentAlgorithm === 'bubbleSort' ||
+						currentAlgorithm === 'selectionSort' ||
+						currentAlgorithm === 'insertionSort') && (
+						<BasicVisualization
+							array={this.state.array}
+							isSorting={this.state.isSorting}
+							playAlgorithm={this.playAlgorithm}
+						/>
+					)}
 				</div>
 			</>
 		);

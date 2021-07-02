@@ -163,10 +163,8 @@ const partition = (arr, low, high, iterations) => {
 };
 
 const mergeSortAlgo = (arr, low, high, iterations) => {
-	let mid;
-
 	if (low < high) {
-		mid = Math.floor((low + high) / 2);
+		let mid = Math.floor((low + high) / 2);
 		mergeSortAlgo(arr, low, mid, iterations);
 		mergeSortAlgo(arr, mid + 1, high, iterations);
 		sortAndMerge(arr, low, mid, high, iterations);
@@ -188,7 +186,7 @@ const sortAndMerge = (arr, low, mid, high, iterations) => {
 		right.push(arr[mid + 1 + i]);
 	}
 
-	let i,
+	let i = 0,
 		j = 0,
 		k = low;
 

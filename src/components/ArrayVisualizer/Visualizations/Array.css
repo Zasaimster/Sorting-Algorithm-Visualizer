@@ -1,0 +1,13 @@
+.bar-wrapper {
+	margin-left: 3px;
+}
+
+.bar {
+	display: inline-block;
+	background-color: #006eff;
+	margin-left: 3px;
+}
+
+.array-wrapper {
+	text-align: center;
+}

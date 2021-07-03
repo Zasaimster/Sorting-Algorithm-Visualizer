@@ -1,4 +1,3 @@
-import Nav from './components/Nav/Nav';
 import ArrayVisualizer from './components/ArrayVisualizer/ArrayVisualizer';
 
 function App() {

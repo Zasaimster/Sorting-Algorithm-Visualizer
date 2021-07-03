@@ -1,9 +1,10 @@
 import React from 'react';
 import Nav from '../Nav/Nav';
 import {default as BasicVisualization} from './Visualizations/Basic';
+import {default as MergeSortVisualization} from './Visualizations/MergeSort';
+import {default as QuickSortVisualization} from './Visualizations/QuickSort';
 
 import {
-	nSquaredComparisonTest,
 	bubbleSort,
 	insertionSort,
 	selectionSort,
@@ -21,6 +22,10 @@ const CURRENT_INDEX_COLOR = 'green';
 const CURRENT_COMPARISON_COLOR = 'grey';
 const SWAP_COLOR = 'red';
 
+/*
+convert to functional component and access child functions like this: https://stackoverflow.com/questions/37949981/call-child-method-from-parent
+*/
+
 class ArrayVisualizer extends React.Component {
 	state = {
 		currentAlgorithm: 'bubbleSort',
@@ -30,26 +35,19 @@ class ArrayVisualizer extends React.Component {
 		isSorting: false,
 		arrSize: DEFAULT_SIZE,
 		sortingSpeed: ITERATION_SPEEDS[2],
+		ref: null,
 	};
 
 	componentDidMount = () => {
 		this.initializeArrays();
+		let ref = React.createRef();
+		this.setState({ref});
 	};
 
 	playAlgorithm = () => {
 		if (this.state.isSorting) {
 			const {visualizedSteps} = this.state;
-			/*
-			https://stackoverflow.com/a/37728255
-			//although, this method wouldn't work either so I used an interval instead
-			while (this.state.vsIndex < visualizedSteps.length) {
-			console.log('?');
-			setTimeout(() => {
-				this.visualizeNextIteration();
-				console.log('bruh');
-			}, 100 * this.state.vsIndex);
-			}
-			*/
+			// https://stackoverflow.com/a/37728255 although, a timeout wouldn't work either so I used an interval instead
 
 			var interval = setInterval(() => {
 				this.visualizeNextIteration();
@@ -63,17 +61,15 @@ class ArrayVisualizer extends React.Component {
 	};
 
 	visualizeNextIteration = () => {
+		let visual = this.state.ref.current;
 		const vsIndex = this.state.vsIndex;
-		if (vsIndex !== 0) {
-			this.resetPreviousColors();
-		}
-		this.updateCurrentColors();
+		const steps = this.state.visualizedSteps;
+
+		visual.updateColors(vsIndex, steps);
 
 		this.setState({vsIndex: vsIndex + 1}, () => {
-			if (this.state.vsIndex === this.state.visualizedSteps.length) {
-				this.resetPreviousColors();
+			if (this.state.vsIndex === steps.length)
 				this.setState({isSorting: false});
-			}
 		});
 	};
 
@@ -141,9 +137,6 @@ class ArrayVisualizer extends React.Component {
 		let visualizedSteps = [];
 		let tempArray = [...this.state.array];
 		switch (this.state.currentAlgorithm) {
-			case 'test':
-				visualizedSteps = nSquaredComparisonTest(tempArray);
-				break;
 			case 'bubbleSort':
 				visualizedSteps = bubbleSort(tempArray);
 				break;
@@ -174,7 +167,7 @@ class ArrayVisualizer extends React.Component {
 	}
 
 	render() {
-		const {array, currentAlgorithm} = this.state;
+		const {array, currentAlgorithm, isSorting, ref} = this.state;
 		return (
 			<>
 				<Nav
@@ -200,17 +193,18 @@ class ArrayVisualizer extends React.Component {
 						});
 					}}
 				/>
-				<div className='array-wrapper'>
-					{(currentAlgorithm === 'bubbleSort' ||
-						currentAlgorithm === 'selectionSort' ||
-						currentAlgorithm === 'insertionSort') && (
-						<BasicVisualization
-							array={this.state.array}
-							isSorting={this.state.isSorting}
-							playAlgorithm={this.playAlgorithm}
-						/>
-					)}
-				</div>
+				{(currentAlgorithm === 'bubbleSort' ||
+					currentAlgorithm === 'selectionSort' ||
+					currentAlgorithm === 'insertionSort') && (
+					<BasicVisualization
+						array={array}
+						isSorting={isSorting}
+						updateArray={(array) => this.setState({array})}
+						ref={this.state.ref}
+					/>
+				)}
+				{currentAlgorithm === 'mergeSort' && <MergeSortVisualization />}
+				{currentAlgorithm === 'quickSort' && <QuickSortVisualization />}
 			</>
 		);
 	}

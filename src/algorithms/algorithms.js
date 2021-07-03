@@ -84,13 +84,14 @@ export const selectionSort = (arr) => {
 
 export const countingSort = (arr) => {
 	let iterations,
-		count,
-		res = [];
+		count =
+			//res
+			[];
 
 	//initialize count array
 	for (var i = 0; i < 10; i++) count[i] = 0;
 
-	for (var i = 0; i < arr.length; i++) {
+	for (i = 0; i < arr.length; i++) {
 		//count[arr[i] / ]
 	}
 

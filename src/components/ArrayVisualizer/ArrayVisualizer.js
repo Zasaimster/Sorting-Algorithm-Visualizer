@@ -69,6 +69,7 @@ class ArrayVisualizer extends React.Component {
 
 	initializeArrays = () => {
 		let array = [];
+		//let array = [204, 283, 83, 150, 33, 466, 304, 332, 285, 282];
 		for (var i = 0; i < this.state.arrSize; i++) {
 			array[i] = this.getRandomValue(10, 500);
 		}
@@ -78,6 +79,7 @@ class ArrayVisualizer extends React.Component {
 	};
 
 	getVisualizedSteps = () => {
+		console.log(this.state.array);
 		let visualizedSteps = [];
 		let tempArray = [...this.state.array];
 		switch (this.state.currentAlgorithm) {

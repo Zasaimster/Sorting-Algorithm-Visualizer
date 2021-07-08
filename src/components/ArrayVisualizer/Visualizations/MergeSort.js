@@ -54,13 +54,11 @@ const MergeSort = forwardRef(({array, isSorting, updateArray}, ref) => {
 
 	const sortPreviousSection = (index, steps) => {
 		if (index < 0) return;
-		//get range
-		//sort part of array from that range
-		//replace it, call update
+
 		const [start, end] = steps[index][2];
 		let tempArr = [...array];
 		let tempSlice = array.slice(start, end + 1);
-		tempSlice.sort();
+		tempSlice.sort((a, b) => a - b);
 		for (var i = start, j = 0; i <= end; i++, j++) {
 			tempArr[i] = tempSlice[j];
 		}
@@ -71,8 +69,7 @@ const MergeSort = forwardRef(({array, isSorting, updateArray}, ref) => {
 	const pushNewBar = (step) => {
 		let smallIndex = step[0];
 		let bigIndex = step[1];
-		let rects =
-			document.getElementsByClassName('array-wrapper')[0].children;
+
 		console.log(array[smallIndex], array[bigIndex]);
 		setSubArray((subArray) => [...subArray, array[smallIndex]]);
 	};

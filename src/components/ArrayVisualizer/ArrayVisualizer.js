@@ -10,25 +10,19 @@ import {
 	selectionSort,
 	quickSort,
 	mergeSort,
-} from '../../algorithms/algorithms';
+} from '../../helper/algorithms';
 
 import './ArrayVisualizer.css';
 
 const DEFAULT_SIZE = 30;
 const ITERATION_SPEEDS = [1000, 500, 100, 15, 3];
-
-const DEFAULT_COLOR = '#006eff';
-const CURRENT_INDEX_COLOR = 'green';
-const CURRENT_COMPARISON_COLOR = 'grey';
-const SWAP_COLOR = 'red';
-
 /*
 convert to functional component and access child functions like this: https://stackoverflow.com/questions/37949981/call-child-method-from-parent
 */
 
 class ArrayVisualizer extends React.Component {
 	state = {
-		currentAlgorithm: 'bubbleSort',
+		currentAlgorithm: 'mergeSort',
 		array: [],
 		visualizedSteps: [],
 		vsIndex: 0,
@@ -73,62 +67,12 @@ class ArrayVisualizer extends React.Component {
 		});
 	};
 
-	updateCurrentColors = () => {
-		const vsIndex = this.state.vsIndex;
-		let allSVGs =
-			document.getElementsByClassName('array-wrapper')[0].children;
-
-		const [currBar, compareBar, isSwapped] =
-			this.state.visualizedSteps[vsIndex];
-		const currBarStyle = allSVGs[currBar].children[0].style;
-		const compareBarStyle = allSVGs[compareBar].children[0].style;
-
-		currBarStyle.fill = CURRENT_INDEX_COLOR;
-		if (!isSwapped) {
-			compareBarStyle.fill = CURRENT_COMPARISON_COLOR;
-		} else {
-			compareBarStyle.fill = SWAP_COLOR;
-
-			if (this.state.isSorting) {
-				let array = [...this.state.array];
-				const temp = array[compareBar];
-				array[compareBar] = array[currBar];
-				array[currBar] = temp;
-
-				this.setState({array});
-			} else {
-				//wait half a second to swap array elements if a user is going iteration by iteration
-				setTimeout(() => {
-					let array = [...this.state.array];
-					const temp = array[compareBar];
-					array[compareBar] = array[currBar];
-					array[currBar] = temp;
-
-					this.setState({array});
-				}, 500);
-			}
-		}
-	};
-
-	resetPreviousColors = () => {
-		const vsIndex = this.state.vsIndex;
-		let allBars =
-			document.getElementsByClassName('array-wrapper')[0].children;
-		const [currBar, compareBar] = this.state.visualizedSteps[vsIndex - 1];
-		const currBarStyle = allBars[currBar].children[0].style;
-		const compareBarStyle = allBars[compareBar].children[0].style;
-
-		currBarStyle.fill = DEFAULT_COLOR;
-		compareBarStyle.fill = DEFAULT_COLOR;
-	};
-
 	initializeArrays = () => {
 		let array = [];
 		for (var i = 0; i < this.state.arrSize; i++) {
 			array[i] = this.getRandomValue(10, 500);
 		}
 		this.setState({array}, () => {
-			console.log(array);
 			this.getVisualizedSteps();
 		});
 	};
@@ -156,9 +100,7 @@ class ArrayVisualizer extends React.Component {
 				console.log('this algorithm has not been implemented yet');
 				return;
 		}
-		this.setState({visualizedSteps}, () =>
-			console.log('initialized visualizedSteps array')
-		);
+		this.setState({visualizedSteps});
 	};
 
 	//https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
@@ -167,7 +109,7 @@ class ArrayVisualizer extends React.Component {
 	}
 
 	render() {
-		const {array, currentAlgorithm, isSorting, ref} = this.state;
+		const {array, currentAlgorithm, isSorting} = this.state;
 		return (
 			<>
 				<Nav
@@ -203,7 +145,14 @@ class ArrayVisualizer extends React.Component {
 						ref={this.state.ref}
 					/>
 				)}
-				{currentAlgorithm === 'mergeSort' && <MergeSortVisualization />}
+				{currentAlgorithm === 'mergeSort' && (
+					<MergeSortVisualization
+						array={array}
+						isSorting={isSorting}
+						updateArray={(array) => this.setState({array})}
+						ref={this.state.ref}
+					/>
+				)}
 				{currentAlgorithm === 'quickSort' && <QuickSortVisualization />}
 			</>
 		);

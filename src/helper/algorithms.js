@@ -178,6 +178,10 @@ const sortAndMerge = (arr, low, mid, high, iterations) => {
 	let left = [];
 	let right = [];
 
+	let range = [low, high];
+	let lOffset = low;
+	let rOffset = mid + 1;
+
 	for (let i = 0; i < l1; i++) {
 		//left[i] = arr[low + i];
 		left.push(arr[low + i]);
@@ -193,9 +197,12 @@ const sortAndMerge = (arr, low, mid, high, iterations) => {
 
 	while (i < l1 && j < l2) {
 		if (left[i] <= right[j]) {
+			//0th index is the smaller one
+			iterations.push([lOffset + i, rOffset + j, range]);
 			arr[k] = left[i];
 			i++;
 		} else {
+			iterations.push([rOffset + j, lOffset + i, range]);
 			arr[k] = right[j];
 			j++;
 		}
@@ -204,11 +211,13 @@ const sortAndMerge = (arr, low, mid, high, iterations) => {
 
 	while (i < l1) {
 		arr[k] = left[i];
+		iterations.push([lOffset + i, -1, range]);
 		i++;
 		k++;
 	}
 	while (j < l2) {
 		arr[k] = right[j];
+		iterations.push([rOffset + j, -1, range]);
 		j++;
 		k++;
 	}

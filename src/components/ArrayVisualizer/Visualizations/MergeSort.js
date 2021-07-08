@@ -1,9 +1,9 @@
 import {useImperativeHandle, forwardRef, useState, useEffect} from 'react';
 import Array from './Array';
 
-import {setArrayColorByRange} from '../../../helper/functions';
+import {resetAllColors, setArrayColorByRange} from '../../../helper/functions';
 
-const IN_RANGE_COLOR = '#006eff';
+const DEFAULT_COLOR = '#006eff';
 const OUT_OF_RANGE_COLOR = '#a8cdff';
 const SMALL_COLOR = 'green';
 const BIG_COLOR = 'grey';
@@ -17,13 +17,15 @@ steps[
 ]
 */
 
-const MergeSort = forwardRef(({array, isSorting, updateArray}, ref) => {
+const MergeSort = forwardRef(({array, isSorting, updateArray, steps}, ref) => {
 	const [subArray, setSubArray] = useState([]);
 	const [currentRange, setCurrentRange] = useState([-1, -1]);
+	const [sortedIndices, setSortedIndices] = useState([]);
+
 	useEffect(() => console.log(subArray), [subArray]);
 
 	useImperativeHandle(ref, () => ({
-		updateColors(index, steps) {
+		updateColors(index) {
 			let rects =
 				document.getElementsByClassName('array-wrapper')[0].children;
 			const [smallIndex, bigIndex, range] = steps[index];
@@ -32,14 +34,13 @@ const MergeSort = forwardRef(({array, isSorting, updateArray}, ref) => {
 				setCurrentRange(range);
 				setSubArray([]);
 				sortPreviousSection(index - 1, steps);
-				//console.log('yo');
 			}
 			pushNewBar(steps[index]);
 
 			setArrayColorByRange(
 				range[0],
 				range[1],
-				IN_RANGE_COLOR,
+				DEFAULT_COLOR,
 				OUT_OF_RANGE_COLOR
 			);
 
@@ -47,12 +48,21 @@ const MergeSort = forwardRef(({array, isSorting, updateArray}, ref) => {
 			if (bigIndex !== -1) {
 				rects[bigIndex].style.backgroundColor = BIG_COLOR;
 			}
+
+			if (index + 1 === steps.length) {
+				sortPreviousSection(index);
+				resetAllColors(DEFAULT_COLOR);
+				//get rid of bottom array after halk a second
+				setTimeout(() => {
+					setSubArray([]);
+				}, 500);
+			}
 		},
 	}));
 
-	const resetPreviousColors = (index, steps) => {};
+	const resetPreviousColors = (index) => {};
 
-	const sortPreviousSection = (index, steps) => {
+	const sortPreviousSection = (index) => {
 		if (index < 0) return;
 
 		const [start, end] = steps[index][2];

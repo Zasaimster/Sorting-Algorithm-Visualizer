@@ -14,7 +14,7 @@ import {
 
 import './ArrayVisualizer.css';
 
-const DEFAULT_SIZE = 30;
+const DEFAULT_SIZE = 5;
 const ITERATION_SPEEDS = [1000, 500, 100, 15, 3];
 /*
 convert to functional component and access child functions like this: https://stackoverflow.com/questions/37949981/call-child-method-from-parent
@@ -22,7 +22,7 @@ convert to functional component and access child functions like this: https://st
 
 class ArrayVisualizer extends React.Component {
 	state = {
-		currentAlgorithm: 'mergeSort',
+		currentAlgorithm: 'bubbleSort',
 		array: [],
 		visualizedSteps: [],
 		vsIndex: 0,
@@ -59,6 +59,7 @@ class ArrayVisualizer extends React.Component {
 		const vsIndex = this.state.vsIndex;
 		const steps = this.state.visualizedSteps;
 
+		console.log('visualizer index: ', vsIndex);
 		visual.updateColors(vsIndex, steps);
 
 		this.setState({vsIndex: vsIndex + 1}, () => {
@@ -137,6 +138,10 @@ class ArrayVisualizer extends React.Component {
 						});
 					}}
 				/>
+				{this.state.visualizedSteps.length === 0 && (
+					<div> Loading... </div>
+				)}
+
 				{(currentAlgorithm === 'bubbleSort' ||
 					currentAlgorithm === 'selectionSort' ||
 					currentAlgorithm === 'insertionSort') && (
@@ -144,6 +149,7 @@ class ArrayVisualizer extends React.Component {
 						array={array}
 						isSorting={isSorting}
 						updateArray={(array) => this.setState({array})}
+						steps={this.state.visualizedSteps}
 						ref={this.state.ref}
 					/>
 				)}
@@ -152,6 +158,7 @@ class ArrayVisualizer extends React.Component {
 						array={array}
 						isSorting={isSorting}
 						updateArray={(array) => this.setState({array})}
+						steps={this.state.visualizedSteps}
 						ref={this.state.ref}
 					/>
 				)}

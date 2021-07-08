@@ -14,16 +14,19 @@ steps[
 ]
 */
 
-const Basic = forwardRef(({array, isSorting, updateArray}, ref) => {
+const Basic = forwardRef(({array, isSorting, updateArray, steps}, ref) => {
 	useImperativeHandle(ref, () => ({
-		updateColors(index, steps) {
+		updateColors(index) {
 			if (index !== 0) {
 				resetPreviousColors(index - 1, steps);
-				swapPreviousComparison(index - 1, steps, updateArray);
+				console.log(index);
+				console.log(steps.length);
+				swapPreviousComparison(index - 1, updateArray);
 			}
 
 			let rects =
 				document.getElementsByClassName('array-wrapper')[0].children;
+			console.log(steps);
 			const [currIndex, compareIndex, isSwapped] = steps[index];
 			const currStyle = rects[currIndex].style;
 			const compareStyle = rects[compareIndex].style;
@@ -37,11 +40,11 @@ const Basic = forwardRef(({array, isSorting, updateArray}, ref) => {
 			}
 
 			if (index + 1 === steps.length)
-				resetPreviousColors(index + 1, steps, DEFAULT_COLOR);
+				resetPreviousColors(index, DEFAULT_COLOR);
 		},
 	}));
 
-	const resetPreviousColors = (index, steps) => {
+	const resetPreviousColors = (index) => {
 		let rects =
 			document.getElementsByClassName('array-wrapper')[0].children;
 		const [currIndex, compareIndex] = steps[index];
@@ -52,7 +55,7 @@ const Basic = forwardRef(({array, isSorting, updateArray}, ref) => {
 		compareStyle.backgroundColor = DEFAULT_COLOR;
 	};
 
-	const swapPreviousComparison = (index, steps) => {
+	const swapPreviousComparison = (index) => {
 		const [currIndex, compareIndex, isSwapped] = steps[index];
 
 		if (isSwapped) {

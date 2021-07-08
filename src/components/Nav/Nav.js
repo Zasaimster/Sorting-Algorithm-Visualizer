@@ -32,10 +32,10 @@ const Nav = ({
 				onChange={handleSize}
 			/>
 			<select name='algorithms' onChange={chooseAlgorithm}>
-				<option value='mergeSort'> Merge Sort todo </option>
 				<option value='bubbleSort'> Bubble Sort </option>
 				<option value='insertionSort'> Insertion Sort </option>
 				<option value='selectionSort'> Selection Sort </option>
+				<option value='mergeSort'> Merge Sort </option>
 				<option value='quickSort'> Quick Sort todo </option>
 				<option value='countingSort'> Counting Sort** todo </option>
 				<option value='radixSort'> Radix Sort** todo </option>

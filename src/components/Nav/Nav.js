@@ -4,6 +4,7 @@ import './Nav.css';
 const Nav = ({
 	visualizeNextIteration,
 	setPlayAlgorithm,
+	reset,
 	chooseAlgorithm,
 	handleSpeed,
 	handleSize,
@@ -13,6 +14,7 @@ const Nav = ({
 			<h1> Sorting Algorithm Visualizer </h1>
 			<button onClick={visualizeNextIteration}> next </button>
 			<button onClick={setPlayAlgorithm}> play </button>
+			<button onClick={reset}> reset </button>
 			<label> Sorting Speed </label>
 			<input
 				name='speed'

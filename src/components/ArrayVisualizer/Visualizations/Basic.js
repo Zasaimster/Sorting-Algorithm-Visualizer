@@ -1,4 +1,5 @@
 import {useImperativeHandle, forwardRef} from 'react';
+import {resetAllColors} from '../../../helper/functions';
 import Array from './Array';
 
 const DEFAULT_COLOR = '#006eff';
@@ -41,6 +42,12 @@ const Basic = forwardRef(({array, isSorting, updateArray, steps}, ref) => {
 
 			if (index + 1 === steps.length)
 				resetPreviousColors(index, DEFAULT_COLOR);
+			if (!isSorting) {
+				this.reset();
+			}
+		},
+		reset() {
+			resetAllColors(DEFAULT_COLOR);
 		},
 	}));
 

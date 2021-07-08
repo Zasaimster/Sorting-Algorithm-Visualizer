@@ -65,6 +65,14 @@ const MergeSort = forwardRef(({array, isSorting, updateArray, steps}, ref) => {
 					setSortedIndices([]);
 				}, 500);
 			}
+
+			if (!isSorting) {
+				this.reset();
+			}
+		},
+		reset() {
+			resetAllColors(DEFAULT_COLOR);
+			setSubArray([]);
 		},
 	}));
 

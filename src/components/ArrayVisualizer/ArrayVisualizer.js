@@ -22,7 +22,7 @@ convert to functional component and access child functions like this: https://st
 
 class ArrayVisualizer extends React.Component {
 	state = {
-		currentAlgorithm: 'mergeSort',
+		currentAlgorithm: 'bubbleSort',
 		array: [],
 		visualizedSteps: [],
 		vsIndex: 0,
@@ -79,6 +79,19 @@ class ArrayVisualizer extends React.Component {
 		});
 	};
 
+	reset = () => {
+		this.setState(
+			{
+				vsIndex: 0,
+				isSorting: false,
+			},
+			() => {
+				this.initializeArrays();
+				this.state.ref.current.reset();
+			}
+		);
+	};
+
 	getVisualizedSteps = () => {
 		console.log(this.state.array);
 		let visualizedSteps = [];
@@ -122,6 +135,9 @@ class ArrayVisualizer extends React.Component {
 							this.playAlgorithm()
 						)
 					}
+					reset={() => {
+						this.reset();
+					}}
 					chooseAlgorithm={(e) =>
 						this.setState({currentAlgorithm: e.target.value}, () =>
 							this.getVisualizedSteps()

@@ -14,7 +14,7 @@ import {
 
 import './ArrayVisualizer.css';
 
-const DEFAULT_SIZE = 5;
+const DEFAULT_SIZE = 30;
 const ITERATION_SPEEDS = [1000, 500, 100, 15, 3];
 /*
 convert to functional component and access child functions like this: https://stackoverflow.com/questions/37949981/call-child-method-from-parent
@@ -22,7 +22,7 @@ convert to functional component and access child functions like this: https://st
 
 class ArrayVisualizer extends React.Component {
 	state = {
-		currentAlgorithm: 'bubbleSort',
+		currentAlgorithm: 'mergeSort',
 		array: [],
 		visualizedSteps: [],
 		vsIndex: 0,

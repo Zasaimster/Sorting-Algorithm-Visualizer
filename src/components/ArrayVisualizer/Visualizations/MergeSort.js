@@ -1,7 +1,11 @@
 import {useImperativeHandle, forwardRef, useState, useEffect} from 'react';
 import Array from './Array';
 
-import {resetAllColors, setArrayColorByRange} from '../../../helper/functions';
+import {
+	resetAllColors,
+	setArrayColorByIndices,
+	setArrayColorByRange,
+} from '../../../helper/functions';
 
 const DEFAULT_COLOR = '#006eff';
 const OUT_OF_RANGE_COLOR = '#a8cdff';
@@ -22,7 +26,8 @@ const MergeSort = forwardRef(({array, isSorting, updateArray, steps}, ref) => {
 	const [currentRange, setCurrentRange] = useState([-1, -1]);
 	const [sortedIndices, setSortedIndices] = useState([]);
 
-	useEffect(() => console.log(subArray), [subArray]);
+	//useEffect(() => console.log(subArray), [subArray]);
+	useEffect(() => console.log(sortedIndices), [sortedIndices]);
 
 	useImperativeHandle(ref, () => ({
 		updateColors(index) {
@@ -33,6 +38,7 @@ const MergeSort = forwardRef(({array, isSorting, updateArray, steps}, ref) => {
 			if (range !== currentRange) {
 				setCurrentRange(range);
 				setSubArray([]);
+				setSortedIndices([]);
 				sortPreviousSection(index - 1, steps);
 			}
 			pushNewBar(steps[index]);
@@ -43,6 +49,7 @@ const MergeSort = forwardRef(({array, isSorting, updateArray, steps}, ref) => {
 				DEFAULT_COLOR,
 				OUT_OF_RANGE_COLOR
 			);
+			setArrayColorByIndices(sortedIndices, SORTED_COLOR);
 
 			rects[smallIndex].style.backgroundColor = SMALL_COLOR;
 			if (bigIndex !== -1) {
@@ -55,6 +62,7 @@ const MergeSort = forwardRef(({array, isSorting, updateArray, steps}, ref) => {
 				//get rid of bottom array after halk a second
 				setTimeout(() => {
 					setSubArray([]);
+					setSortedIndices([]);
 				}, 500);
 			}
 		},
@@ -78,10 +86,9 @@ const MergeSort = forwardRef(({array, isSorting, updateArray, steps}, ref) => {
 
 	const pushNewBar = (step) => {
 		let smallIndex = step[0];
-		let bigIndex = step[1];
 
-		console.log(array[smallIndex], array[bigIndex]);
 		setSubArray((subArray) => [...subArray, array[smallIndex]]);
+		setSortedIndices((sortedIndices) => [...sortedIndices, smallIndex]);
 	};
 
 	return (

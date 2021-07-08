@@ -15,6 +15,14 @@ export const setArrayColorByRange = (
 	}
 };
 
+export const setArrayColorByIndices = (indices, color) => {
+	let rects = document.getElementsByClassName('array-wrapper')[0].children;
+	console.log(indices);
+	for (var i = 0; i < indices.length; i++) {
+		rects[indices[i]].style.backgroundColor = color;
+	}
+};
+
 export const resetAllColors = (color) => {
 	let rects = document.getElementsByClassName('array-wrapper')[0].children;
 	for (var i = 0; i < rects.length; i++) {

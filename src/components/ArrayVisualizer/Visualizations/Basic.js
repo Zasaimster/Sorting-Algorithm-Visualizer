@@ -1,4 +1,4 @@
-import {useImperativeHandle, forwardRef} from 'react';
+import {useImperativeHandle, forwardRef, useState} from 'react';
 import {resetAllColors} from '../../../helper/functions';
 import Array from './Array';
 
@@ -16,6 +16,8 @@ steps[
 */
 
 const Basic = forwardRef(({array, isSorting, updateArray, steps}, ref) => {
+	const [reset, setReset] = useState(false);
+
 	useImperativeHandle(ref, () => ({
 		updateColors(index) {
 			if (index !== 0) {
@@ -40,14 +42,17 @@ const Basic = forwardRef(({array, isSorting, updateArray, steps}, ref) => {
 				compareStyle.backgroundColor = SWAP_COLOR;
 			}
 
+			//handle reset when you get to the last step
 			if (index + 1 === steps.length)
 				resetPreviousColors(index, DEFAULT_COLOR);
-			if (!isSorting) {
-				this.reset();
+			//ensures all colors are reset at the end of the updateColors() function when reset is clicked while the algorithm is playing
+			if (reset) {
+				resetAllColors(DEFAULT_COLOR);
+				setReset(false);
 			}
 		},
 		reset() {
-			resetAllColors(DEFAULT_COLOR);
+			setReset(true);
 		},
 	}));
 

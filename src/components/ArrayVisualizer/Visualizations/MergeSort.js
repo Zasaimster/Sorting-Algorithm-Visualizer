@@ -25,6 +25,7 @@ const MergeSort = forwardRef(({array, isSorting, updateArray, steps}, ref) => {
 	const [subArray, setSubArray] = useState([]);
 	const [currentRange, setCurrentRange] = useState([-1, -1]);
 	const [sortedIndices, setSortedIndices] = useState([]);
+	const [reset, setReset] = useState(false);
 
 	//useEffect(() => console.log(subArray), [subArray]);
 	useEffect(() => console.log(sortedIndices), [sortedIndices]);
@@ -66,13 +67,14 @@ const MergeSort = forwardRef(({array, isSorting, updateArray, steps}, ref) => {
 				}, 500);
 			}
 
-			if (!isSorting) {
-				this.reset();
+			if (reset) {
+				resetAllColors(DEFAULT_COLOR);
+				setSubArray([]);
+				setReset(false);
 			}
 		},
 		reset() {
-			resetAllColors(DEFAULT_COLOR);
-			setSubArray([]);
+			setReset(true);
 		},
 	}));
 

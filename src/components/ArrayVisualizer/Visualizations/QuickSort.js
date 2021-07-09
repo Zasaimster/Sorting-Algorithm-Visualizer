@@ -10,8 +10,9 @@ import {
 const DEFAULT_COLOR = '#006eff';
 const OUT_OF_RANGE_COLOR = '#a8cdff';
 const SMALL_COLOR = 'green';
-const BIG_COLOR = 'grey';
+const COMPARE_COLOR = 'grey';
 const SORTED_COLOR = 'purple';
+const PIVOT_COLOR = 'yellow';
 
 /*
 steps[
@@ -36,15 +37,22 @@ const QuickSort = forwardRef(({array, isSorting, updateArray, steps}, ref) => {
 				document.getElementsByClassName('array-wrapper')[0].children;
 			const [index1, index2, comparisonIndicator, swap, range] =
 				steps[index];
+			//handle sorted case later
 
 			if (range !== currentRange) {
-				setArrayColorByRange(
-					range[0],
-					range[1],
-					DEFAULT_COLOR,
-					OUT_OF_RANGE_COLOR
-				);
 			}
+
+			setArrayColorByRange(
+				range[0],
+				range[1],
+				DEFAULT_COLOR,
+				OUT_OF_RANGE_COLOR
+			);
+
+			rects[index1].style.backgroundColor = PIVOT_COLOR;
+			rects[index2].style.backgroundColor = COMPARE_COLOR;
+
+			handleSwap(index);
 		},
 		reset() {
 			setReset(true);
@@ -52,6 +60,20 @@ const QuickSort = forwardRef(({array, isSorting, updateArray, steps}, ref) => {
 	}));
 
 	const sortPreviousSection = (index) => {};
+
+	const handleSwap = (index) => {
+		const swap = steps[index][3];
+
+		if (swap) {
+			const [index1, index2] = steps[index];
+			let updatedArray = [...array];
+			const tmp = updatedArray[index1];
+			updatedArray[index1] = updatedArray[index2];
+			updatedArray[index2] = tmp;
+
+			updateArray(updatedArray);
+		}
+	};
 
 	return (
 		<>

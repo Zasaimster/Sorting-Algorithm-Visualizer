@@ -154,7 +154,7 @@ const partition = (arr, low, high, iterations) => {
 	var pivot = arr[low];
 
 	while (i < j) {
-		while (arr[i] <= pivot) {
+		while (i < arr.length && arr[i] <= pivot) {
 			iterations.push([low, i, 0, false, range]);
 			i++;
 		}

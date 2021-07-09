@@ -29,6 +29,7 @@ export const bubbleSort = (arr) => {
 		}
 	}
 	//console.log(arr);
+	console.log(iterations);
 	return iterations;
 };
 
@@ -52,6 +53,7 @@ export const insertionSort = (arr) => {
 		arr[index] = valToInsert;
 	}
 	//console.log(arr, iterations);
+	console.log(iterations);
 
 	return iterations;
 };
@@ -78,6 +80,7 @@ export const selectionSort = (arr) => {
 	}
 
 	//console.log(arr, iterations);
+	console.log(iterations);
 
 	return iterations;
 };
@@ -134,31 +137,43 @@ const quickSortAlgo = (arr, low, high, iterations) => {
 	}
 };
 
+/*
+steps[
+	index of pivot OR VALUE SWAPPED, 
+	index of compared value OR VALUE SWAPPED
+	0 = still looping, 1 = arr[i] <= pivot or arr[j] >= pivot (set it to a color to distinguish it) -1 = ignore
+	boolean to indicate whether a swap is occurring (set both indices to a certain color)
+]
+*/
 const partition = (arr, low, high, iterations) => {
 	var i = low;
 	var j = high;
+	let range = [low, high];
 
 	//pivot from lowest point of current sub-array
 	var pivot = arr[low];
 
 	while (i < j) {
 		while (arr[i] <= pivot) {
-			iterations.push([low, i, false]);
+			iterations.push([low, i, 0, false, range]);
 			i++;
 		}
+		iterations.push([low, i, 1, false, range]);
+
 		while (j > 0 && arr[j] > pivot) {
-			iterations.push([low, j, false]);
+			iterations.push([low, j, 0, false, range]);
 			j--;
 		}
+		iterations.push([low, j, 1, false, range]);
 
 		if (i < j) {
 			swap(arr, i, j);
-			iterations.push([i, j, true]); //make diff case so both are red
+			iterations.push([i, j, -1, true, range]); //make diff case so both are red
 		}
 	}
 
 	swap(arr, low, j);
-	iterations.push([low, j, true]);
+	iterations.push([low, j, -1, true, range]);
 
 	return j;
 };
@@ -195,15 +210,19 @@ const sortAndMerge = (arr, low, mid, high, iterations) => {
 	let i = 0,
 		j = 0,
 		k = low;
+	var sorted = [];
 
 	while (i < l1 && j < l2) {
 		if (left[i] <= right[j]) {
 			//0th index is the smaller one
-			iterations.push([lOffset + i, rOffset + j, range]);
+			iterations.push([lOffset + i, rOffset + j, range, [...sorted]]);
+			sorted.push(lOffset + i);
+			console.log(sorted);
 			arr[k] = left[i];
 			i++;
 		} else {
-			iterations.push([rOffset + j, lOffset + i, range]);
+			iterations.push([rOffset + j, lOffset + i, range, [...sorted]]);
+			sorted.push(rOffset + j);
 			arr[k] = right[j];
 			j++;
 		}
@@ -212,13 +231,15 @@ const sortAndMerge = (arr, low, mid, high, iterations) => {
 
 	while (i < l1) {
 		arr[k] = left[i];
-		iterations.push([lOffset + i, -1, range]);
+		iterations.push([lOffset + i, -1, range, [...sorted]]);
+		sorted.push(lOffset + i);
 		i++;
 		k++;
 	}
 	while (j < l2) {
 		arr[k] = right[j];
-		iterations.push([rOffset + j, -1, range]);
+		iterations.push([rOffset + j, -1, range, [...sorted]]);
+		sorted.push(rOffset + j);
 		j++;
 		k++;
 	}

@@ -59,7 +59,6 @@ class ArrayVisualizer extends React.Component {
 		const vsIndex = this.state.vsIndex;
 		const steps = this.state.visualizedSteps;
 
-		console.log('visualizer index: ', vsIndex);
 		visual.updateColors(vsIndex, steps);
 
 		this.setState({vsIndex: vsIndex + 1}, () => {
@@ -178,7 +177,15 @@ class ArrayVisualizer extends React.Component {
 						ref={this.state.ref}
 					/>
 				)}
-				{currentAlgorithm === 'quickSort' && <QuickSortVisualization />}
+				{currentAlgorithm === 'quickSort' && (
+					<QuickSortVisualization
+						array={array}
+						isSorting={isSorting}
+						updateArray={(array) => this.setState({array})}
+						steps={this.state.visualizedSteps}
+						ref={this.state.ref}
+					/>
+				)}
 			</>
 		);
 	}

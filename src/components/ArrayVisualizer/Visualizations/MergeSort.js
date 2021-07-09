@@ -24,22 +24,30 @@ steps[
 const MergeSort = forwardRef(({array, isSorting, updateArray, steps}, ref) => {
 	const [subArray, setSubArray] = useState([]);
 	const [currentRange, setCurrentRange] = useState([-1, -1]);
-	const [sortedIndices, setSortedIndices] = useState([]);
-	const [reset, setReset] = useState(false);
+	//const [reset, setReset] = useState(false);
 
-	//useEffect(() => console.log(subArray), [subArray]);
-	useEffect(() => console.log(sortedIndices), [sortedIndices]);
+	useEffect(() => {
+		if (subArray.length === 0) {
+			console.log('subArr is empty');
+		}
+		console.log(subArray);
+	}, [subArray]);
+
+	// useEffect(() => {
+	// 	if (reset) {
+	// 		setReset(false);
+	// 	}
+	// }, [reset]);
 
 	useImperativeHandle(ref, () => ({
 		updateColors(index) {
 			let rects =
 				document.getElementsByClassName('array-wrapper')[0].children;
-			const [smallIndex, bigIndex, range] = steps[index];
-
+			const [smallIndex, bigIndex, range, sorted] = steps[index];
+			console.log(sorted);
 			if (range !== currentRange) {
 				setCurrentRange(range);
 				setSubArray([]);
-				setSortedIndices([]);
 				sortPreviousSection(index - 1, steps);
 			}
 			pushNewBar(steps[index]);
@@ -50,7 +58,8 @@ const MergeSort = forwardRef(({array, isSorting, updateArray, steps}, ref) => {
 				DEFAULT_COLOR,
 				OUT_OF_RANGE_COLOR
 			);
-			setArrayColorByIndices(sortedIndices, SORTED_COLOR);
+
+			setArrayColorByIndices(sorted, SORTED_COLOR);
 
 			rects[smallIndex].style.backgroundColor = SMALL_COLOR;
 			if (bigIndex !== -1) {
@@ -63,22 +72,14 @@ const MergeSort = forwardRef(({array, isSorting, updateArray, steps}, ref) => {
 				//get rid of bottom array after halk a second
 				setTimeout(() => {
 					setSubArray([]);
-					setSortedIndices([]);
 				}, 500);
-			}
-
-			if (reset) {
-				resetAllColors(DEFAULT_COLOR);
-				setSubArray([]);
-				setReset(false);
 			}
 		},
 		reset() {
-			setReset(true);
+			resetAllColors(DEFAULT_COLOR);
+			setSubArray([]);
 		},
 	}));
-
-	const resetPreviousColors = (index) => {};
 
 	const sortPreviousSection = (index) => {
 		if (index < 0) return;
@@ -97,8 +98,8 @@ const MergeSort = forwardRef(({array, isSorting, updateArray, steps}, ref) => {
 	const pushNewBar = (step) => {
 		let smallIndex = step[0];
 
+		console.log(subArray);
 		setSubArray((subArray) => [...subArray, array[smallIndex]]);
-		setSortedIndices((sortedIndices) => [...sortedIndices, smallIndex]);
 	};
 
 	return (

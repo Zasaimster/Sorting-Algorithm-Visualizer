@@ -143,10 +143,9 @@ const quickSortAlgo = (arr, low, high, iterations, sorted) => {
 
 /*
 steps[
-	index of pivot, 
-	index of compared value AND/OR swapped value
-	0 = still looping, 1 = arr[i] > pivot or arr[j] <= pivot (set it to a "to be swapped color" to distinguish it) -1 = ignore
-	boolean to indicate whether a swap is occurring (set both indices to red)
+	index of pivot OR VALUE SWAPPED, 
+	index of compared value OR VALUE SWAPPED
+	0 = still looking for values to swap, -1 = a swap is occurring
 	range to indicate current section
 	array of indices to indicate which elements are already in sorted position
 	array of indices to indicate which elements have already been looked at in the current iteration 

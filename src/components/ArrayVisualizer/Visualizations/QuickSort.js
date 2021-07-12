@@ -28,9 +28,6 @@ steps[
 */
 
 const QuickSort = forwardRef(({array, isSorting, updateArray, steps}, ref) => {
-	const [reset, setReset] = useState(false);
-	const [currentRange, setCurrentRange] = useState([-1, -1]);
-
 	//useEffect(() => console.log(subArray), [subArray]);
 	//useEffect(() => console.log(sortedIndices), [sortedIndices]);
 
@@ -86,6 +83,10 @@ const QuickSort = forwardRef(({array, isSorting, updateArray, steps}, ref) => {
 
 			if (index + 1 === steps.length) {
 				handleSwap(index);
+				resetAllColors(SORTED_COLOR);
+				setTimeout(() => {
+					resetAllColors(DEFAULT_COLOR);
+				}, 500);
 			}
 		},
 		reset() {

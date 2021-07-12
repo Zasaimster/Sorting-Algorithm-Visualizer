@@ -19,6 +19,7 @@ export const setArrayColorByIndices = (indices, color) => {
 	let rects = document.getElementsByClassName('array-wrapper')[0].children;
 	console.log(indices);
 	for (var i = 0; i < indices.length; i++) {
+		console.log(indices[i]);
 		rects[indices[i]].style.backgroundColor = color;
 	}
 };

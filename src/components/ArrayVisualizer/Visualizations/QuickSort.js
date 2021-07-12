@@ -70,15 +70,16 @@ const QuickSort = forwardRef(({array, isSorting, updateArray, steps}, ref) => {
 			setArrayColorByIndices(sorted, SORTED_COLOR);
 
 			rects[pivotIndex].style.backgroundColor = PIVOT_COLOR;
-
+			const [low, high] = lowAndHighPointer;
 			if (comparisonIndicator === 0) {
-				rects[lowAndHighPointer[0]].style.backgroundColor =
-					LOW_INDEX_COLOR;
-				rects[lowAndHighPointer[1]].style.backgroundColor =
-					HIGH_INDEX_COLOR;
+				console.log(lowAndHighPointer[0]);
+				if (low < array.length)
+					rects[low].style.backgroundColor = LOW_INDEX_COLOR;
+				rects[high].style.backgroundColor = HIGH_INDEX_COLOR;
 			} else if (comparisonIndicator === -1) {
-				rects[lowAndHighPointer[0]].style.backgroundColor = SWAP_COLOR;
-				rects[lowAndHighPointer[1]].style.backgroundColor = SWAP_COLOR;
+				if (low < array.length)
+					rects[low].style.backgroundColor = SWAP_COLOR;
+				rects[high].style.backgroundColor = SWAP_COLOR;
 			}
 
 			//handleSwap(index);

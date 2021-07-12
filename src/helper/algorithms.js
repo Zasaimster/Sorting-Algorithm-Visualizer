@@ -133,12 +133,11 @@ const quickSortAlgo = (arr, low, high, iterations, sorted) => {
 	if (low < high) {
 		let partitionIndex = partition(arr, low, high, iterations, sorted);
 		sorted.push(partitionIndex);
-		console.log(partitionIndex);
 
 		quickSortAlgo(arr, partitionIndex + 1, high, iterations, sorted);
 		quickSortAlgo(arr, low, partitionIndex - 1, iterations, sorted);
 	} else {
-		sorted.push(low);
+		if (low < arr.length) sorted.push(low);
 	}
 };
 

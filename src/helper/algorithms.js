@@ -107,7 +107,8 @@ export const quickSort = (arr) => {
 	let low = 0;
 	let high = arr.length - 1;
 	let iterations = [];
-	quickSortAlgo(arr, low, high, iterations);
+	let sorted = [];
+	quickSortAlgo(arr, low, high, iterations, sorted);
 
 	console.log(arr);
 	console.log(iterations);
@@ -128,52 +129,112 @@ export const mergeSort = (arr) => {
 	return iterations;
 };
 
-const quickSortAlgo = (arr, low, high, iterations) => {
+const quickSortAlgo = (arr, low, high, iterations, sorted) => {
 	if (low < high) {
-		let partitionIndex = partition(arr, low, high, iterations);
+		let partitionIndex = partition(arr, low, high, iterations, sorted);
+		console.log(sorted);
+		sorted.push(partitionIndex);
 
-		quickSortAlgo(arr, partitionIndex + 1, high, iterations);
-		quickSortAlgo(arr, low, partitionIndex - 1, iterations);
+		quickSortAlgo(arr, partitionIndex + 1, high, iterations, sorted);
+		quickSortAlgo(arr, low, partitionIndex - 1, iterations, sorted);
 	}
 };
 
 /*
 steps[
-	index of pivot OR VALUE SWAPPED, 
-	index of compared value OR VALUE SWAPPED
-	0 = still looping, 1 = arr[i] <= pivot or arr[j] >= pivot (set it to a color to distinguish it) -1 = ignore
-	boolean to indicate whether a swap is occurring (set both indices to a certain color)
+	index of pivot, 
+	index of compared value AND/OR swapped value
+	0 = still looping, 1 = arr[i] > pivot or arr[j] <= pivot (set it to a "to be swapped color" to distinguish it) -1 = ignore
+	boolean to indicate whether a swap is occurring (set both indices to red)
+	range to indicate current section
+	array of indices to indicate which elements are already in sorted position
+	array of indices to indicate which elements have already been looked at in the current iteration 
 ]
 */
-const partition = (arr, low, high, iterations) => {
+const partition = (arr, low, high, iterations, sorted) => {
 	var i = low;
 	var j = high;
 	let range = [low, high];
 
 	//pivot from lowest point of current sub-array
-	var pivot = arr[low];
+	let pivot = arr[low];
+	let lookedAt = [];
 
 	while (i < j) {
 		while (i < arr.length && arr[i] <= pivot) {
-			iterations.push([low, i, 0, false, range]);
+			iterations.push([
+				low,
+				[i, j],
+				0,
+				false,
+				range,
+				[...lookedAt],
+				[...sorted],
+			]);
+			lookedAt.push(i);
 			i++;
 		}
-		iterations.push([low, i, 1, false, range]);
+		iterations.push([
+			low,
+			[i, j],
+			1,
+			false,
+			range,
+			[...lookedAt],
+			[...sorted],
+		]);
+		//lookedAt.push(i);
 
 		while (j > 0 && arr[j] > pivot) {
-			iterations.push([low, j, 0, false, range]);
+			iterations.push([
+				low,
+				[i, j],
+				0,
+				false,
+				range,
+				[...lookedAt],
+				[...sorted],
+			]);
+			lookedAt.push(j);
 			j--;
 		}
-		iterations.push([low, j, 1, false, range]);
+		iterations.push([
+			low,
+			[i, j],
+			1,
+			false,
+			range,
+			[...lookedAt],
+			[...sorted],
+		]);
+		//lookedAt.push(j);
 
 		if (i < j) {
 			swap(arr, i, j);
-			iterations.push([i, j, -1, true, range]); //make diff case so both are red
+			iterations.push([
+				low,
+				[i, j],
+				-1,
+				true,
+				range,
+				[...lookedAt],
+				[...sorted],
+			]);
+			//make diff case so both are red
 		}
 	}
 
 	swap(arr, low, j);
-	iterations.push([low, j, -1, true, range]);
+	//? this case
+	iterations.push([
+		low,
+		[low, j],
+		-1,
+		true,
+		range,
+		[...lookedAt],
+		[...sorted],
+	]);
 
 	return j;
 };

@@ -132,11 +132,13 @@ export const mergeSort = (arr) => {
 const quickSortAlgo = (arr, low, high, iterations, sorted) => {
 	if (low < high) {
 		let partitionIndex = partition(arr, low, high, iterations, sorted);
-		console.log(sorted);
 		sorted.push(partitionIndex);
+		console.log(partitionIndex);
 
 		quickSortAlgo(arr, partitionIndex + 1, high, iterations, sorted);
 		quickSortAlgo(arr, low, partitionIndex - 1, iterations, sorted);
+	} else {
+		sorted.push(low);
 	}
 };
 
@@ -166,7 +168,6 @@ const partition = (arr, low, high, iterations, sorted) => {
 				low,
 				[i, j],
 				0,
-				false,
 				range,
 				[...lookedAt],
 				[...sorted],
@@ -174,15 +175,7 @@ const partition = (arr, low, high, iterations, sorted) => {
 			lookedAt.push(i);
 			i++;
 		}
-		iterations.push([
-			low,
-			[i, j],
-			1,
-			false,
-			range,
-			[...lookedAt],
-			[...sorted],
-		]);
+		iterations.push([low, [i, j], 0, range, [...lookedAt], [...sorted]]);
 		//lookedAt.push(i);
 
 		while (j > 0 && arr[j] > pivot) {
@@ -190,7 +183,6 @@ const partition = (arr, low, high, iterations, sorted) => {
 				low,
 				[i, j],
 				0,
-				false,
 				range,
 				[...lookedAt],
 				[...sorted],
@@ -198,15 +190,7 @@ const partition = (arr, low, high, iterations, sorted) => {
 			lookedAt.push(j);
 			j--;
 		}
-		iterations.push([
-			low,
-			[i, j],
-			1,
-			false,
-			range,
-			[...lookedAt],
-			[...sorted],
-		]);
+		iterations.push([low, [i, j], 0, range, [...lookedAt], [...sorted]]);
 		//lookedAt.push(j);
 
 		if (i < j) {
@@ -215,7 +199,6 @@ const partition = (arr, low, high, iterations, sorted) => {
 				low,
 				[i, j],
 				-1,
-				true,
 				range,
 				[...lookedAt],
 				[...sorted],
@@ -226,15 +209,7 @@ const partition = (arr, low, high, iterations, sorted) => {
 
 	swap(arr, low, j);
 	//? this case
-	iterations.push([
-		low,
-		[low, j],
-		-1,
-		true,
-		range,
-		[...lookedAt],
-		[...sorted],
-	]);
+	iterations.push([low, [low, j], -1, range, [...lookedAt], [...sorted]]);
 
 	return j;
 };

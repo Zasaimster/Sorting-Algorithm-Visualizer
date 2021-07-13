@@ -49,9 +49,6 @@ const QuickSort = forwardRef(({array, isSorting, updateArray, steps}, ref) => {
 				handleSwap(index - 1);
 			}
 
-			if (range !== currentRange) {
-			}
-
 			//sets colors in and out of current partition
 			setArrayColorByRange(
 				range[0],
@@ -90,7 +87,7 @@ const QuickSort = forwardRef(({array, isSorting, updateArray, steps}, ref) => {
 			}
 		},
 		reset() {
-			setReset(true);
+			resetAllColors(DEFAULT_COLOR);
 		},
 	}));
 

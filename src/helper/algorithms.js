@@ -173,8 +173,6 @@ const partition = (arr, low, high, iterations, sorted) => {
 			lookedAt.push(i);
 			i++;
 		}
-		iterations.push([low, [i, j], 0, range, [...lookedAt], [...sorted]]);
-		//lookedAt.push(i);
 
 		while (j > 0 && arr[j] > pivot) {
 			iterations.push([
@@ -188,8 +186,6 @@ const partition = (arr, low, high, iterations, sorted) => {
 			lookedAt.push(j);
 			j--;
 		}
-		iterations.push([low, [i, j], 0, range, [...lookedAt], [...sorted]]);
-		//lookedAt.push(j);
 
 		if (i < j) {
 			swap(arr, i, j);

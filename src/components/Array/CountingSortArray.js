@@ -7,7 +7,7 @@ const CountingSortArray = ({array}) => {
 				<div
 					className='bar'
 					key={index}
-					style={{width: '10px', height: `${val * 10}px`}}
+					style={{width: '30px', height: `${val * 10}px`}}
 				/>
 			))}
 		</div>

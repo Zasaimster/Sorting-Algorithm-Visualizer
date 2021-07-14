@@ -8,6 +8,21 @@
 	margin-left: 3px;
 }
 
+.counting-bar {
+	display: inline-block;
+	background-color: #006eff;
+}
+
+.counting-wrapper {
+	text-align: center;
+}
+
+.wrapper {
+	display: inline-block;
+	margin-left: 5px;
+}
+
 .array-wrapper {
 	text-align: center;
+	margin-top: 10px;
 }

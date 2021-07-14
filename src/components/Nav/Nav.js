@@ -38,7 +38,7 @@ const Nav = ({
 				<option value='insertionSort'> Insertion Sort </option>
 				<option value='selectionSort'> Selection Sort </option>
 				<option value='mergeSort'> Merge Sort </option>
-				<option value='quickSort'> Quick Sort todo </option>
+				<option value='quickSort'> Quick Sort </option>
 				<option value='countingSort'> Counting Sort** todo </option>
 				<option value='radixSort'> Radix Sort** todo </option>
 			</select>

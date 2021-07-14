@@ -10,9 +10,11 @@ import {
 	selectionSort,
 	quickSort,
 	mergeSort,
+	countingSort,
 } from '../../helper/algorithms';
 
 import './ArrayVisualizer.css';
+import CountingRadix from './Visualizations/CountingRadix';
 
 const DEFAULT_SIZE = 30;
 const ITERATION_SPEEDS = [1000, 500, 100, 15, 3];
@@ -70,8 +72,13 @@ class ArrayVisualizer extends React.Component {
 	initializeArrays = () => {
 		let array = [];
 		//let array =
+		let algo = this.state.currentAlgorithm;
+		console.log(algo);
+		let minVal = algo === 'countingSort' ? 0 : 10;
+		let maxVal = algo === 'countingSort' ? 9 : 500;
+
 		for (var i = 0; i < this.state.arrSize; i++) {
-			array[i] = this.getRandomValue(10, 500);
+			array[i] = this.getRandomValue(minVal, maxVal);
 		}
 		this.setState({array}, () => {
 			this.getVisualizedSteps();
@@ -111,6 +118,9 @@ class ArrayVisualizer extends React.Component {
 			case 'mergeSort':
 				visualizedSteps = mergeSort(tempArray);
 				break;
+			case 'countingSort':
+				visualizedSteps = countingSort(tempArray);
+				break;
 			default:
 				console.log('this algorithm has not been implemented yet');
 				return;
@@ -118,9 +128,9 @@ class ArrayVisualizer extends React.Component {
 		this.setState({visualizedSteps});
 	};
 
-	//https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
+	//
 	getRandomValue(min, max) {
-		return Math.floor(Math.random() * (max - min + 1)) + min;
+		return Math.floor(Math.random() * (max - min + 1)) + min; //The maximum is inclusive and the minimum is inclusive
 	}
 
 	render() {
@@ -139,7 +149,8 @@ class ArrayVisualizer extends React.Component {
 					}}
 					chooseAlgorithm={(e) =>
 						this.setState({currentAlgorithm: e.target.value}, () =>
-							this.getVisualizedSteps()
+							//this.getVisualizedSteps()
+							this.reset()
 						)
 					}
 					handleSize={(e) => {
@@ -179,6 +190,15 @@ class ArrayVisualizer extends React.Component {
 				)}
 				{currentAlgorithm === 'quickSort' && (
 					<QuickSortVisualization
+						array={array}
+						isSorting={isSorting}
+						updateArray={(array) => this.setState({array})}
+						steps={this.state.visualizedSteps}
+						ref={this.state.ref}
+					/>
+				)}
+				{currentAlgorithm === 'countingSort' && (
+					<CountingRadix
 						array={array}
 						isSorting={isSorting}
 						updateArray={(array) => this.setState({array})}

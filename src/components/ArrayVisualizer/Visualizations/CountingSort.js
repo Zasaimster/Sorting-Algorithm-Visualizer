@@ -1,9 +1,8 @@
-import {useImperativeHandle, forwardRef, useState, useEffect} from 'react';
-import {isCompositeComponentWithType} from 'react-dom/cjs/react-dom-test-utils.production.min';
+import {useImperativeHandle, forwardRef, useState} from 'react';
 
 import {resetAllColors, resetAllSpecificColors} from '../../../helper/functions';
 import CountingSortArray from '../../Array/CountingSortArray';
-import ZeroTenArray from '../../Array/ZeroTenArray';
+import CountArray from '../../Array/CountArray';
 
 const DEFAULT_COLOR = '#006eff';
 const CURRENT_ELEMENT_COLOR = 'green';
@@ -23,7 +22,7 @@ steps[
 ]
 */
 
-const CountingRadix = forwardRef(({array, isSorting, updateArray, steps}, ref) => {
+const CountingSort = forwardRef(({array, isSorting, updateArray, steps}, ref) => {
 	const initialCountState = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 	const [countArr, setCountArr] = useState([initialCountState]);
 	const [sortedArr, setSortedArr] = useState([]);
@@ -102,10 +101,10 @@ const CountingRadix = forwardRef(({array, isSorting, updateArray, steps}, ref) =
 	return (
 		<>
 			<CountingSortArray array={array} />
-			<ZeroTenArray array={countArr} />
+			<CountArray array={countArr} />
 			<CountingSortArray array={sortedArr} />
 		</>
 	);
 });
 
-export default CountingRadix;
+export default CountingSort;

@@ -1,6 +1,6 @@
 import './Array.css';
 
-const ZeroTenArray = ({array}) => {
+const CountArray = ({array}) => {
 	return (
 		<div className='counting-wrapper'>
 			{array.map((val, index) => (
@@ -13,4 +13,4 @@ const ZeroTenArray = ({array}) => {
 	);
 };
 
-export default ZeroTenArray;
+export default CountArray;

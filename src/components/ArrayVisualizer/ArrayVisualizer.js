@@ -7,7 +7,7 @@ import {default as QuickSortVisualization} from './Visualizations/QuickSort';
 import {bubbleSort, insertionSort, selectionSort, quickSort, mergeSort, countingSort} from '../../helper/algorithms';
 
 import './ArrayVisualizer.css';
-import CountingRadix from './Visualizations/CountingRadix';
+import CountingRadix from './Visualizations/CountingSort';
 
 const DEFAULT_SIZE = 30;
 const ITERATION_SPEEDS = [1000, 500, 100, 15, 3];

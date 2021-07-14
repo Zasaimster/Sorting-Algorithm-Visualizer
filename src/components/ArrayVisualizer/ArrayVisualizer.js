@@ -4,14 +4,7 @@ import {default as BasicVisualization} from './Visualizations/Basic';
 import {default as MergeSortVisualization} from './Visualizations/MergeSort';
 import {default as QuickSortVisualization} from './Visualizations/QuickSort';
 
-import {
-	bubbleSort,
-	insertionSort,
-	selectionSort,
-	quickSort,
-	mergeSort,
-	countingSort,
-} from '../../helper/algorithms';
+import {bubbleSort, insertionSort, selectionSort, quickSort, mergeSort, countingSort} from '../../helper/algorithms';
 
 import './ArrayVisualizer.css';
 import CountingRadix from './Visualizations/CountingRadix';
@@ -47,11 +40,7 @@ class ArrayVisualizer extends React.Component {
 
 			var interval = setInterval(() => {
 				this.visualizeNextIteration();
-				if (
-					this.state.vsIndex === visualizedSteps.length ||
-					!this.state.isSorting
-				)
-					clearInterval(interval);
+				if (this.state.vsIndex === visualizedSteps.length || !this.state.isSorting) clearInterval(interval);
 			}, this.state.sortingSpeed);
 		}
 	};
@@ -64,8 +53,7 @@ class ArrayVisualizer extends React.Component {
 		visual.updateColors(vsIndex, steps);
 
 		this.setState({vsIndex: vsIndex + 1}, () => {
-			if (this.state.vsIndex === steps.length)
-				this.setState({isSorting: false});
+			if (this.state.vsIndex === steps.length) this.setState({isSorting: false});
 		});
 	};
 
@@ -139,11 +127,7 @@ class ArrayVisualizer extends React.Component {
 			<>
 				<Nav
 					visualizeNextIteration={this.visualizeNextIteration}
-					setPlayAlgorithm={() =>
-						this.setState({isSorting: !this.state.isSorting}, () =>
-							this.playAlgorithm()
-						)
-					}
+					setPlayAlgorithm={() => this.setState({isSorting: !this.state.isSorting}, () => this.playAlgorithm())}
 					reset={() => {
 						this.reset();
 					}}
@@ -154,9 +138,7 @@ class ArrayVisualizer extends React.Component {
 						)
 					}
 					handleSize={(e) => {
-						this.setState({arrSize: e.target.value}, () =>
-							this.initializeArrays()
-						);
+						this.setState({arrSize: e.target.value}, () => this.initializeArrays());
 					}}
 					handleSpeed={(e) => {
 						this.setState({
@@ -164,13 +146,9 @@ class ArrayVisualizer extends React.Component {
 						});
 					}}
 				/>
-				{this.state.visualizedSteps.length === 0 && (
-					<div> Loading... </div>
-				)}
+				{this.state.visualizedSteps.length === 0 && <div> Loading... </div>}
 
-				{(currentAlgorithm === 'bubbleSort' ||
-					currentAlgorithm === 'selectionSort' ||
-					currentAlgorithm === 'insertionSort') && (
+				{(currentAlgorithm === 'bubbleSort' || currentAlgorithm === 'selectionSort' || currentAlgorithm === 'insertionSort') && (
 					<BasicVisualization
 						array={array}
 						isSorting={isSorting}

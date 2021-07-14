@@ -18,23 +18,14 @@ steps[
 const Basic = forwardRef(({array, isSorting, updateArray, steps}, ref) => {
 	// const [reset, setReset] = useState(false);
 
-	// useEffect(() => {
-	// 	if (reset) {
-	// 		setReset(false);
-	// 	}
-	// }, [reset]);
-
 	useImperativeHandle(ref, () => ({
 		updateColors(index) {
 			if (index !== 0) {
 				resetAllColors(DEFAULT_COLOR);
-				console.log(index);
-				console.log(steps.length);
 				swapPreviousComparison(index - 1, updateArray);
 			}
 
-			let rects =
-				document.getElementsByClassName('array-wrapper')[0].children;
+			let rects = document.getElementsByClassName('array-wrapper')[0].children;
 			console.log(steps);
 			const [currIndex, compareIndex, isSwapped] = steps[index];
 			const currStyle = rects[currIndex].style;

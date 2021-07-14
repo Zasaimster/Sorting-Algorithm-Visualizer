@@ -87,7 +87,7 @@ export const selectionSort = (arr) => {
 
 /*
 steps[
-	bool indicating whether it is adding values into the count arr
+	state indicating whether it is adding values into the count arr
 	index indicating which element is being looked at in arr
 	index indicating which element this is for count
 ]
@@ -99,18 +99,19 @@ export const countingSort = (arr, max) => {
 
 	for (var i = 0; i < arr.length; i++) {
 		count[arr[i]]++;
-		iterations.push([true, i, arr[i]]);
+		iterations.push(['makingCount', i, arr[i]]);
 	}
 
 	for (i = 1; i < count.length; i++) {
 		count[i] += count[i - 1];
+		iterations.push(['summingCount', i, -1]);
 	}
 	console.log('here');
 	console.log(count);
 	let res = new Array(arr.length).fill(0);
 	for (i = 0; i < arr.length; i++) {
 		res[count[arr[i]] - 1] = arr[i];
-		iterations.push([false, i, arr[i]]);
+		iterations.push(['sorting', i, arr[i]]);
 		count[arr[i]]--;
 	}
 	console.log('res', res, iterations);
@@ -179,41 +180,20 @@ const partition = (arr, low, high, iterations, sorted) => {
 
 	while (i < j) {
 		while (i < arr.length && arr[i] <= pivot) {
-			iterations.push([
-				low,
-				[i, j],
-				0,
-				range,
-				[...lookedAt],
-				[...sorted],
-			]);
+			iterations.push([low, [i, j], 0, range, [...lookedAt], [...sorted]]);
 			lookedAt.push(i);
 			i++;
 		}
 
 		while (j > 0 && arr[j] > pivot) {
-			iterations.push([
-				low,
-				[i, j],
-				0,
-				range,
-				[...lookedAt],
-				[...sorted],
-			]);
+			iterations.push([low, [i, j], 0, range, [...lookedAt], [...sorted]]);
 			lookedAt.push(j);
 			j--;
 		}
 
 		if (i < j) {
 			swap(arr, i, j);
-			iterations.push([
-				low,
-				[i, j],
-				-1,
-				range,
-				[...lookedAt],
-				[...sorted],
-			]);
+			iterations.push([low, [i, j], -1, range, [...lookedAt], [...sorted]]);
 			//make diff case so both are red
 		}
 	}

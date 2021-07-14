@@ -29,7 +29,7 @@ export const bubbleSort = (arr) => {
 		}
 	}
 	//console.log(arr);
-	console.log(iterations);
+	//console.log(iterations);
 	return iterations;
 };
 
@@ -95,7 +95,6 @@ steps[
 export const countingSort = (arr, max) => {
 	let iterations = [];
 	let count = new Array(max + 1).fill(0);
-	console.log(count);
 
 	for (var i = 0; i < arr.length; i++) {
 		count[arr[i]]++;
@@ -106,15 +105,14 @@ export const countingSort = (arr, max) => {
 		count[i] += count[i - 1];
 		iterations.push(['summingCount', i, -1]);
 	}
-	console.log('here');
-	console.log(count);
+
 	let res = new Array(arr.length).fill(0);
 	for (i = 0; i < arr.length; i++) {
 		res[count[arr[i]] - 1] = arr[i];
 		iterations.push(['sorting', i, arr[i]]);
 		count[arr[i]]--;
 	}
-	console.log('res', res, iterations);
+	//console.log('res', res, iterations);
 
 	//console.log(arr, iterations);
 

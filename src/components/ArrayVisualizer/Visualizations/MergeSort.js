@@ -1,11 +1,7 @@
 import {useImperativeHandle, forwardRef, useState, useEffect} from 'react';
 import Array from '../../Array/Array';
 
-import {
-	resetAllColors,
-	setArrayColorByIndices,
-	setArrayColorByRange,
-} from '../../../helper/functions';
+import {resetAllColors, setArrayColorByIndices, setArrayColorByRange} from '../../../helper/functions';
 
 const DEFAULT_COLOR = '#006eff';
 const OUT_OF_RANGE_COLOR = '#a8cdff';
@@ -41,8 +37,7 @@ const MergeSort = forwardRef(({array, isSorting, updateArray, steps}, ref) => {
 
 	useImperativeHandle(ref, () => ({
 		updateColors(index) {
-			let rects =
-				document.getElementsByClassName('array-wrapper')[0].children;
+			let rects = document.getElementsByClassName('array-wrapper')[0].children;
 			const [smallIndex, bigIndex, range, sorted] = steps[index];
 			console.log(sorted);
 			if (range !== currentRange) {
@@ -52,12 +47,7 @@ const MergeSort = forwardRef(({array, isSorting, updateArray, steps}, ref) => {
 			}
 			pushNewBar(steps[index]);
 
-			setArrayColorByRange(
-				range[0],
-				range[1],
-				DEFAULT_COLOR,
-				OUT_OF_RANGE_COLOR
-			);
+			setArrayColorByRange(range[0], range[1], DEFAULT_COLOR, OUT_OF_RANGE_COLOR);
 
 			setArrayColorByIndices(sorted, SORTED_COLOR);
 
@@ -67,17 +57,19 @@ const MergeSort = forwardRef(({array, isSorting, updateArray, steps}, ref) => {
 			}
 
 			if (index + 1 === steps.length) {
-				sortPreviousSection(index);
-				resetAllColors(DEFAULT_COLOR);
-				//get rid of bottom array after halk a second
-				setTimeout(() => {
-					setSubArray([]);
-				}, 500);
 			}
 		},
 		reset() {
 			resetAllColors(DEFAULT_COLOR);
 			setSubArray([]);
+		},
+		handleLastStep() {
+			sortPreviousSection(steps.length - 1);
+			resetAllColors(DEFAULT_COLOR);
+			//get rid of bottom array after half a second
+			setTimeout(() => {
+				setSubArray([]);
+			}, 500);
 		},
 	}));
 

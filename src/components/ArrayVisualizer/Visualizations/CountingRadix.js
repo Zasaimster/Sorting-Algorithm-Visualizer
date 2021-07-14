@@ -1,19 +1,13 @@
 import {useImperativeHandle, forwardRef, useState, useEffect} from 'react';
-import Array from '../../Array/Array';
+import {isCompositeComponentWithType} from 'react-dom/cjs/react-dom-test-utils.production.min';
 
-import {resetAllColors, resetAllSpecificColors, setArrayColorByIndices, setArrayColorByRange} from '../../../helper/functions';
+import {resetAllColors, resetAllSpecificColors} from '../../../helper/functions';
 import CountingSortArray from '../../Array/CountingSortArray';
 import ZeroTenArray from '../../Array/ZeroTenArray';
 
 const DEFAULT_COLOR = '#006eff';
 const CURRENT_ELEMENT_COLOR = 'green';
 const INSPECTING_COLOR = 'gray';
-const SWAP_COLOR = 'red'; //also to be used as a "to be swapped color"
-const LOW_INDEX_COLOR = 'pink';
-const HIGH_INDEX_COLOR = 'hotPink';
-const ALREADY_COMPARED_COLOR = 'gray';
-const SORTED_COLOR = 'purple';
-const PIVOT_COLOR = 'yellow';
 
 const states = {
 	makingCount: 'makingCount',
@@ -30,16 +24,13 @@ steps[
 */
 
 const CountingRadix = forwardRef(({array, isSorting, updateArray, steps}, ref) => {
-	const [countArr, setCountArr] = useState([]);
+	const initialCountState = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+	const [countArr, setCountArr] = useState([initialCountState]);
 	const [sortedArr, setSortedArr] = useState([]);
-	const [isCountIncremented, setCountIncremented] = useState(false);
-
-	useEffect(() => {
-		setCountArr([0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
-	}, []);
 
 	useImperativeHandle(ref, () => ({
 		updateColors(index) {
+			console.log(countArr);
 			let arrRects = document.getElementsByClassName('array-wrapper')[0].children;
 			let countRects = document.getElementsByClassName('counting-wrapper')[0].children;
 			let sortedRects = document.getElementsByClassName('array-wrapper')[1].children;
@@ -50,10 +41,7 @@ const CountingRadix = forwardRef(({array, isSorting, updateArray, steps}, ref) =
 				resetAllSpecificColors(DEFAULT_COLOR, sortedRects);
 			}
 			if (sortedArr.length === 0) {
-				let tempArr = [];
-				for (var i = 0; i < array.length; i++) tempArr.push(0);
-				console.log(tempArr);
-				setSortedArr(tempArr);
+				for (var i = 0; i < array.length; i++) setSortedArr((sortedArr) => [...sortedArr, 0]);
 			}
 
 			const [state, arrIndex, arrVal] = steps[index];
@@ -66,19 +54,19 @@ const CountingRadix = forwardRef(({array, isSorting, updateArray, steps}, ref) =
 
 				arrRects[arrIndex].style.backgroundColor = CURRENT_ELEMENT_COLOR;
 			} else if (state === states.summingCount) {
+				console.log(countArr);
 				let tempArr = [...countArr];
 				tempArr[arrIndex] += tempArr[arrIndex - 1];
 				setCountArr(tempArr);
 
+				console.log(sortedArr);
 				countRects[arrIndex].children[0].style.backgroundColor = CURRENT_ELEMENT_COLOR;
 				console.log(countRects[arrIndex].children);
 				countRects[arrIndex - 1].children[0].style.backgroundColor = INSPECTING_COLOR;
 			} else {
-				//the first time 'isMakingNewArray' is false, we need countArr to be added up to get the right indices
-				let tempCountArr = [...countArr];
-
 				//makes a new, sorted array
 				let tempSorted = [...sortedArr];
+				let tempCountArr = [...countArr];
 				let index = tempCountArr[arrVal] - 1;
 				tempSorted[index] = arrVal;
 				setSortedArr(tempSorted);
@@ -87,13 +75,29 @@ const CountingRadix = forwardRef(({array, isSorting, updateArray, steps}, ref) =
 				tempCountArr[arrVal]--;
 				setCountArr(tempCountArr);
 
+				arrRects[arrIndex].style.backgroundColor = INSPECTING_COLOR;
+				countRects[arrVal].children[0].style.backgroundColor = INSPECTING_COLOR;
+				console.log(index);
+				console.log(sortedRects[index]);
 				sortedRects[index].style.backgroundColor = CURRENT_ELEMENT_COLOR;
 			}
 		},
-		reset() {},
+		reset() {
+			console.log('what');
+			resetAllColors(DEFAULT_COLOR);
+			setCountArr(initialCountState);
+			//for (var i = 0; i < array.length; i++) setSortedArr((sortedArr) => [...sortedArr, 0]);
+			setSortedArr([]);
+		},
+		handleLastStep() {
+			/*setTimeout(() => {
+				this.reset();
+			}, 500);*/
+			resetAllColors(DEFAULT_COLOR);
+			resetAllSpecificColors(DEFAULT_COLOR, document.getElementsByClassName('counting-wrapper')[0].children);
+			resetAllSpecificColors(DEFAULT_COLOR, document.getElementsByClassName('array-wrapper')[1].children);
+		},
 	}));
-
-	const handleSwap = (index) => {};
 
 	return (
 		<>

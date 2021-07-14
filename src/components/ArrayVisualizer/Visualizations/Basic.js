@@ -1,4 +1,4 @@
-import {useImperativeHandle, forwardRef, useState, useEffect} from 'react';
+import {useImperativeHandle, forwardRef} from 'react';
 import {resetAllColors} from '../../../helper/functions';
 import Array from '../../Array/Array';
 
@@ -38,12 +38,12 @@ const Basic = forwardRef(({array, isSorting, updateArray, steps}, ref) => {
 			} else {
 				compareStyle.backgroundColor = SWAP_COLOR;
 			}
-
-			//handle reset when you get to the last step
-			if (index + 1 === steps.length) resetAllColors(DEFAULT_COLOR);
 		},
 		reset() {
 			resetAllColors(DEFAULT_COLOR);
+		},
+		handleLastStep() {
+			this.reset();
 		},
 	}));
 

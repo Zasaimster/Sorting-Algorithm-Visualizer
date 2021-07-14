@@ -53,7 +53,10 @@ class ArrayVisualizer extends React.Component {
 		visual.updateColors(vsIndex, steps);
 
 		this.setState({vsIndex: vsIndex + 1}, () => {
-			if (this.state.vsIndex === steps.length) this.setState({isSorting: false});
+			if (this.state.vsIndex === steps.length) {
+				visual.handleLastStep();
+				this.setState({isSorting: false});
+			}
 		});
 	};
 

@@ -1,11 +1,7 @@
-import {useImperativeHandle, forwardRef, useState, useEffect} from 'react';
+import {useImperativeHandle, forwardRef} from 'react';
 import Array from '../../Array/Array';
 
-import {
-	resetAllColors,
-	setArrayColorByIndices,
-	setArrayColorByRange,
-} from '../../../helper/functions';
+import {resetAllColors, setArrayColorByIndices, setArrayColorByRange} from '../../../helper/functions';
 
 const DEFAULT_COLOR = '#006eff';
 const OUT_OF_RANGE_COLOR = '#a8cdff';
@@ -33,16 +29,8 @@ const QuickSort = forwardRef(({array, isSorting, updateArray, steps}, ref) => {
 
 	useImperativeHandle(ref, () => ({
 		updateColors(index) {
-			let rects =
-				document.getElementsByClassName('array-wrapper')[0].children;
-			const [
-				pivotIndex,
-				lowAndHighPointer,
-				comparisonIndicator,
-				range,
-				lookedAt,
-				sorted,
-			] = steps[index];
+			let rects = document.getElementsByClassName('array-wrapper')[0].children;
+			const [pivotIndex, lowAndHighPointer, comparisonIndicator, range, lookedAt, sorted] = steps[index];
 			//handle sorted case later
 
 			if (index !== 0) {
@@ -50,12 +38,7 @@ const QuickSort = forwardRef(({array, isSorting, updateArray, steps}, ref) => {
 			}
 
 			//sets colors in and out of current partition
-			setArrayColorByRange(
-				range[0],
-				range[1],
-				DEFAULT_COLOR,
-				OUT_OF_RANGE_COLOR
-			);
+			setArrayColorByRange(range[0], range[1], DEFAULT_COLOR, OUT_OF_RANGE_COLOR);
 
 			//set colors that have already been looked at
 			setArrayColorByIndices(lookedAt, ALREADY_COMPARED_COLOR);
@@ -67,27 +50,22 @@ const QuickSort = forwardRef(({array, isSorting, updateArray, steps}, ref) => {
 			const [low, high] = lowAndHighPointer;
 			if (comparisonIndicator === 0) {
 				console.log(lowAndHighPointer[0]);
-				if (low < array.length)
-					rects[low].style.backgroundColor = LOW_INDEX_COLOR;
+				if (low < array.length) rects[low].style.backgroundColor = LOW_INDEX_COLOR;
 				rects[high].style.backgroundColor = HIGH_INDEX_COLOR;
 			} else if (comparisonIndicator === -1) {
-				if (low < array.length)
-					rects[low].style.backgroundColor = SWAP_COLOR;
+				if (low < array.length) rects[low].style.backgroundColor = SWAP_COLOR;
 				rects[high].style.backgroundColor = SWAP_COLOR;
-			}
-
-			//handleSwap(index);
-
-			if (index + 1 === steps.length) {
-				handleSwap(index);
-				resetAllColors(SORTED_COLOR);
-				setTimeout(() => {
-					resetAllColors(DEFAULT_COLOR);
-				}, 500);
 			}
 		},
 		reset() {
 			resetAllColors(DEFAULT_COLOR);
+		},
+		handleLastStep() {
+			handleSwap(steps.length - 1);
+			resetAllColors(SORTED_COLOR);
+			setTimeout(() => {
+				resetAllColors(DEFAULT_COLOR);
+			}, 500);
 		},
 	}));
 

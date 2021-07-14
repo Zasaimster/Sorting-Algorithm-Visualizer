@@ -1,7 +1,7 @@
 import {useImperativeHandle, forwardRef, useState, useEffect} from 'react';
 import Array from '../../Array/Array';
 
-import {resetAllColors, setArrayColorByIndices, setArrayColorByRange} from '../../../helper/functions';
+import {resetAllColors, resetAllSpecificColors, setArrayColorByIndices, setArrayColorByRange} from '../../../helper/functions';
 import CountingSortArray from '../../Array/CountingSortArray';
 import ZeroTenArray from '../../Array/ZeroTenArray';
 
@@ -40,8 +40,14 @@ const CountingRadix = forwardRef(({array, isSorting, updateArray, steps}, ref) =
 
 	useImperativeHandle(ref, () => ({
 		updateColors(index) {
+			let arrRects = document.getElementsByClassName('array-wrapper')[0].children;
+			let countRects = document.getElementsByClassName('counting-wrapper')[0].children;
+			let sortedRects = document.getElementsByClassName('array-wrapper')[1].children;
+
 			if (index !== 0) {
 				resetAllColors(DEFAULT_COLOR);
+				resetAllSpecificColors(DEFAULT_COLOR, countRects);
+				resetAllSpecificColors(DEFAULT_COLOR, sortedRects);
 			}
 			if (sortedArr.length === 0) {
 				let tempArr = [];
@@ -49,10 +55,6 @@ const CountingRadix = forwardRef(({array, isSorting, updateArray, steps}, ref) =
 				console.log(tempArr);
 				setSortedArr(tempArr);
 			}
-
-			let arrRects = document.getElementsByClassName('array-wrapper')[0].children;
-			let countRects = document.getElementsByClassName('counting-wrapper')[0].children;
-			let sortedRects = document.getElementsByClassName('array-wrapper')[1].children;
 
 			const [state, arrIndex, arrVal] = steps[index];
 

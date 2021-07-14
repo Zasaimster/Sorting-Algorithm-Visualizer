@@ -1,9 +1,4 @@
-export const setArrayColorByRange = (
-	start,
-	end,
-	rangeColor,
-	outOfRangeColor
-) => {
+export const setArrayColorByRange = (start, end, rangeColor, outOfRangeColor) => {
 	let rects = document.getElementsByClassName('array-wrapper')[0].children;
 
 	for (var i = 0; i < rects.length; i++) {
@@ -26,6 +21,13 @@ export const setArrayColorByIndices = (indices, color) => {
 
 export const resetAllColors = (color) => {
 	let rects = document.getElementsByClassName('array-wrapper')[0].children;
+	for (var i = 0; i < rects.length; i++) {
+		rects[i].style.backgroundColor = color;
+	}
+};
+
+export const resetAllSpecificColors = (color, rects) => {
+	//let rects = document.getElementsByClassName('array-wrapper')[0].children;
 	for (var i = 0; i < rects.length; i++) {
 		rects[i].style.backgroundColor = color;
 	}

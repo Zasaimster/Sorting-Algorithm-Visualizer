@@ -1,5 +1,5 @@
 import {useImperativeHandle, forwardRef, useState, useEffect} from 'react';
-import Array from './Array';
+import Array from '../../Array/Array';
 
 import {
 	resetAllColors,

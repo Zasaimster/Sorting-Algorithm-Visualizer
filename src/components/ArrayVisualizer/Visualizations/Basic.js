@@ -1,6 +1,6 @@
 import {useImperativeHandle, forwardRef, useState, useEffect} from 'react';
 import {resetAllColors} from '../../../helper/functions';
-import Array from './Array';
+import Array from '../../Array/Array';
 
 const DEFAULT_COLOR = '#006eff';
 const CURRENT_INDEX_COLOR = 'green';

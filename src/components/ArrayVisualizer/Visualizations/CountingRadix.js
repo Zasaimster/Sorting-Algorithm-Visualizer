@@ -1,11 +1,12 @@
 import {useImperativeHandle, forwardRef, useState, useEffect} from 'react';
-import Array from './Array';
+import Array from '../../Array/Array';
 
 import {
 	resetAllColors,
 	setArrayColorByIndices,
 	setArrayColorByRange,
 } from '../../../helper/functions';
+import CountingSortArray from '../../Array/CountingSortArray';
 
 const DEFAULT_COLOR = '#006eff';
 const OUT_OF_RANGE_COLOR = '#a8cdff';
@@ -33,7 +34,7 @@ const CountingRadix = forwardRef(
 
 		return (
 			<>
-				<Array array={array} />
+				<CountingSortArray array={array} />
 			</>
 		);
 	}

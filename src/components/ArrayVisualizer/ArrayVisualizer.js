@@ -74,7 +74,7 @@ class ArrayVisualizer extends React.Component {
 		//let array =
 		let algo = this.state.currentAlgorithm;
 		console.log(algo);
-		let minVal = algo === 'countingSort' ? 0 : 10;
+		let minVal = algo === 'countingSort' ? 1 : 10;
 		let maxVal = algo === 'countingSort' ? 9 : 500;
 
 		for (var i = 0; i < this.state.arrSize; i++) {
@@ -119,7 +119,7 @@ class ArrayVisualizer extends React.Component {
 				visualizedSteps = mergeSort(tempArray);
 				break;
 			case 'countingSort':
-				visualizedSteps = countingSort(tempArray);
+				visualizedSteps = countingSort(tempArray, 9);
 				break;
 			default:
 				console.log('this algorithm has not been implemented yet');

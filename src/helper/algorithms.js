@@ -85,25 +85,35 @@ export const selectionSort = (arr) => {
 	return iterations;
 };
 
-export const countingSort = (arr) => {
+/*
+steps[
+	bool indicating whether it is adding values into the count arr
+	index indicating which element is being looked at in arr
+	index indicating which element this is for count
+]
+*/
+export const countingSort = (arr, max) => {
 	let iterations = [];
-	let count = new Array(arr.length).fill(0);
+	let count = new Array(max + 1).fill(0);
 	console.log(count);
 
-	for (let val of arr) {
-		count[val]++;
+	for (var i = 0; i < arr.length; i++) {
+		count[arr[i]]++;
+		iterations.push([true, i, arr[i]]);
 	}
 
-	for (var i = 1; i < arr.length; i++) {
+	for (i = 1; i < count.length; i++) {
 		count[i] += count[i - 1];
 	}
 	console.log('here');
+	console.log(count);
 	let res = new Array(arr.length).fill(0);
-	for (i = arr.length - 1; i >= 0; i--) {
+	for (i = 0; i < arr.length; i++) {
 		res[count[arr[i]] - 1] = arr[i];
+		iterations.push([false, i, arr[i]]);
 		count[arr[i]]--;
 	}
-	console.log('res', res);
+	console.log('res', res, iterations);
 
 	//console.log(arr, iterations);
 

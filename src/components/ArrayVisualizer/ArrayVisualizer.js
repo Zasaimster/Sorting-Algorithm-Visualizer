@@ -3,11 +3,12 @@ import Nav from '../Nav/Nav';
 import {default as BasicVisualization} from './Visualizations/Basic';
 import {default as MergeSortVisualization} from './Visualizations/MergeSort';
 import {default as QuickSortVisualization} from './Visualizations/QuickSort';
+import {default as CountingSortVisualization} from './Visualizations/CountingSort';
+import {default as RadixSortVisualization} from './Visualizations/RadixSort';
 
-import {bubbleSort, insertionSort, selectionSort, quickSort, mergeSort, countingSort} from '../../helper/algorithms';
+import {bubbleSort, insertionSort, selectionSort, quickSort, mergeSort, countingSort, radixSort, testSort} from '../../helper/algorithms';
 
 import './ArrayVisualizer.css';
-import CountingRadix from './Visualizations/CountingSort';
 
 const DEFAULT_SIZE = 30;
 const ITERATION_SPEEDS = [1000, 500, 100, 15, 3];
@@ -90,7 +91,6 @@ class ArrayVisualizer extends React.Component {
 	};
 
 	getVisualizedSteps = () => {
-		console.log(this.state.array);
 		let visualizedSteps = [];
 		let tempArray = [...this.state.array];
 		switch (this.state.currentAlgorithm) {
@@ -110,7 +110,10 @@ class ArrayVisualizer extends React.Component {
 				visualizedSteps = mergeSort(tempArray);
 				break;
 			case 'countingSort':
-				visualizedSteps = countingSort(tempArray, 9);
+				visualizedSteps = countingSort(tempArray);
+				break;
+			case 'radixSort':
+				visualizedSteps = radixSort(tempArray);
 				break;
 			default:
 				console.log('this algorithm has not been implemented yet');
@@ -179,7 +182,16 @@ class ArrayVisualizer extends React.Component {
 					/>
 				)}
 				{currentAlgorithm === 'countingSort' && (
-					<CountingRadix
+					<CountingSortVisualization
+						array={array}
+						isSorting={isSorting}
+						updateArray={(array) => this.setState({array})}
+						steps={this.state.visualizedSteps}
+						ref={this.state.ref}
+					/>
+				)}
+				{currentAlgorithm === 'radixSort' && (
+					<RadixSortVisualization
 						array={array}
 						isSorting={isSorting}
 						updateArray={(array) => this.setState({array})}

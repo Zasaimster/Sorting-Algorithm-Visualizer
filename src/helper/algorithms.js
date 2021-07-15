@@ -92,9 +92,9 @@ steps[
 	index indicating which element this is for count
 ]
 */
-export const countingSort = (arr, max) => {
-	let iterations = [];
-	let count = new Array(max + 1).fill(0);
+export const countingSortAlgo = (arr, iterations) => {
+	let count = new Array(10).fill(0);
+	console.log(arr);
 
 	for (var i = 0; i < arr.length; i++) {
 		count[arr[i]]++;
@@ -112,11 +112,68 @@ export const countingSort = (arr, max) => {
 		iterations.push(['sorting', i, arr[i]]);
 		count[arr[i]]--;
 	}
-	//console.log('res', res, iterations);
-
-	//console.log(arr, iterations);
 
 	return iterations;
+};
+
+export const countingSort = (arr) => {
+	let iterations = [];
+	return countingSortAlgo(arr, iterations);
+};
+
+/*
+steps[
+	state indicating whether it is adding values into the count arr
+	index indicating which element is being looked at in arr
+	index indicating which element this is for count
+	value indicating number place
+]
+*/
+
+export const radixSortAlgo = (arr, digitsPlace, iterations) => {
+	let count = new Array(10).fill(0);
+	console.log(arr);
+
+	for (var i = 0; i < arr.length; i++) {
+		count[Math.floor(arr[i] / digitsPlace) % 10]++;
+		iterations.push(['makingCount', i, arr[i], digitsPlace]);
+	}
+
+	for (i = 1; i < count.length; i++) {
+		count[i] += count[i - 1];
+		iterations.push(['summingCount', i, -1, digitsPlace]);
+	}
+
+	let res = new Array(arr.length).fill(0);
+	for (i = arr.length - 1; i >= 0; i--) {
+		let digitPlaceVal = Math.floor(arr[i] / digitsPlace) % 10;
+		res[count[digitPlaceVal] - 1] = arr[i];
+		iterations.push(['sorting', i, arr[i], digitsPlace]);
+		count[digitPlaceVal]--;
+	}
+
+	return [iterations, [...res]];
+};
+
+export const radixSort = (arr) => {
+	let iterations = [];
+	let max = Math.max(...arr);
+	//console.log(max);
+
+	for (var digitsPlace = 1; Math.floor(max / digitsPlace) > 0; digitsPlace *= 10) {
+		let [newIterations, newArr] = radixSortAlgo(arr, digitsPlace, iterations);
+		iterations = [...newIterations];
+		arr = [...newArr];
+	}
+
+	console.log(arr);
+	console.log(iterations);
+	return iterations;
+};
+
+export const testSort = (arr) => {
+	arr = [];
+	console.log(arr);
 };
 
 export const quickSort = (arr) => {

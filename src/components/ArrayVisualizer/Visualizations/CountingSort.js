@@ -29,7 +29,6 @@ const CountingSort = forwardRef(({array, isSorting, updateArray, steps}, ref) =>
 
 	useImperativeHandle(ref, () => ({
 		updateColors(index) {
-			console.log(countArr);
 			let arrRects = document.getElementsByClassName('array-wrapper')[0].children;
 			let countRects = document.getElementsByClassName('counting-wrapper')[0].children;
 			let sortedRects = document.getElementsByClassName('array-wrapper')[1].children;
@@ -53,14 +52,11 @@ const CountingSort = forwardRef(({array, isSorting, updateArray, steps}, ref) =>
 
 				arrRects[arrIndex].style.backgroundColor = CURRENT_ELEMENT_COLOR;
 			} else if (state === states.summingCount) {
-				console.log(countArr);
 				let tempArr = [...countArr];
 				tempArr[arrIndex] += tempArr[arrIndex - 1];
 				setCountArr(tempArr);
 
-				console.log(sortedArr);
 				countRects[arrIndex].children[0].style.backgroundColor = CURRENT_ELEMENT_COLOR;
-				console.log(countRects[arrIndex].children);
 				countRects[arrIndex - 1].children[0].style.backgroundColor = INSPECTING_COLOR;
 			} else {
 				//makes a new, sorted array
@@ -76,13 +72,10 @@ const CountingSort = forwardRef(({array, isSorting, updateArray, steps}, ref) =>
 
 				arrRects[arrIndex].style.backgroundColor = INSPECTING_COLOR;
 				countRects[arrVal].children[0].style.backgroundColor = INSPECTING_COLOR;
-				console.log(index);
-				console.log(sortedRects[index]);
 				sortedRects[index].style.backgroundColor = CURRENT_ELEMENT_COLOR;
 			}
 		},
 		reset() {
-			console.log('what');
 			resetAllColors(DEFAULT_COLOR);
 			setCountArr(initialCountState);
 			//for (var i = 0; i < array.length; i++) setSortedArr((sortedArr) => [...sortedArr, 0]);

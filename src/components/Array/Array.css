@@ -8,6 +8,27 @@
 	margin-left: 3px;
 }
 
+.radix-bar {
+	position: relative;
+	display: inline-block;
+	background-color: #006eff;
+	margin-left: 15px;
+}
+
+.bar-text {
+	position: absolute;
+	text-align: center;
+	bottom: 1px;
+	left: 50%;
+	margin-left: -50%;
+	width: 100%;
+
+	letter-spacing: 2px;
+	font-weight: bold;
+	color: white;
+	font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
 .counting-bar {
 	display: inline-block;
 	background-color: #006eff;

@@ -11,6 +11,8 @@ import {bubbleSort, insertionSort, selectionSort, quickSort, mergeSort, counting
 import './ArrayVisualizer.css';
 
 const DEFAULT_SIZE = 30;
+const MIN_ARR_SIZE = 10;
+const MAX_ARR_SIZE = 250;
 const ITERATION_SPEEDS = [1000, 500, 100, 15, 3];
 /*
 convert to functional component and access child functions like this: https://stackoverflow.com/questions/37949981/call-child-method-from-parent
@@ -67,6 +69,7 @@ class ArrayVisualizer extends React.Component {
 		let algo = this.state.currentAlgorithm;
 		console.log(algo);
 		let minVal = algo === 'countingSort' ? 1 : 10;
+		minVal = algo === 'radixSort' ? 20 : minVal;
 		let maxVal = algo === 'countingSort' ? 9 : 500;
 
 		for (var i = 0; i < this.state.arrSize; i++) {
@@ -151,6 +154,7 @@ class ArrayVisualizer extends React.Component {
 							sortingSpeed: ITERATION_SPEEDS[e.target.value - 1],
 						});
 					}}
+					maxSize={this.state.currentAlgorithm === 'radixSort' ? 20 : MAX_ARR_SIZE}
 				/>
 				{this.state.visualizedSteps.length === 0 && <div> Loading... </div>}
 

@@ -5,6 +5,7 @@ import CountingSortArray from '../../Array/CountingSortArray';
 
 import Array from '../../Array/Array';
 import CountArray from '../../Array/CountArray';
+import RadixSortArray from '../../Array/RadixSortArray';
 
 const DEFAULT_COLOR = '#006eff';
 const CURRENT_ELEMENT_COLOR = 'green';
@@ -23,6 +24,7 @@ const RadixSort = forwardRef(({array, isSorting, updateArray, steps}, ref) => {
 	const initialCountState = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 	const [countArr, setCountArr] = useState([initialCountState]);
 	const [sortedArr, setSortedArr] = useState([]);
+	const [digitsPlace, setDigitsPlace] = useState(1);
 
 	useImperativeHandle(ref, () => ({
 		updateColors(index) {
@@ -42,8 +44,9 @@ const RadixSort = forwardRef(({array, isSorting, updateArray, steps}, ref) => {
 
 	return (
 		<>
-			<Array array={array} />
+			<RadixSortArray array={array} />
 			<CountArray array={countArr} />
+			<RadixSortArray array={sortedArr} digitsPlace={digitsPlace} />
 		</>
 	);
 });

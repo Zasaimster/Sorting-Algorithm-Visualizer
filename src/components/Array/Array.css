@@ -29,6 +29,10 @@
 	font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
+.bar-text > span {
+	display: inline-block;
+}
+
 .counting-bar {
 	display: inline-block;
 	background-color: #006eff;

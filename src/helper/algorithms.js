@@ -132,7 +132,6 @@ steps[
 
 export const radixSortAlgo = (arr, digitsPlace, iterations) => {
 	let count = new Array(10).fill(0);
-	console.log(arr);
 
 	for (var i = 0; i < arr.length; i++) {
 		count[Math.floor(arr[i] / digitsPlace) % 10]++;
@@ -166,8 +165,6 @@ export const radixSort = (arr) => {
 		arr = [...newArr];
 	}
 
-	console.log(arr);
-	console.log(iterations);
 	return iterations;
 };
 

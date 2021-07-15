@@ -24,7 +24,7 @@ const RadixSort = forwardRef(({array, isSorting, updateArray, steps}, ref) => {
 	const initialCountState = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 	const [countArr, setCountArr] = useState([initialCountState]);
 	const [sortedArr, setSortedArr] = useState([]);
-	const [digitsPlace, setDigitsPlace] = useState(1);
+	const [digitsPlace, setDigitsPlace] = useState(0);
 
 	useImperativeHandle(ref, () => ({
 		updateColors(index) {
@@ -42,9 +42,10 @@ const RadixSort = forwardRef(({array, isSorting, updateArray, steps}, ref) => {
 		handleLastStep() {},
 	}));
 
+	console.log('here');
 	return (
 		<>
-			<RadixSortArray array={array} />
+			<RadixSortArray array={array} digitsPlace={digitsPlace} />
 			<CountArray array={countArr} />
 			<RadixSortArray array={sortedArr} digitsPlace={digitsPlace} />
 		</>

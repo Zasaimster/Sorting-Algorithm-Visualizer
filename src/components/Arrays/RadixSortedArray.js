@@ -1,6 +1,6 @@
 import './Array.css';
 
-const RadixSorted = ({array, digitsPlace}) => {
+const RadixSorted = ({array}) => {
 	return (
 		<div className='array-wrapper'>
 			{array.map((val, index) => (

@@ -1,6 +1,6 @@
 import {useImperativeHandle, forwardRef, useState} from 'react';
 
-import {resetAllColors, resetAllSpecificColors} from '../../../helper/functions';
+import {resetAllColors, resetAllSpecificColors, resetAllCountColors} from '../../../helper/functions';
 import CountingSortArray from '../../Arrays/CountingSortArray';
 import CountArray from '../../Arrays/CountArray';
 
@@ -35,7 +35,7 @@ const CountingSort = forwardRef(({array, isSorting, updateArray, steps}, ref) =>
 
 			if (index !== 0) {
 				resetAllColors(DEFAULT_COLOR);
-				resetAllSpecificColors(DEFAULT_COLOR, countRects);
+				resetAllCountColors(DEFAULT_COLOR, countRects);
 				resetAllSpecificColors(DEFAULT_COLOR, sortedRects);
 			}
 			if (sortedArr.length === 0) {

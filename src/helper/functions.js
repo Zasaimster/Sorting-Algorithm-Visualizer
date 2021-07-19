@@ -25,16 +25,19 @@ export const resetAllColors = (color) => {
 	}
 };
 
+export const resetAllCountColors = (color, rects) => {
+	//let rects = document.getElementsByClassName('array-wrapper')[0].children;
+	for (var i = 0; i < rects.length; i++) {
+		let rect = rects[i];
+		rect.children[0].style.backgroundColor = color;
+	}
+};
+
 export const resetAllSpecificColors = (color, rects) => {
 	//let rects = document.getElementsByClassName('array-wrapper')[0].children;
 	for (var i = 0; i < rects.length; i++) {
 		let rect = rects[i];
-		if (rect.children.length === 0) {
-			//there is no internal wrapper to deal with
-			rects[i].style.backgroundColor = color;
-		} else {
-			rect.children[0].style.backgroundColor = color;
-		}
+		rect.style.backgroundColor = color;
 	}
 };
 

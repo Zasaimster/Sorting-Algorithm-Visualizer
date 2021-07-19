@@ -1,6 +1,6 @@
 import {useImperativeHandle, forwardRef, useState, useEffect} from 'react';
 
-import {resetAllColors, resetAllSpecificColors} from '../../../helper/functions';
+import {resetAllColors, resetAllSpecificColors, resetAllCountColors} from '../../../helper/functions';
 import CountingSortArray from '../../Arrays/CountingSortArray';
 
 import Array from '../../Arrays/Array';
@@ -46,7 +46,7 @@ const RadixSort = forwardRef(({array, isSorting, updateArray, steps}, ref) => {
 
 			if (index !== 0) {
 				resetAllColors(DEFAULT_COLOR);
-				resetAllSpecificColors(DEFAULT_COLOR, countRects);
+				resetAllCountColors(DEFAULT_COLOR, countRects);
 				resetAllSpecificColors(DEFAULT_COLOR, sortedRects);
 			}
 
@@ -55,11 +55,9 @@ const RadixSort = forwardRef(({array, isSorting, updateArray, steps}, ref) => {
 			}
 
 			const [state, arrIndex, arrVal, digit] = steps[index];
-			console.log(steps[index]);
 			const digitVal = Math.floor(arrVal / digit) % 10;
 
 			if (digit !== digitsPlace) {
-				console.log('YOOOOOO');
 				setDigitsPlace(digit);
 				updateArray([...sortedArr]);
 				resetSorted();
@@ -101,8 +99,10 @@ const RadixSort = forwardRef(({array, isSorting, updateArray, steps}, ref) => {
 				tempCountArr[digitVal]--;
 				setCountArr(tempCountArr);
 
+				console.log(sortedRects[currIndex]);
 				arrRects[arrIndex].style.backgroundColor = INSPECTING_COLOR;
 				countRects[digitVal].children[0].style.backgroundColor = INSPECTING_COLOR;
+				//sortedRects[currIndex].children[0].style.backgroundColor = CURRENT_ELEMENT_COLOR;
 				sortedRects[currIndex].style.backgroundColor = CURRENT_ELEMENT_COLOR;
 
 				//temp solution unless I cant figure out anything better

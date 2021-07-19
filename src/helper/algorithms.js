@@ -134,7 +134,8 @@ export const radixSortAlgo = (arr, digitsPlace, iterations) => {
 	let count = new Array(10).fill(0);
 
 	for (var i = 0; i < arr.length; i++) {
-		count[Math.floor(arr[i] / digitsPlace) % 10]++;
+		let digitPlaceVal = Math.floor(arr[i] / digitsPlace) % 10;
+		count[digitPlaceVal]++;
 		iterations.push(['makingCount', i, arr[i], digitsPlace]);
 	}
 

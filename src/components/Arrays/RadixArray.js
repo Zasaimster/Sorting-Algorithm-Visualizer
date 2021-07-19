@@ -1,6 +1,6 @@
 import './Array.css';
 
-const RadixSortArray = ({array, digitsPlace}) => {
+const RadixArray = ({array, digitsPlace}) => {
 	return (
 		<div className='array-wrapper'>
 			{array.map((val, index) => (
@@ -12,6 +12,7 @@ const RadixSortArray = ({array, digitsPlace}) => {
 	);
 };
 
+//there's probably a superior way to implement this
 const getValWithColor = (val, digitsPlace) => {
 	const splitNumberInThree = () => {
 		let start = null;
@@ -23,7 +24,6 @@ const getValWithColor = (val, digitsPlace) => {
 		let temp = val;
 
 		//get the value for end
-		console.log(digitsPlace);
 		let mult = 1;
 		while (temp > 0 && dp !== digitsPlace) {
 			if (!changeEnd) {
@@ -39,6 +39,7 @@ const getValWithColor = (val, digitsPlace) => {
 
 		//get the red value
 		if (temp !== 0) {
+			//if temp is null, ignore this
 			red = temp % 10;
 			temp = Math.floor(temp / 10);
 			dp *= 10;
@@ -61,7 +62,6 @@ const getValWithColor = (val, digitsPlace) => {
 	};
 
 	const [start, red, end] = splitNumberInThree();
-	console.log(val, start, red, end);
 	return (
 		<p className='bar-text'>
 			<span> {start !== null && start} </span>
@@ -71,4 +71,4 @@ const getValWithColor = (val, digitsPlace) => {
 	);
 };
 
-export default RadixSortArray;
+export default RadixArray;

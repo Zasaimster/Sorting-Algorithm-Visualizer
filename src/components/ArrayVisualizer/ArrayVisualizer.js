@@ -10,7 +10,7 @@ import {bubbleSort, insertionSort, selectionSort, quickSort, mergeSort, counting
 
 import './ArrayVisualizer.css';
 
-const DEFAULT_SIZE = 30;
+const DEFAULT_SIZE = 15; //30
 const MIN_ARR_SIZE = 10;
 const MAX_ARR_SIZE = 250;
 const ITERATION_SPEEDS = [1000, 500, 100, 15, 3];

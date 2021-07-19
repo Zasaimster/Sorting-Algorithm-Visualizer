@@ -1,5 +1,5 @@
 import {useImperativeHandle, forwardRef} from 'react';
-import Array from '../../Array/Array';
+import Array from '../../Arrays/Array';
 
 import {resetAllColors, setArrayColorByIndices, setArrayColorByRange} from '../../../helper/functions';
 

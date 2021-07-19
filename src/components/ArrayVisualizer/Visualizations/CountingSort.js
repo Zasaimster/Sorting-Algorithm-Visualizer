@@ -1,8 +1,8 @@
 import {useImperativeHandle, forwardRef, useState} from 'react';
 
 import {resetAllColors, resetAllSpecificColors} from '../../../helper/functions';
-import CountingSortArray from '../../Array/CountingSortArray';
-import CountArray from '../../Array/CountArray';
+import CountingSortArray from '../../Arrays/CountingSortArray';
+import CountArray from '../../Arrays/CountArray';
 
 const DEFAULT_COLOR = '#006eff';
 const CURRENT_ELEMENT_COLOR = 'green';

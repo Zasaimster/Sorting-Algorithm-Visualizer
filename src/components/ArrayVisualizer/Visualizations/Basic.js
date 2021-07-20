@@ -1,4 +1,4 @@
-import {useImperativeHandle, forwardRef} from 'react';
+import {useImperativeHandle, forwardRef, useState} from 'react';
 import {resetAllColors} from '../../../helper/functions';
 import Array from '../../Arrays/Array';
 
@@ -16,10 +16,12 @@ steps[
 */
 
 const Basic = forwardRef(({array, isSorting, updateArray, steps}, ref) => {
-	// const [reset, setReset] = useState(false);
+	const [isReset, setIsReset] = useState(true);
 
 	useImperativeHandle(ref, () => ({
 		updateColors(index) {
+			if (isReset) setIsReset(false);
+
 			if (index !== 0) {
 				resetAllColors(DEFAULT_COLOR);
 				swapPreviousComparison(index - 1, updateArray);
@@ -40,7 +42,10 @@ const Basic = forwardRef(({array, isSorting, updateArray, steps}, ref) => {
 			}
 		},
 		reset() {
-			resetAllColors(DEFAULT_COLOR);
+			if (!setIsReset) {
+				resetAllColors(DEFAULT_COLOR);
+				setIsReset(true);
+			}
 		},
 		handleLastStep() {
 			this.reset();

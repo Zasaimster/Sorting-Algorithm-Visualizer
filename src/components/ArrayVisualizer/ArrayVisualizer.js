@@ -68,22 +68,36 @@ class ArrayVisualizer extends React.Component {
 	};
 
 	initializeArrays = () => {
-		let array = [];
-		//let array =
+		let array = [...this.state.array];
+		let size = this.state.arrSize;
+
 		let algo = this.state.currentAlgorithm;
-		console.log(algo);
 		let minVal = algo === 'countingSort' ? 1 : 10;
 		minVal = algo === 'radixSort' ? 20 : minVal;
 		let maxVal = algo === 'countingSort' ? 9 : 500;
 
-		for (var i = 0; i < this.state.arrSize; i++) {
-			array[i] = this.getRandomValue(minVal, maxVal);
+		if (array.length !== 0) {
+			if (array.length < size) {
+				//new array is bigger
+				for (let i = array.length; i < size; i++) {
+					array[i] = this.getRandomValue(minVal, maxVal);
+				}
+			} else {
+				//new array is smaller
+				let diff = array.length - size;
+				for (let i = 0; i < diff; i++) {
+					array.pop();
+				}
+			}
+		} else {
+			//population the array for the first time
+			for (let i = 0; i < this.state.arrSize; i++) {
+				array[i] = this.getRandomValue(minVal, maxVal);
+			}
 		}
 
-		//array = [101, 318, 500, 152, 39, 66, 196, 129, 140, 477, 47, 55, 140, 52, 198];
 		this.setState({array}, () => {
 			this.getVisualizedSteps();
-			console.log(array);
 		});
 	};
 

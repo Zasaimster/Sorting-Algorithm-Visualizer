@@ -28,8 +28,6 @@ export const bubbleSort = (arr) => {
 			}
 		}
 	}
-	//console.log(arr);
-	//console.log(iterations);
 	return iterations;
 };
 
@@ -52,8 +50,6 @@ export const insertionSort = (arr) => {
 		}
 		arr[index] = valToInsert;
 	}
-	//console.log(arr, iterations);
-	console.log(iterations);
 
 	return iterations;
 };
@@ -63,13 +59,11 @@ export const selectionSort = (arr) => {
 
 	for (var i = 0; i < arr.length; i++) {
 		var minIndex = i;
-		console.log('?');
 
 		for (var j = i + 1; j < arr.length; j++) {
 			if (arr[j] < arr[minIndex]) {
 				minIndex = j;
 				iterations.push([minIndex, j, false]);
-				console.log('????');
 			}
 		}
 
@@ -78,9 +72,6 @@ export const selectionSort = (arr) => {
 			iterations.push([i, minIndex, true]);
 		}
 	}
-
-	//console.log(arr, iterations);
-	console.log(iterations);
 
 	return iterations;
 };
@@ -94,7 +85,6 @@ steps[
 */
 export const countingSortAlgo = (arr, iterations) => {
 	let count = new Array(10).fill(0);
-	console.log(arr);
 
 	for (var i = 0; i < arr.length; i++) {
 		count[arr[i]]++;
@@ -158,7 +148,6 @@ export const radixSortAlgo = (arr, digitsPlace, iterations) => {
 export const radixSort = (arr) => {
 	let iterations = [];
 	let max = Math.max(...arr);
-	//console.log(max);
 
 	for (var digitsPlace = 1; Math.floor(max / digitsPlace) > 0; digitsPlace *= 10) {
 		let [newIterations, newArr] = radixSortAlgo(arr, digitsPlace, iterations);
@@ -169,20 +158,12 @@ export const radixSort = (arr) => {
 	return iterations;
 };
 
-export const testSort = (arr) => {
-	arr = [];
-	console.log(arr);
-};
-
 export const quickSort = (arr) => {
 	let low = 0;
 	let high = arr.length - 1;
 	let iterations = [];
 	let sorted = [];
 	quickSortAlgo(arr, low, high, iterations, sorted);
-
-	console.log(arr);
-	console.log(iterations);
 
 	return iterations;
 };
@@ -193,9 +174,6 @@ export const mergeSort = (arr) => {
 	let iterations = [];
 
 	mergeSortAlgo(arr, low, high, iterations);
-
-	console.log(arr);
-	console.log(iterations);
 
 	return iterations;
 };
@@ -261,7 +239,6 @@ const partition = (arr, low, high, iterations, sorted) => {
 const mergeSortAlgo = (arr, low, high, iterations) => {
 	if (low < high) {
 		let mid = Math.floor((low + high) / 2);
-		//console.log('range:', low + '-' + high);
 		mergeSortAlgo(arr, low, mid, iterations);
 		mergeSortAlgo(arr, mid + 1, high, iterations);
 		sortAndMerge(arr, low, mid, high, iterations);
@@ -297,7 +274,6 @@ const sortAndMerge = (arr, low, mid, high, iterations) => {
 			//0th index is the smaller one
 			iterations.push([lOffset + i, rOffset + j, range, [...sorted]]);
 			sorted.push(lOffset + i);
-			console.log(sorted);
 			arr[k] = left[i];
 			i++;
 		} else {

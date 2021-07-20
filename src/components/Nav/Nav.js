@@ -23,7 +23,7 @@ const Nav = ({visualizeNextIteration, setPlayAlgorithm, reset, chooseAlgorithm, 
 				<option value='mergeSort'> Merge Sort </option>
 				<option value='quickSort'> Quick Sort </option>
 				<option value='countingSort'> Counting Sort </option>
-				<option value='radixSort'> Radix Sort** todo </option>
+				<option value='radixSort'> Radix Sort </option>
 			</select>
 		</div>
 	);

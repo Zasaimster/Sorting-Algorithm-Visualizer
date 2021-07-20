@@ -15,6 +15,9 @@ const RadixArray = ({array, digitsPlace}) => {
 //there's probably a superior way to implement this
 const getValWithColor = (val, digitsPlace) => {
 	const splitNumberInThree = () => {
+		if (digitsPlace === 0) {
+			return [val, null, null];
+		}
 		let start = null;
 		let changeStart = false;
 		let red = null;
@@ -66,7 +69,6 @@ const getValWithColor = (val, digitsPlace) => {
 	};
 
 	const [start, red, end] = splitNumberInThree();
-	console.log(start, red, end);
 	return (
 		<p className='bar-text'>
 			<span> {start !== null && start} </span>

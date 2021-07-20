@@ -31,7 +31,7 @@ const RadixSort = forwardRef(({array, isSorting, updateArray, steps}, ref) => {
 	const initialCountState = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 	const [countArr, setCountArr] = useState(initialCountState);
 	const [sortedArr, setSortedArr] = useState([]);
-	const [digitsPlace, setDigitsPlace] = useState(1);
+	const [digitsPlace, setDigitsPlace] = useState(0);
 	const [newDigitIndicator, setIndicator] = useState(false); //use this indicator to tell the code when to use a new count array
 
 	useEffect(() => {
@@ -58,8 +58,9 @@ const RadixSort = forwardRef(({array, isSorting, updateArray, steps}, ref) => {
 			const digitVal = Math.floor(arrVal / digit) % 10;
 
 			if (digit !== digitsPlace) {
+				console.log('setting to 1');
+				if (digitsPlace !== 0) updateArray([...sortedArr]);
 				setDigitsPlace(digit);
-				updateArray([...sortedArr]);
 				resetSorted();
 			}
 
@@ -116,8 +117,20 @@ const RadixSort = forwardRef(({array, isSorting, updateArray, steps}, ref) => {
 			// 	resetSorted();
 			// }
 		},
-		reset() {},
-		handleLastStep() {},
+		reset() {
+			resetAllColors(DEFAULT_COLOR);
+			setCountArr(initialCountState);
+			setSortedArr([]);
+		},
+		handleLastStep() {
+			setTimeout(() => {
+				resetAllColors(DEFAULT_COLOR);
+				resetAllCountColors(DEFAULT_COLOR, document.getElementsByClassName('counting-wrapper')[0].children);
+				resetAllSpecificColors(DEFAULT_COLOR, document.getElementsByClassName('array-wrapper')[1].children);
+				updateArray(array.sort((a, b) => a - b));
+				setDigitsPlace(0);
+			}, 500);
+		},
 	}));
 
 	const resetSorted = () => {

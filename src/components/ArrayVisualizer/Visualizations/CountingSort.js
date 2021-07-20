@@ -82,12 +82,12 @@ const CountingSort = forwardRef(({array, isSorting, updateArray, steps}, ref) =>
 			setSortedArr([]);
 		},
 		handleLastStep() {
-			/*setTimeout(() => {
-				this.reset();
-			}, 500);*/
-			resetAllColors(DEFAULT_COLOR);
-			resetAllSpecificColors(DEFAULT_COLOR, document.getElementsByClassName('counting-wrapper')[0].children);
-			resetAllSpecificColors(DEFAULT_COLOR, document.getElementsByClassName('array-wrapper')[1].children);
+			setTimeout(() => {
+				resetAllColors(DEFAULT_COLOR);
+				resetAllCountColors(DEFAULT_COLOR, document.getElementsByClassName('counting-wrapper')[0].children);
+				resetAllSpecificColors(DEFAULT_COLOR, document.getElementsByClassName('array-wrapper')[1].children);
+				updateArray(array.sort((a, b) => a - b)); //can't be updating state with sortedArr on the following render
+			}, 500);
 		},
 	}));
 

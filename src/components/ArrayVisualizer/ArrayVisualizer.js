@@ -181,6 +181,7 @@ class ArrayVisualizer extends React.Component {
 		return (
 			<>
 				<Nav
+					currentAlgorithm={currentAlgorithm}
 					visualizeNextIteration={this.visualizeNextIteration}
 					setPlayAlgorithm={() => this.setState({isSorting: !isSorting}, () => this.playAlgorithm())}
 					reset={() => {

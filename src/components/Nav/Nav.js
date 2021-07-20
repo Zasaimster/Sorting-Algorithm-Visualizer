@@ -1,7 +1,20 @@
 import React from 'react';
+import {InfoLink} from '../InfoLink/InfoLink';
 import './Nav.css';
 
-const Nav = ({visualizeNextIteration, setPlayAlgorithm, reset, chooseAlgorithm, handleSpeed, handleSize, maxSize, isSorting, isSorted, arrSize}) => {
+const Nav = ({
+	currentAlgorithm,
+	visualizeNextIteration,
+	setPlayAlgorithm,
+	reset,
+	chooseAlgorithm,
+	handleSpeed,
+	handleSize,
+	maxSize,
+	isSorting,
+	isSorted,
+	arrSize,
+}) => {
 	return (
 		<div className='navbar'>
 			<h1> Sorting Algorithm Visualizer </h1>
@@ -27,6 +40,7 @@ const Nav = ({visualizeNextIteration, setPlayAlgorithm, reset, chooseAlgorithm, 
 				<option value='countingSort'> Counting Sort </option>
 				<option value='radixSort'> Radix Sort </option>
 			</select>
+			<InfoLink algorithm={currentAlgorithm} />
 		</div>
 	);
 };

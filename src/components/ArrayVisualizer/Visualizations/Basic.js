@@ -25,10 +25,11 @@ const Basic = forwardRef(({array, isSorting, updateArray, steps}, ref) => {
 			if (index !== 0) {
 				resetAllColors(DEFAULT_COLOR);
 				swapPreviousComparison(index - 1, updateArray);
+				console.log(index - 1);
 			}
 
 			let rects = document.getElementsByClassName('array-wrapper')[0].children;
-			console.log(steps);
+
 			const [currIndex, compareIndex, isSwapped] = steps[index];
 			const currStyle = rects[currIndex].style;
 			const compareStyle = rects[compareIndex].style;
@@ -48,7 +49,11 @@ const Basic = forwardRef(({array, isSorting, updateArray, steps}, ref) => {
 			}
 		},
 		handleLastStep() {
-			this.reset();
+			swapPreviousComparison(steps.length - 1, updateArray);
+			setTimeout(() => {
+				resetAllColors(DEFAULT_COLOR);
+			}, 100);
+			//this.reset();
 		},
 	}));
 

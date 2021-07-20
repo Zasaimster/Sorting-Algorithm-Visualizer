@@ -63,8 +63,8 @@ export const selectionSort = (arr) => {
 		for (var j = i + 1; j < arr.length; j++) {
 			if (arr[j] < arr[minIndex]) {
 				minIndex = j;
-				iterations.push([minIndex, j, false]);
 			}
+			iterations.push([minIndex, j, false]);
 		}
 
 		if (minIndex !== i) {
@@ -72,7 +72,7 @@ export const selectionSort = (arr) => {
 			iterations.push([i, minIndex, true]);
 		}
 	}
-
+	console.log(arr);
 	return iterations;
 };
 

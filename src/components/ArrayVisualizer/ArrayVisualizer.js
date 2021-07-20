@@ -38,7 +38,6 @@ class ArrayVisualizer extends React.Component {
 	};
 
 	playAlgorithm = () => {
-		console.log('in');
 		const {isSorting, sortingSpeed} = this.state;
 		if (isSorting) {
 			//https://stackoverflow.com/a/37728255 for timeouts

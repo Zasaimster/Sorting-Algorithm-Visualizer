@@ -99,14 +99,13 @@ const RadixSort = forwardRef(({array, isSorting, updateArray, steps}, ref) => {
 				tempCountArr[digitVal]--;
 				setCountArr(tempCountArr);
 
-				console.log(sortedRects[currIndex]);
 				arrRects[arrIndex].style.backgroundColor = INSPECTING_COLOR;
 				countRects[digitVal].children[0].style.backgroundColor = INSPECTING_COLOR;
 				//sortedRects[currIndex].children[0].style.backgroundColor = CURRENT_ELEMENT_COLOR;
 				sortedRects[currIndex].style.backgroundColor = CURRENT_ELEMENT_COLOR;
 
 				//temp solution unless I cant figure out anything better
-				if (index < steps.length && steps[index + 1][3] !== digitsPlace) {
+				if (index + 1 < steps.length && steps[index + 1][3] !== digitsPlace) {
 					setIndicator(true);
 				}
 			}
@@ -123,6 +122,7 @@ const RadixSort = forwardRef(({array, isSorting, updateArray, steps}, ref) => {
 
 	const resetSorted = () => {
 		console.log('?');
+
 		setSortedArr([]);
 		for (var i = 0; i < array.length; i++) setSortedArr((sortedArr) => [...sortedArr, 0]);
 	};

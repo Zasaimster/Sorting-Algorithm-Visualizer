@@ -75,8 +75,11 @@ class ArrayVisualizer extends React.Component {
 		for (var i = 0; i < this.state.arrSize; i++) {
 			array[i] = this.getRandomValue(minVal, maxVal);
 		}
+
+		array = [101, 318, 500, 152, 39, 66, 196, 129, 140, 477, 47, 55, 140, 52, 198];
 		this.setState({array}, () => {
 			this.getVisualizedSteps();
+			console.log(array);
 		});
 	};
 

@@ -30,8 +30,12 @@ const getValWithColor = (val, digitsPlace) => {
 				end = 0;
 				changeEnd = true;
 			}
-
-			end += mult * (temp % 10);
+			let toAdd = mult * (temp % 10);
+			if (toAdd === 0 && mult !== 1) {
+				end = toAdd.toString() + end.toString();
+			} else {
+				end += toAdd;
+			}
 			temp = Math.floor(temp / 10);
 			dp *= 10;
 			mult *= 10;
@@ -62,6 +66,7 @@ const getValWithColor = (val, digitsPlace) => {
 	};
 
 	const [start, red, end] = splitNumberInThree();
+	console.log(start, red, end);
 	return (
 		<p className='bar-text'>
 			<span> {start !== null && start} </span>

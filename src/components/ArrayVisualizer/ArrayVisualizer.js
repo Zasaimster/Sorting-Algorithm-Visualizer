@@ -155,7 +155,10 @@ class ArrayVisualizer extends React.Component {
 						)
 					}
 					handleSize={(e) => {
-						this.setState({arrSize: e.target.value}, () => this.initializeArrays());
+						this.setState({arrSize: e.target.value}, () => {
+							this.initializeArrays();
+							this.state.ref.current.reset();
+						});
 					}}
 					handleSpeed={(e) => {
 						this.setState({

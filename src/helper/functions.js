@@ -27,6 +27,7 @@ export const resetAllColors = (color) => {
 
 export const resetAllCountColors = (color, rects) => {
 	//let rects = document.getElementsByClassName('array-wrapper')[0].children;
+	console.log(rects);
 	for (var i = 0; i < rects.length; i++) {
 		let rect = rects[i];
 		rect.children[0].style.backgroundColor = color;

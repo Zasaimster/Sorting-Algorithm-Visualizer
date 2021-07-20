@@ -30,7 +30,7 @@ const CountingSort = forwardRef(({array, isSorting, updateArray, steps}, ref) =>
 	useImperativeHandle(ref, () => ({
 		updateColors(index) {
 			let arrRects = document.getElementsByClassName('array-wrapper')[0].children;
-			let countRects = document.getElementsByClassName('counting-wrapper')[0].children;
+			let countRects = document.getElementsByClassName('counting-wrapper')[0].children[0].children;
 			let sortedRects = document.getElementsByClassName('array-wrapper')[1].children;
 
 			if (index !== 0) {
@@ -84,7 +84,7 @@ const CountingSort = forwardRef(({array, isSorting, updateArray, steps}, ref) =>
 		handleLastStep() {
 			setTimeout(() => {
 				resetAllColors(DEFAULT_COLOR);
-				resetAllCountColors(DEFAULT_COLOR, document.getElementsByClassName('counting-wrapper')[0].children);
+				resetAllCountColors(DEFAULT_COLOR, document.getElementsByClassName('counting-wrapper')[0].children[0].children);
 				resetAllSpecificColors(DEFAULT_COLOR, document.getElementsByClassName('array-wrapper')[1].children);
 				updateArray(array.sort((a, b) => a - b)); //can't be updating state with sortedArr on the following render
 			}, 500);

@@ -1,7 +1,7 @@
 import React from 'react';
 import './Nav.css';
 
-const Nav = ({visualizeNextIteration, setPlayAlgorithm, reset, chooseAlgorithm, handleSpeed, handleSize, maxSize, isSorted}) => {
+const Nav = ({visualizeNextIteration, setPlayAlgorithm, reset, chooseAlgorithm, handleSpeed, handleSize, maxSize, isSorted, arrSize}) => {
 	return (
 		<div className='navbar'>
 			<h1> Sorting Algorithm Visualizer </h1>
@@ -15,7 +15,7 @@ const Nav = ({visualizeNextIteration, setPlayAlgorithm, reset, chooseAlgorithm, 
 			<label> Sorting Speed </label>
 			<input name='speed' type='range' min='1' max='5' defaultValue='3' onChange={handleSpeed} />
 			<label> Array Size </label>
-			<input name='size' type='range' min='10' max={maxSize} defaultValue='30' onChange={handleSize} />
+			<input name='size' type='range' min='10' max={maxSize} value={arrSize} onChange={handleSize} />
 			<select name='algorithms' onChange={chooseAlgorithm}>
 				<option value='bubbleSort'> Bubble Sort </option>
 				<option value='insertionSort'> Insertion Sort </option>

@@ -10,7 +10,7 @@ import {bubbleSort, insertionSort, selectionSort, quickSort, mergeSort, counting
 
 import './ArrayVisualizer.css';
 
-const DEFAULT_SIZE = 15; //30
+const DEFAULT_SIZE = 30;
 const MIN_ARR_SIZE = 10;
 const MAX_ARR_SIZE = 250;
 const ITERATION_SPEEDS = [1000, 500, 100, 15, 3];
@@ -171,17 +171,21 @@ class ArrayVisualizer extends React.Component {
 					reset={() => {
 						this.reset();
 					}}
-					chooseAlgorithm={(e) =>
-						this.setState({currentAlgorithm: e.target.value}, () =>
-							//this.getVisualizedSteps()
-							this.reset()
-						)
-					}
+					chooseAlgorithm={(e) => {
+						this.setState({currentAlgorithm: e.target.value}, () => this.reset());
+						if (e.target.value === 'radixSort') this.setState({arrSize: 15});
+					}}
 					handleSize={(e) => {
-						this.setState({arrSize: e.target.value}, () => {
-							this.changeArraySize();
-							this.state.ref.current.reset();
-						});
+						this.setState(
+							{
+								arrSize: e.target.value,
+								vsIndex: 0,
+							},
+							() => {
+								this.changeArraySize();
+								this.state.ref.current.reset();
+							}
+						);
 					}}
 					handleSpeed={(e) => {
 						this.setState({
@@ -190,6 +194,7 @@ class ArrayVisualizer extends React.Component {
 					}}
 					maxSize={this.state.currentAlgorithm === 'radixSort' ? 20 : MAX_ARR_SIZE}
 					isSorted={this.state.isSorted}
+					arrSize={this.state.arrSize}
 				/>
 				{this.state.visualizedSteps.length === 0 && <div> Loading... </div>}
 

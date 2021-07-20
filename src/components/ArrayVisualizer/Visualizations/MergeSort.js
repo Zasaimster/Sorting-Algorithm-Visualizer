@@ -22,12 +22,12 @@ const MergeSort = forwardRef(({array, isSorting, updateArray, steps}, ref) => {
 	const [currentRange, setCurrentRange] = useState([-1, -1]);
 	//const [reset, setReset] = useState(false);
 
-	useEffect(() => {
-		if (subArray.length === 0) {
-			console.log('subArr is empty');
-		}
-		console.log(subArray);
-	}, [subArray]);
+	// useEffect(() => {
+	// 	if (subArray.length === 0) {
+	// 		console.log('subArr is empty');
+	// 	}
+	// 	console.log(subArray);
+	// }, [subArray]);
 
 	// useEffect(() => {
 	// 	if (reset) {

@@ -42,7 +42,7 @@ const Basic = forwardRef(({array, isSorting, updateArray, steps}, ref) => {
 			}
 		},
 		reset() {
-			if (!setIsReset) {
+			if (!isReset) {
 				resetAllColors(DEFAULT_COLOR);
 				setIsReset(true);
 			}

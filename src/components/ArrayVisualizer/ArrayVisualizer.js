@@ -68,31 +68,40 @@ class ArrayVisualizer extends React.Component {
 	};
 
 	initializeArrays = () => {
+		let array = [];
+		let algo = this.state.currentAlgorithm;
+		let minVal = algo === 'countingSort' ? 1 : 10;
+		minVal = algo === 'radixSort' ? 20 : minVal;
+		let maxVal = algo === 'countingSort' ? 9 : 500;
+
+		for (let i = 0; i < this.state.arrSize; i++) {
+			array[i] = this.getRandomValue(minVal, maxVal);
+		}
+
+		this.setState({array}, () => {
+			this.getVisualizedSteps();
+		});
+	};
+
+	changeArraySize = () => {
 		let array = [...this.state.array];
-		let size = this.state.arrSize;
+		let size = parseInt(this.state.arrSize);
 
 		let algo = this.state.currentAlgorithm;
 		let minVal = algo === 'countingSort' ? 1 : 10;
 		minVal = algo === 'radixSort' ? 20 : minVal;
 		let maxVal = algo === 'countingSort' ? 9 : 500;
 
-		if (array.length !== 0) {
-			if (array.length < size) {
-				//new array is bigger
-				for (let i = array.length; i < size; i++) {
-					array[i] = this.getRandomValue(minVal, maxVal);
-				}
-			} else {
-				//new array is smaller
-				let diff = array.length - size;
-				for (let i = 0; i < diff; i++) {
-					array.pop();
-				}
+		if (array.length < size) {
+			//new array is bigger
+			for (let i = array.length; i < size; i++) {
+				array[i] = this.getRandomValue(minVal, maxVal);
 			}
 		} else {
-			//population the array for the first time
-			for (let i = 0; i < this.state.arrSize; i++) {
-				array[i] = this.getRandomValue(minVal, maxVal);
+			//new array is smaller
+			let diff = array.length - size;
+			for (let i = 0; i < diff; i++) {
+				array.pop();
 			}
 		}
 
@@ -170,7 +179,7 @@ class ArrayVisualizer extends React.Component {
 					}
 					handleSize={(e) => {
 						this.setState({arrSize: e.target.value}, () => {
-							this.initializeArrays();
+							this.changeArraySize();
 							this.state.ref.current.reset();
 						});
 					}}

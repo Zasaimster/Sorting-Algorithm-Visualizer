@@ -11,7 +11,7 @@ const Nav = ({visualizeNextIteration, setPlayAlgorithm, reset, chooseAlgorithm, 
 			<button onClick={setPlayAlgorithm} disabled={isSorted ? true : false}>
 				play
 			</button>
-			<button onClick={reset}> reset </button>
+			<button onClick={reset}> reset/randomize </button>
 			<label> Sorting Speed </label>
 			<input name='speed' type='range' min='1' max='5' defaultValue='3' onChange={handleSpeed} />
 			<label> Array Size </label>

@@ -1,12 +1,16 @@
 import React from 'react';
 import './Nav.css';
 
-const Nav = ({visualizeNextIteration, setPlayAlgorithm, reset, chooseAlgorithm, handleSpeed, handleSize, maxSize}) => {
+const Nav = ({visualizeNextIteration, setPlayAlgorithm, reset, chooseAlgorithm, handleSpeed, handleSize, maxSize, isSorted}) => {
 	return (
 		<div className='navbar'>
 			<h1> Sorting Algorithm Visualizer </h1>
-			<button onClick={visualizeNextIteration}> next </button>
-			<button onClick={setPlayAlgorithm}> play </button>
+			<button onClick={visualizeNextIteration} disabled={isSorted ? true : false}>
+				next
+			</button>
+			<button onClick={setPlayAlgorithm} disabled={isSorted ? true : false}>
+				play
+			</button>
 			<button onClick={reset}> reset </button>
 			<label> Sorting Speed </label>
 			<input name='speed' type='range' min='1' max='5' defaultValue='3' onChange={handleSpeed} />

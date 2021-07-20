@@ -28,6 +28,7 @@ class ArrayVisualizer extends React.Component {
 		arrSize: DEFAULT_SIZE,
 		sortingSpeed: ITERATION_SPEEDS[2],
 		ref: null,
+		isSorted: false,
 	};
 
 	componentDidMount = () => {
@@ -58,7 +59,10 @@ class ArrayVisualizer extends React.Component {
 		this.setState({vsIndex: vsIndex + 1}, () => {
 			if (this.state.vsIndex === steps.length) {
 				visual.handleLastStep();
-				this.setState({isSorting: false});
+				this.setState({
+					isSorting: false,
+					isSorted: true,
+				});
 			}
 		});
 	};
@@ -88,6 +92,7 @@ class ArrayVisualizer extends React.Component {
 			{
 				vsIndex: 0,
 				isSorting: false,
+				isSorted: false,
 			},
 			() => {
 				this.initializeArrays();
@@ -158,6 +163,7 @@ class ArrayVisualizer extends React.Component {
 						});
 					}}
 					maxSize={this.state.currentAlgorithm === 'radixSort' ? 20 : MAX_ARR_SIZE}
+					isSorted={this.state.isSorted}
 				/>
 				{this.state.visualizedSteps.length === 0 && <div> Loading... </div>}
 

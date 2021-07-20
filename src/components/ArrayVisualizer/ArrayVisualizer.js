@@ -210,6 +210,7 @@ class ArrayVisualizer extends React.Component {
 						});
 					}}
 					maxSize={currentAlgorithm === 'radixSort' || currentAlgorithm === 'countingSort' ? 20 : MAX_ARR_SIZE}
+					isSorting={isSorting}
 					isSorted={isSorted}
 					arrSize={arrSize}
 				/>

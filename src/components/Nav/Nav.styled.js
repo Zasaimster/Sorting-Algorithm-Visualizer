@@ -104,10 +104,9 @@ export const SliderValue = styled.div`
 		font-size: 12px;
 		left: 50%;
 		transform: translateX(-50%) scale(0);
-		transform-origin: bottom;
-		transition: transform 50ms ease-in-out;
+		transform-origin: top;
+		transition: transform 50ms ease-out;
 	}
-
 	& span.active {
 		transform: translateX(-50%) scale(1);
 	}

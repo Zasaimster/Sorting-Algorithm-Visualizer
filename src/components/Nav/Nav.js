@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {InfoLink} from '../InfoLink/InfoLink';
 import './Nav.css';
 
@@ -17,34 +17,87 @@ const Nav = ({
 	isSorted,
 	arrSize,
 }) => {
+	const [speed, setSpeed] = useState(3);
+	const [size, setSize] = useState(30);
+
+	const handleSizeChange = (e) => {
+		const {value} = e.target;
+		handleSize(value);
+		setSize(value);
+
+		//let width = document.getElementById('size-range').offsetWidth;
+		document.getElementById('current-size-value').classList.add('active');
+		document.getElementById('current-size-value').style.left = `${(value * 100) / maxSize}%`;
+	};
+
+	const handleSpeedChange = (e) => {
+		const {value} = e.target;
+		handleSpeed(value);
+		setSpeed(value);
+
+		document.getElementById('current-speed-value').classList.add('active');
+		document.getElementById('current-speed-value').style.left = `${(value - 1) * 25}%`;
+	};
+
 	return (
 		<Styled.NavContainer>
 			<Styled.NavHeader> Sorting Algorithm Visualizer </Styled.NavHeader>
 			<Styled.NavButtonContainer>
-				<Styled.ImageButton onClick={visualizeNextIteration} disabled={isSorted ? true : false}>
+				<Styled.Button onClick={visualizeNextIteration} disabled={isSorted ? true : false}>
 					Next
-				</Styled.ImageButton>
-				<Styled.ImageButton onClick={setPlayAlgorithm} disabled={isSorted ? true : false}>
+				</Styled.Button>
+				<Styled.Button onClick={setPlayAlgorithm} disabled={isSorted ? true : false}>
 					Play
-				</Styled.ImageButton>
-				<Styled.ImageButton type='button' value='reset/randomize' onClick={reset} disabled={isSorting ? true : false}>
+				</Styled.Button>
+				<Styled.Button type='button' value='reset/randomize' onClick={reset} disabled={isSorting ? true : false}>
 					reset/randomize
-				</Styled.ImageButton>
+				</Styled.Button>
 				<div>
-					<Styled.SliderLabel style={{color: 'white'}}> Speed </Styled.SliderLabel>
-					<Styled.Slider name='speed' type='range' min='1' max='5' defaultValue='3' onChange={handleSpeed} />
+					<Styled.SliderWrapper>
+						<Styled.SliderLabel> Speed </Styled.SliderLabel>
+						<br />
+						<Styled.Slider
+							name='speed'
+							type='range'
+							id='speed-range'
+							min='1'
+							max='5'
+							defaultValue='3'
+							onChange={(e) => handleSpeedChange(e)}
+							onMouseUp={() => document.getElementById('current-speed-value').classList.remove('active')}
+						/>
+						<Styled.RangeValues>
+							<div> 1 </div>
+							<div> 5 </div>
+						</Styled.RangeValues>
+						<Styled.SliderValue>
+							<span id='current-speed-value'> {speed} </span>
+						</Styled.SliderValue>
+					</Styled.SliderWrapper>
 				</div>
 				<div>
-					<Styled.SliderLabel style={{color: 'white'}}> Array Size </Styled.SliderLabel>
-					<Styled.Slider
-						name='size'
-						type='range'
-						min='10'
-						max={maxSize}
-						value={arrSize}
-						onChange={handleSize}
-						disabled={isSorting ? true : false}
-					/>
+					<Styled.SliderWrapper>
+						<Styled.SliderLabel> Array Size </Styled.SliderLabel>
+						<br />
+						<Styled.Slider
+							name='size'
+							type='range'
+							id='size-range'
+							min='10'
+							max={maxSize}
+							value={arrSize}
+							disabled={isSorting ? true : false}
+							onChange={(e) => handleSizeChange(e)}
+							onMouseUp={() => document.getElementById('current-size-value').classList.remove('active')}
+						/>
+						<Styled.RangeValues>
+							<div> 10 </div>
+							<div> {maxSize} </div>
+						</Styled.RangeValues>
+						<Styled.SliderValue>
+							<span id='current-size-value'> {size} </span>
+						</Styled.SliderValue>
+					</Styled.SliderWrapper>
 				</div>
 				<div>
 					<Styled.AlgoInput name='algorithms' onChange={chooseAlgorithm}>

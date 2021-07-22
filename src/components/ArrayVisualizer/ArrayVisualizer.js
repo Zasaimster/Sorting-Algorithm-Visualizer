@@ -168,7 +168,6 @@ class ArrayVisualizer extends React.Component {
 				console.log('this algorithm has not been implemented yet');
 				return;
 		}
-		console.log(visualizedSteps);
 		this.setState({visualizedSteps});
 	};
 
@@ -192,10 +191,10 @@ class ArrayVisualizer extends React.Component {
 						this.setState({currentAlgorithm: value}, () => this.reset());
 						if (value === 'radixSort' || value === 'countingSort') this.setState({arrSize: 15});
 					}}
-					handleSize={(e) => {
+					handleSize={(value) => {
 						this.setState(
 							{
-								arrSize: e.target.value,
+								arrSize: value,
 								vsIndex: 0,
 							},
 							() => {
@@ -204,9 +203,9 @@ class ArrayVisualizer extends React.Component {
 							}
 						);
 					}}
-					handleSpeed={(e) => {
+					handleSpeed={(value) => {
 						this.setState({
-							sortingSpeed: ITERATION_SPEEDS[e.target.value - 1],
+							sortingSpeed: ITERATION_SPEEDS[value - 1],
 						});
 					}}
 					maxSize={currentAlgorithm === 'radixSort' || currentAlgorithm === 'countingSort' ? 20 : MAX_ARR_SIZE}

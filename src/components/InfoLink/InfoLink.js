@@ -11,7 +11,6 @@ const links = {
 };
 
 export const InfoLink = ({algorithm}) => {
-	console.log(links[algorithm]);
 	//replace with a question mark image
 	return (
 		<a href={links[algorithm]} target='_blank' rel='noreferrer'>

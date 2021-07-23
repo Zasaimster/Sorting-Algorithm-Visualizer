@@ -27,7 +27,8 @@ const Nav = ({
 
 		//let width = document.getElementById('size-range').offsetWidth;
 		document.getElementById('current-size-value').classList.add('active');
-		document.getElementById('current-size-value').style.left = `${(value * 100) / maxSize}%`;
+		let sizeDiff = maxSize - 10;
+		document.getElementById('current-size-value').style.left = `${((value - 10) * 100) / sizeDiff}%`;
 	};
 
 	const handleSpeedChange = (e) => {

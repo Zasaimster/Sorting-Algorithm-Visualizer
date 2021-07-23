@@ -144,10 +144,15 @@ export const AlgoSelectWrapper = styled.div`
 		color: #4d5061;
 		border: 0;
 		outline: none;
+		font-family: 'Raleway';
+	}
+
+	& select.decorated option {
+		&:hover {
+			color: red;
+		}
 	}
 `;
-
-export const AlgoOption = styled.option``;
 
 export const SelectArrow = styled.span`
 	position: absolute;

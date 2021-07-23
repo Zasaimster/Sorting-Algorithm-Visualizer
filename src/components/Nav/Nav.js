@@ -102,13 +102,13 @@ const Nav = ({
 				</div>
 				<Styled.AlgoSelectWrapper>
 					<select name='algorithms' onChange={chooseAlgorithm}>
-						<Styled.AlgoOption value='bubbleSort'> Bubble Sort </Styled.AlgoOption>
-						<Styled.AlgoOption value='insertionSort'> Insertion Sort </Styled.AlgoOption>
-						<Styled.AlgoOption value='selectionSort'> Selection Sort </Styled.AlgoOption>
-						<Styled.AlgoOption value='mergeSort'> Merge Sort </Styled.AlgoOption>
-						<Styled.AlgoOption value='quickSort'> Quick Sort </Styled.AlgoOption>
-						<Styled.AlgoOption value='countingSort'> Counting Sort </Styled.AlgoOption>
-						<Styled.AlgoOption value='radixSort'> Radix Sort </Styled.AlgoOption>
+						<option value='bubbleSort'> Bubble Sort </option>
+						<option value='insertionSort'> Insertion Sort </option>
+						<option value='selectionSort'> Selection Sort </option>
+						<option value='mergeSort'> Merge Sort </option>
+						<option value='quickSort'> Quick Sort </option>
+						<option value='countingSort'> Counting Sort </option>
+						<option value='radixSort'> Radix Sort </option>
 					</select>
 					<Styled.SelectArrow></Styled.SelectArrow>
 				</Styled.AlgoSelectWrapper>

@@ -5,7 +5,7 @@ export const NavContainer = styled.div`
 	position: relative;
 	width: 100%;
 	height: 125px;
-	background-color: #1a1a1b;
+	background-color: #4d5061;
 `;
 
 export const NavHeader = styled.h2`
@@ -22,8 +22,6 @@ export const NavButtonContainer = styled.div`
 	display: grid;
 	gap: 1rem;
 	grid-template-columns: repeat(7, minmax(0, 1fr));
-
-	text-align: center;
 
 	@media (max-width: 900px) {
 		grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -132,6 +130,48 @@ export const RangeValues = styled.div`
 	}
 `;
 
-export const AlgoInput = styled.select``;
+export const AlgoSelectWrapper = styled.div`
+	position: relative;
+	width: 171px;
+	height: 43px;
+
+	& select {
+		width: 100%;
+		height: 100%;
+		box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+		padding: 1em 4em 1em 1em;
+		background: white;
+		color: #4d5061;
+		border: 0;
+		outline: none;
+	}
+`;
 
 export const AlgoOption = styled.option``;
+
+export const SelectArrow = styled.span`
+	position: absolute;
+	top: 0;
+	right: 0;
+	display: block;
+	background: #9da4c9;
+	height: 100%;
+	width: 1.3rem;
+	pointer-events: none; //ignores the click, so it activates the select menu
+
+	&::after {
+		--size: 0.25em;
+		content: '.';
+		position: absolute;
+		width: 0;
+		height: 0;
+
+		left: 50%;
+		top: 50%;
+		transform: translate(-50%, -50%);
+
+		border-left: var(--size) solid transparent;
+		border-right: var(--size) solid transparent;
+		border-top: var(--size) solid rgba(0, 0, 0, 0.7);
+	}
+`;

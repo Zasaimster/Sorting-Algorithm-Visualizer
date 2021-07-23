@@ -39,7 +39,7 @@ const Nav = ({
 		document.getElementById('current-speed-value').classList.add('active');
 		document.getElementById('current-speed-value').style.left = `${(value - 1) * 25}%`;
 	};
-	console.log(isSorted, isSorting);
+
 	return (
 		<Styled.NavContainer>
 			<Styled.NavHeader> Sorting Algorithm Visualizer </Styled.NavHeader>
@@ -100,8 +100,8 @@ const Nav = ({
 						</Styled.SliderValue>
 					</Styled.SliderWrapper>
 				</div>
-				<div>
-					<Styled.AlgoInput name='algorithms' onChange={chooseAlgorithm}>
+				<Styled.AlgoSelectWrapper>
+					<select name='algorithms' onChange={chooseAlgorithm}>
 						<Styled.AlgoOption value='bubbleSort'> Bubble Sort </Styled.AlgoOption>
 						<Styled.AlgoOption value='insertionSort'> Insertion Sort </Styled.AlgoOption>
 						<Styled.AlgoOption value='selectionSort'> Selection Sort </Styled.AlgoOption>
@@ -109,8 +109,9 @@ const Nav = ({
 						<Styled.AlgoOption value='quickSort'> Quick Sort </Styled.AlgoOption>
 						<Styled.AlgoOption value='countingSort'> Counting Sort </Styled.AlgoOption>
 						<Styled.AlgoOption value='radixSort'> Radix Sort </Styled.AlgoOption>
-					</Styled.AlgoInput>
-				</div>
+					</select>
+					<Styled.SelectArrow></Styled.SelectArrow>
+				</Styled.AlgoSelectWrapper>
 				<InfoLink algorithm={currentAlgorithm} />
 			</Styled.NavButtonContainer>
 		</Styled.NavContainer>

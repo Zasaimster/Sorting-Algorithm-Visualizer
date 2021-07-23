@@ -48,7 +48,7 @@ const Nav = ({
 					Next
 				</Styled.Button>
 				<Styled.Button onClick={!isSorted ? setPlayAlgorithm : undefined} disabled={isSorted}>
-					Play
+					{isSorting ? 'Pause' : 'Play'}
 				</Styled.Button>
 				<Styled.Button type='button' value='reset/randomize' onClick={!isSorting ? reset : undefined} disabled={isSorting}>
 					reset/randomize

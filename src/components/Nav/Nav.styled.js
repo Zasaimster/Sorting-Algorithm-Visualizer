@@ -33,17 +33,18 @@ export const NavButtonContainer = styled.div`
 export const Button = styled.p`
 	border: none;
 	background: none;
-	color: white;
+	color: ${(props) => (props.disabled ? 'gray' : 'white')};
 	margin-top: 20px;
 	height: 20px;
 	text-align: center;
+	cursor: pointer;
 
 	text-transform: uppercase;
 	font-family: Sans-Serif;
 	font-weight: 400;
 
 	&:hover {
-		font-weight: 600;
+		font-weight: ${(props) => (props.disabled ? '400' : '600')};
 	}
 `;
 

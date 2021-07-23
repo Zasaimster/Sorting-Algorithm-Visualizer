@@ -39,18 +39,18 @@ const Nav = ({
 		document.getElementById('current-speed-value').classList.add('active');
 		document.getElementById('current-speed-value').style.left = `${(value - 1) * 25}%`;
 	};
-
+	console.log(isSorted, isSorting);
 	return (
 		<Styled.NavContainer>
 			<Styled.NavHeader> Sorting Algorithm Visualizer </Styled.NavHeader>
 			<Styled.NavButtonContainer>
-				<Styled.Button onClick={visualizeNextIteration} disabled={isSorted ? true : false}>
+				<Styled.Button onClick={!isSorted ? visualizeNextIteration : undefined} disabled={isSorted}>
 					Next
 				</Styled.Button>
-				<Styled.Button onClick={setPlayAlgorithm} disabled={isSorted ? true : false}>
+				<Styled.Button onClick={!isSorted ? setPlayAlgorithm : undefined} disabled={isSorted}>
 					Play
 				</Styled.Button>
-				<Styled.Button type='button' value='reset/randomize' onClick={reset} disabled={isSorting ? true : false}>
+				<Styled.Button type='button' value='reset/randomize' onClick={!isSorting ? reset : undefined} disabled={isSorting}>
 					reset/randomize
 				</Styled.Button>
 				<div>

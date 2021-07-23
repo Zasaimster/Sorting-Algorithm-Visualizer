@@ -25,7 +25,6 @@ const Basic = forwardRef(({array, isSorting, updateArray, steps}, ref) => {
 			if (index !== 0) {
 				resetAllColors(DEFAULT_COLOR);
 				swapPreviousComparison(index - 1, updateArray);
-				console.log(index - 1);
 			}
 
 			let rects = document.getElementsByClassName('array-wrapper')[0].children;

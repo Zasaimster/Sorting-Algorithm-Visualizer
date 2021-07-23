@@ -44,7 +44,7 @@ const Nav = ({
 		<Styled.NavContainer>
 			<Styled.NavHeader> Sorting Algorithm Visualizer </Styled.NavHeader>
 			<Styled.NavButtonContainer>
-				<Styled.Button onClick={!isSorted ? visualizeNextIteration : undefined} disabled={isSorted}>
+				<Styled.Button onClick={!isSorted ? visualizeNextIteration : undefined} disabled={isSorted || isSorting}>
 					Next
 				</Styled.Button>
 				<Styled.Button onClick={!isSorted ? setPlayAlgorithm : undefined} disabled={isSorted}>

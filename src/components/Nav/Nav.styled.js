@@ -115,7 +115,7 @@ export const SliderValue = styled.div`
 export const RangeValues = styled.div`
 	//range
 
-	margin-top: 10px;
+	margin-top: 5px;
 	position: relative;
 
 	text-align: center;

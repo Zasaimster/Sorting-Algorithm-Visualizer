@@ -1,11 +1,9 @@
 import {useImperativeHandle, forwardRef, useState} from 'react';
 import {resetAllColors} from '../../../helper/functions';
 import Array from '../../Arrays/Array';
+import {basicColors} from '../../../constants/constants';
 
-const DEFAULT_COLOR = '#006eff';
-const CURRENT_INDEX_COLOR = 'green';
-const CURRENT_COMPARISON_COLOR = 'grey';
-const SWAP_COLOR = 'red';
+const {DEFAULT, CURRENT, COMPARISON, SWAP} = basicColors;
 
 /*
 steps[
@@ -23,7 +21,7 @@ const Basic = forwardRef(({array, isSorting, updateArray, steps}, ref) => {
 			if (isReset) setIsReset(false);
 
 			if (index !== 0) {
-				resetAllColors(DEFAULT_COLOR);
+				resetAllColors(DEFAULT);
 				swapPreviousComparison(index - 1, updateArray);
 			}
 
@@ -34,23 +32,23 @@ const Basic = forwardRef(({array, isSorting, updateArray, steps}, ref) => {
 			const compareStyle = rects[compareIndex].style;
 
 			//adjust colors
-			currStyle.backgroundColor = CURRENT_INDEX_COLOR;
+			currStyle.backgroundColor = CURRENT;
 			if (!isSwapped) {
-				compareStyle.backgroundColor = CURRENT_COMPARISON_COLOR;
+				compareStyle.backgroundColor = COMPARISON;
 			} else {
-				compareStyle.backgroundColor = SWAP_COLOR;
+				compareStyle.backgroundColor = SWAP;
 			}
 		},
 		reset() {
 			if (!isReset) {
-				resetAllColors(DEFAULT_COLOR);
+				resetAllColors(DEFAULT);
 				setIsReset(true);
 			}
 		},
 		handleLastStep() {
 			swapPreviousComparison(steps.length - 1, updateArray);
 			setTimeout(() => {
-				resetAllColors(DEFAULT_COLOR);
+				resetAllColors(DEFAULT);
 			}, 100);
 			//this.reset();
 		},

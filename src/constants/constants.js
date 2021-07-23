@@ -7,8 +7,8 @@ const sortedColor = 'purple';
 
 const basicColors = {
 	DEFAULT: defaultColor,
-	CURRENT_INDEX: currentColor,
-	CURRENT_COMPARISON: compareColor,
+	CURRENT: currentColor,
+	COMPARISON: compareColor,
 	SWAP: swapColor,
 };
 
@@ -24,9 +24,9 @@ const quickColors = {
 	DEFAULT: defaultColor,
 	OUT_OF_RANGE: outOfRange,
 	SWAP: swapColor,
-	LOW_INDEX: 'pink',
-	HIGH_INDEX: 'hotPink',
-	ALREADY_COMPARED: compareColor,
+	LOW: 'pink',
+	HIGH: 'hotPink',
+	COMPARED: compareColor,
 	SORTED: sortedColor,
 	PIVOT: 'yellow',
 };
@@ -42,6 +42,7 @@ const radixColors = {
 	DEFAULT: defaultColor,
 	CURRENT: currentColor,
 	COMPARE: compareColor,
+	TEXT: 'red',
 };
 
 export {basicColors, mergeColors, quickColors, countColors, radixColors};

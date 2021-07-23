@@ -1,11 +1,11 @@
 import './Array.css';
 
-const RadixArray = ({array, digitsPlace}) => {
+const RadixArray = ({array, digitsPlace, textColor}) => {
 	return (
 		<div className='array-wrapper'>
 			{array.map((val, index) => (
 				<div className='radix-bar' key={index} style={{width: '75px', height: `${val / 3}px`}}>
-					{getValWithColor(val, digitsPlace)}
+					{getValWithColor(val, digitsPlace, textColor)}
 				</div>
 			))}
 		</div>
@@ -13,7 +13,7 @@ const RadixArray = ({array, digitsPlace}) => {
 };
 
 //there's probably a superior way to implement this
-const getValWithColor = (val, digitsPlace) => {
+const getValWithColor = (val, digitsPlace, textColor) => {
 	const splitNumberInThree = () => {
 		if (digitsPlace === 0) {
 			return [val, null, null];
@@ -72,7 +72,7 @@ const getValWithColor = (val, digitsPlace) => {
 	return (
 		<p className='bar-text'>
 			<span> {start !== null && start} </span>
-			<span style={{color: 'red'}}>{red !== null && red}</span>
+			<span style={{color: `${textColor}`}}>{red !== null && red}</span>
 			<span> {end !== null && end} </span>
 		</p>
 	);

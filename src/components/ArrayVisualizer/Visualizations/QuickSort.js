@@ -2,15 +2,9 @@ import {useImperativeHandle, forwardRef} from 'react';
 import Array from '../../Arrays/Array';
 
 import {resetAllColors, setArrayColorByIndices, setArrayColorByRange} from '../../../helper/functions';
+import {quickColors} from '../../../constants/constants';
 
-const DEFAULT_COLOR = '#006eff';
-const OUT_OF_RANGE_COLOR = '#a8cdff';
-const SWAP_COLOR = 'red'; //also to be used as a "to be swapped color"
-const LOW_INDEX_COLOR = 'pink';
-const HIGH_INDEX_COLOR = 'hotPink';
-const ALREADY_COMPARED_COLOR = 'gray';
-const SORTED_COLOR = 'purple';
-const PIVOT_COLOR = 'yellow';
+const {DEFAULT, OUT_OF_RANGE, SWAP, LOW, HIGH, COMPARED, SORTED, PIVOT} = quickColors;
 
 /*
 steps[
@@ -38,33 +32,33 @@ const QuickSort = forwardRef(({array, isSorting, updateArray, steps}, ref) => {
 			}
 
 			//sets colors in and out of current partition
-			setArrayColorByRange(range[0], range[1], DEFAULT_COLOR, OUT_OF_RANGE_COLOR);
+			setArrayColorByRange(range[0], range[1], DEFAULT, OUT_OF_RANGE);
 
 			//set colors that have already been looked at
-			setArrayColorByIndices(lookedAt, ALREADY_COMPARED_COLOR);
+			setArrayColorByIndices(lookedAt, COMPARED);
 
 			//set colors for indices that are already sorted
-			setArrayColorByIndices(sorted, SORTED_COLOR);
+			setArrayColorByIndices(sorted, SORTED);
 
-			rects[pivotIndex].style.backgroundColor = PIVOT_COLOR;
+			rects[pivotIndex].style.backgroundColor = PIVOT;
 			const [low, high] = lowAndHighPointer;
 			if (comparisonIndicator === 0) {
 				console.log(lowAndHighPointer[0]);
-				if (low < array.length) rects[low].style.backgroundColor = LOW_INDEX_COLOR;
-				rects[high].style.backgroundColor = HIGH_INDEX_COLOR;
+				if (low < array.length) rects[low].style.backgroundColor = LOW;
+				rects[high].style.backgroundColor = HIGH;
 			} else if (comparisonIndicator === -1) {
-				if (low < array.length) rects[low].style.backgroundColor = SWAP_COLOR;
-				rects[high].style.backgroundColor = SWAP_COLOR;
+				if (low < array.length) rects[low].style.backgroundColor = SWAP;
+				rects[high].style.backgroundColor = SWAP;
 			}
 		},
 		reset() {
-			resetAllColors(DEFAULT_COLOR);
+			resetAllColors(DEFAULT);
 		},
 		handleLastStep() {
 			handleSwap(steps.length - 1);
-			resetAllColors(SORTED_COLOR);
+			resetAllColors(SORTED);
 			setTimeout(() => {
-				resetAllColors(DEFAULT_COLOR);
+				resetAllColors(DEFAULT);
 			}, 500);
 		},
 	}));

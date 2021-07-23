@@ -2,12 +2,9 @@ import {useImperativeHandle, forwardRef, useState, useEffect} from 'react';
 import Array from '../../Arrays/Array';
 
 import {resetAllColors, setArrayColorByIndices, setArrayColorByRange} from '../../../helper/functions';
+import {mergeColors} from '../../../constants/constants';
 
-const DEFAULT_COLOR = '#006eff';
-const OUT_OF_RANGE_COLOR = '#a8cdff';
-const SMALL_COLOR = 'green';
-const BIG_COLOR = 'grey';
-const SORTED_COLOR = 'purple';
+const {DEFAULT, OUT_OF_RANGE, SMALL, BIG, SORTED} = mergeColors;
 
 /*
 steps[
@@ -47,25 +44,25 @@ const MergeSort = forwardRef(({array, isSorting, updateArray, steps}, ref) => {
 			}
 			pushNewBar(steps[index]);
 
-			setArrayColorByRange(range[0], range[1], DEFAULT_COLOR, OUT_OF_RANGE_COLOR);
+			setArrayColorByRange(range[0], range[1], DEFAULT, OUT_OF_RANGE);
 
-			setArrayColorByIndices(sorted, SORTED_COLOR);
+			setArrayColorByIndices(sorted, SORTED);
 
-			rects[smallIndex].style.backgroundColor = SMALL_COLOR;
+			rects[smallIndex].style.backgroundColor = SMALL;
 			if (bigIndex !== -1) {
-				rects[bigIndex].style.backgroundColor = BIG_COLOR;
+				rects[bigIndex].style.backgroundColor = BIG;
 			}
 
 			if (index + 1 === steps.length) {
 			}
 		},
 		reset() {
-			resetAllColors(DEFAULT_COLOR);
+			resetAllColors(DEFAULT);
 			setSubArray([]);
 		},
 		handleLastStep() {
 			sortPreviousSection(steps.length - 1);
-			resetAllColors(DEFAULT_COLOR);
+			resetAllColors(DEFAULT);
 			//get rid of bottom array after half a second
 			setTimeout(() => {
 				setSubArray([]);

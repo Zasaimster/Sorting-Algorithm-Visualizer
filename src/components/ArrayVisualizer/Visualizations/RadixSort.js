@@ -7,10 +7,9 @@ import Array from '../../Arrays/Array';
 import CountArray from '../../Arrays/CountArray';
 import RadixArray from '../../Arrays/RadixArray';
 import RadixSortedArray from '../../Arrays/RadixSortedArray';
+import {radixColors} from '../../../constants/constants';
 
-const DEFAULT_COLOR = '#006eff';
-const CURRENT_ELEMENT_COLOR = 'green';
-const INSPECTING_COLOR = 'gray';
+const {DEFAULT, CURRENT, COMPARE, TEXT} = radixColors;
 
 const states = {
 	makingCount: 'makingCount',
@@ -45,9 +44,9 @@ const RadixSort = forwardRef(({array, isSorting, updateArray, steps}, ref) => {
 			let sortedRects = document.getElementsByClassName('array-wrapper')[1].children;
 
 			if (index !== 0) {
-				resetAllColors(DEFAULT_COLOR);
-				resetAllCountColors(DEFAULT_COLOR, countRects);
-				resetAllSpecificColors(DEFAULT_COLOR, sortedRects);
+				resetAllColors(DEFAULT);
+				resetAllCountColors(DEFAULT, countRects);
+				resetAllSpecificColors(DEFAULT, sortedRects);
 			}
 
 			if (sortedArr.length === 0) {
@@ -80,14 +79,14 @@ const RadixSort = forwardRef(({array, isSorting, updateArray, steps}, ref) => {
 				tempArr[digitVal]++;
 				setCountArr(tempArr);
 
-				arrRects[arrIndex].style.backgroundColor = CURRENT_ELEMENT_COLOR;
+				arrRects[arrIndex].style.backgroundColor = CURRENT;
 			} else if (state === states.summingCount) {
 				let tempArr = [...countArr];
 				tempArr[arrIndex] += tempArr[arrIndex - 1];
 				setCountArr(tempArr);
 
-				countRects[arrIndex].children[0].style.backgroundColor = CURRENT_ELEMENT_COLOR;
-				countRects[arrIndex - 1].children[0].style.backgroundColor = INSPECTING_COLOR;
+				countRects[arrIndex].children[0].style.backgroundColor = CURRENT;
+				countRects[arrIndex - 1].children[0].style.backgroundColor = COMPARE;
 			} else {
 				//makes a new, sorted array
 				let tempSorted = [...sortedArr];
@@ -100,10 +99,10 @@ const RadixSort = forwardRef(({array, isSorting, updateArray, steps}, ref) => {
 				tempCountArr[digitVal]--;
 				setCountArr(tempCountArr);
 
-				arrRects[arrIndex].style.backgroundColor = INSPECTING_COLOR;
-				countRects[digitVal].children[0].style.backgroundColor = INSPECTING_COLOR;
-				//sortedRects[currIndex].children[0].style.backgroundColor = CURRENT_ELEMENT_COLOR;
-				sortedRects[currIndex].style.backgroundColor = CURRENT_ELEMENT_COLOR;
+				arrRects[arrIndex].style.backgroundColor = COMPARE;
+				countRects[digitVal].children[0].style.backgroundColor = COMPARE;
+				//sortedRects[currIndex].children[0].style.backgroundColor = CURRENT;
+				sortedRects[currIndex].style.backgroundColor = CURRENT;
 
 				//temp solution unless I cant figure out anything better
 				if (index + 1 < steps.length && steps[index + 1][3] !== digitsPlace) {
@@ -118,15 +117,15 @@ const RadixSort = forwardRef(({array, isSorting, updateArray, steps}, ref) => {
 			// }
 		},
 		reset() {
-			resetAllColors(DEFAULT_COLOR);
+			resetAllColors(DEFAULT);
 			setCountArr(initialCountState);
 			setSortedArr([]);
 		},
 		handleLastStep() {
 			setTimeout(() => {
-				resetAllColors(DEFAULT_COLOR);
-				resetAllCountColors(DEFAULT_COLOR, document.getElementsByClassName('counting-wrapper')[0].children[0].children);
-				resetAllSpecificColors(DEFAULT_COLOR, document.getElementsByClassName('array-wrapper')[1].children);
+				resetAllColors(DEFAULT);
+				resetAllCountColors(DEFAULT, document.getElementsByClassName('counting-wrapper')[0].children[0].children);
+				resetAllSpecificColors(DEFAULT, document.getElementsByClassName('array-wrapper')[1].children);
 				updateArray(array.sort((a, b) => a - b));
 				setDigitsPlace(0);
 			}, 500);
@@ -142,7 +141,7 @@ const RadixSort = forwardRef(({array, isSorting, updateArray, steps}, ref) => {
 
 	return (
 		<>
-			<RadixArray array={array} digitsPlace={digitsPlace} />
+			<RadixArray array={array} digitsPlace={digitsPlace} textColor={TEXT} />
 			<CountArray array={countArr} />
 			<RadixSortedArray array={sortedArr} />
 		</>

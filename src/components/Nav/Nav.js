@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 import {InfoLink} from '../InfoLink/InfoLink';
-import './Nav.css';
 
 import * as Styled from './Nav.styled';
 

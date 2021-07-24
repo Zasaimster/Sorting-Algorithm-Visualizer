@@ -1,4 +1,3 @@
-import {enumDeclaration} from '@babel/types';
 import styled from 'styled-components';
 
 export const NavContainer = styled.div`
@@ -140,7 +139,7 @@ export const AlgoSelectWrapper = styled.div`
 		height: 100%;
 		box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
 		padding: 1em 4em 1em 1em;
-		background: white;
+		background: #f5f5f5;
 		color: #4d5061;
 		border: 0;
 		outline: none;

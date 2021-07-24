@@ -1,4 +1,6 @@
+import styled from 'styled-components';
 import {radixSort} from '../../helper/algorithms';
+import question from '../../img/question32.png';
 
 const links = {
 	bubbleSort: 'https://en.wikipedia.org/wiki/Bubble_sort',
@@ -13,8 +15,22 @@ const links = {
 export const InfoLink = ({algorithm}) => {
 	//replace with a question mark image
 	return (
-		<a href={links[algorithm]} target='_blank' rel='noreferrer'>
-			?
-		</a>
+		<Wrapper>
+			<Link href={links[algorithm]} target='_blank' rel='noreferrer'>
+				<img src={question} alt='?' />
+			</Link>
+		</Wrapper>
 	);
 };
+
+const Wrapper = styled.div`
+	position: relative;
+	width: 32px;
+	height: 32px;
+	margin-top: 10px;
+`;
+
+const Link = styled.a`
+	position: absolute;
+	bottom: 0;
+`;

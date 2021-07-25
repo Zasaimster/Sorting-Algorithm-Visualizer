@@ -9,6 +9,7 @@ import {default as RadixSortVisualization} from './Visualizations/RadixSort';
 import {bubbleSort, insertionSort, selectionSort, quickSort, mergeSort, countingSort, radixSort, testSort} from '../../helper/algorithms';
 
 import './ArrayVisualizer.css';
+import {Legend} from '../Legend/Legend';
 
 const DEFAULT_SIZE = 30;
 const MIN_ARR_SIZE = 10;
@@ -260,6 +261,8 @@ class ArrayVisualizer extends React.Component {
 						ref={ref}
 					/>
 				)}
+
+				<Legend currentAlgorithm={currentAlgorithm} />
 			</>
 		);
 	}

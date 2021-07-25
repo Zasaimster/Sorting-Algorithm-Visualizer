@@ -1,9 +1,14 @@
 import {useImperativeHandle, forwardRef, useState} from 'react';
 import {resetAllColors} from '../../../helper/functions';
 import Array from '../../Arrays/Array';
-import {basicColors} from '../../../constants/constants';
+import {basicDescription} from '../../../constants/constants';
 
-const {DEFAULT, CURRENT, COMPARISON, SWAP} = basicColors;
+const {
+	DEFAULT: {color: DEFAULT},
+	CURRENT: {color: CURRENT},
+	COMPARISON: {color: COMPARISON},
+	SWAP: {color: SWAP},
+} = basicDescription;
 
 /*
 steps[

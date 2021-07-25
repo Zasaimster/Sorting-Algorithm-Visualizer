@@ -3,9 +3,13 @@ import {useImperativeHandle, forwardRef, useState} from 'react';
 import {resetAllColors, resetAllSpecificColors, resetAllCountColors} from '../../../helper/functions';
 import CountingSortArray from '../../Arrays/CountingSortArray';
 import CountArray from '../../Arrays/CountArray';
-import {countColors} from '../../../constants/constants';
+import {countDescription} from '../../../constants/constants';
 
-const {DEFAULT, CURRENT, COMPARE} = countColors;
+const {
+	DEFAULT: {color: DEFAULT},
+	CURRENT: {color: CURRENT},
+	COMPARE: {color: COMPARE},
+} = countDescription;
 
 const states = {
 	makingCount: 'makingCount',

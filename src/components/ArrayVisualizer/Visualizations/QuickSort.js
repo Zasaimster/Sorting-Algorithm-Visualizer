@@ -2,9 +2,18 @@ import {useImperativeHandle, forwardRef} from 'react';
 import Array from '../../Arrays/Array';
 
 import {resetAllColors, setArrayColorByIndices, setArrayColorByRange} from '../../../helper/functions';
-import {quickColors} from '../../../constants/constants';
+import {quickDescription} from '../../../constants/constants';
 
-const {DEFAULT, OUT_OF_RANGE, SWAP, LOW, HIGH, COMPARED, SORTED, PIVOT} = quickColors;
+const {
+	DEFAULT: {color: DEFAULT},
+	OUT_OF_RANGE: {color: OUT_OF_RANGE},
+	SWAP: {color: SWAP},
+	LOW: {color: LOW},
+	HIGH: {color: HIGH},
+	COMPARED: {color: COMPARED},
+	SORTED: {color: SORTED},
+	PIVOT: {color: PIVOT},
+} = quickDescription;
 
 /*
 steps[

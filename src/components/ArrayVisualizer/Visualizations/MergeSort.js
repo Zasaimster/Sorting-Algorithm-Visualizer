@@ -2,9 +2,15 @@ import {useImperativeHandle, forwardRef, useState, useEffect} from 'react';
 import Array from '../../Arrays/Array';
 
 import {resetAllColors, setArrayColorByIndices, setArrayColorByRange} from '../../../helper/functions';
-import {mergeColors} from '../../../constants/constants';
+import {mergeDescription} from '../../../constants/constants';
 
-const {DEFAULT, OUT_OF_RANGE, SMALL, BIG, SORTED} = mergeColors;
+const {
+	DEFAULT: {color: DEFAULT},
+	OUT_OF_RANGE: {color: OUT_OF_RANGE},
+	SMALL: {color: SMALL},
+	BIG: {color: BIG},
+	SORTED: {color: SORTED},
+} = mergeDescription;
 
 /*
 steps[

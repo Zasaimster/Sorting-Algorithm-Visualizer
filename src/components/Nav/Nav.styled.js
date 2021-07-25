@@ -138,7 +138,7 @@ export const AlgoSelectWrapper = styled.div`
 		width: 100%;
 		height: 100%;
 		box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-		padding: 1em 4em 1em 1em;
+		padding: 1em 2em 1em 1em;
 		background: #f5f5f5;
 		color: #4d5061;
 		border: 0;

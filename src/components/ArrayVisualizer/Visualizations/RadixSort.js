@@ -7,9 +7,14 @@ import Array from '../../Arrays/Array';
 import CountArray from '../../Arrays/CountArray';
 import RadixArray from '../../Arrays/RadixArray';
 import RadixSortedArray from '../../Arrays/RadixSortedArray';
-import {radixColors} from '../../../constants/constants';
+import {radixDescription} from '../../../constants/constants';
 
-const {DEFAULT, CURRENT, COMPARE, TEXT} = radixColors;
+const {
+	DEFAULT: {color: DEFAULT},
+	CURRENT: {color: CURRENT},
+	COMPARE: {color: COMPARE},
+	TEXT: {color: TEXT},
+} = radixDescription;
 
 const states = {
 	makingCount: 'makingCount',

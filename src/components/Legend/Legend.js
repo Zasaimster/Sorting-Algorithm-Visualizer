@@ -27,14 +27,17 @@ const getTableInfo = (algorithm) => {
 
 export const Legend = ({algorithm}) => {
 	const [isOpen, setIsOpen] = useState(true);
-	setIsOpen(false);
+
+	const handleClick = () => {
+		setIsOpen(!isOpen);
+	};
 
 	return (
-		<Styled.Card>
+		<Styled.Card open={isOpen}>
 			<Styled.Header>
-				<span> ^ </span>
+				<span onClick={handleClick}> {isOpen ? ', ' : '^ '} Legend </span>
 			</Styled.Header>
-			<Styled.Table>{getTableInfo(algorithm)}</Styled.Table>
+			<Styled.Table open={isOpen}>{getTableInfo(algorithm)}</Styled.Table>
 		</Styled.Card>
 	);
 };

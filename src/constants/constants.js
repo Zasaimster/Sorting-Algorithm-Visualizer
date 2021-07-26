@@ -58,42 +58,42 @@ const quickDescription = {
 	},
 	SWAP: {
 		color: swapColor,
-		description: '',
+		description: 'Indicates two elements that are swapping',
 	},
 	LOW: {
 		color: 'pink',
-		description: '',
+		description: 'Points to the low index',
 	},
 	HIGH: {
 		color: 'hotpink',
-		description: '',
+		description: 'Points to the high index',
 	},
 	COMPARED: {
 		color: compareColor,
-		description: '',
+		description: 'Elements that have been looked at',
 	},
 	SORTED: {
 		color: sortedColor,
-		description: '',
+		description: 'Sorted elements',
 	},
 	PIVOT: {
 		color: 'yellow',
-		description: '',
+		description: 'Element that serves as a "pivot" for each section',
 	},
 };
 
 const countDescription = {
 	DEFAULT: {
 		color: defaultColor,
-		description: '',
+		description: 'Default color',
 	},
 	CURRENT: {
 		color: currentColor,
-		description: '',
+		description: 'Current element',
 	},
 	COMPARE: {
 		color: compareColor,
-		description: '',
+		description: 'Element that the current is being compared to',
 	},
 };
 
@@ -101,19 +101,19 @@ const countDescription = {
 const radixDescription = {
 	DEFAULT: {
 		color: defaultColor,
-		description: '',
+		description: 'Default color',
 	},
 	CURRENT: {
 		color: currentColor,
-		description: '',
+		description: 'Current element',
 	},
 	COMPARE: {
 		color: compareColor,
-		description: '',
+		description: 'Element that the current is being compared to',
 	},
 	TEXT: {
 		color: 'red',
-		description: '',
+		description: 'Digits place',
 	},
 };
 

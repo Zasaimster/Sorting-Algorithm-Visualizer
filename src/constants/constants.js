@@ -8,53 +8,53 @@ const sortedColor = 'purple';
 const basicDescription = {
 	DEFAULT: {
 		color: defaultColor,
-		description: '',
+		description: 'Default color',
 	},
 	CURRENT: {
 		color: currentColor,
-		description: '',
+		description: 'Current element',
 	},
 	COMPARISON: {
 		color: compareColor,
-		description: '',
+		description: 'Element that the current is being compared to',
 	},
 	SWAP: {
 		color: swapColor,
-		description: '',
+		description: 'Current is being swapped with this element',
 	},
 };
 
 const mergeDescription = {
 	DEFAULT: {
 		color: defaultColor,
-		description: '',
+		description: 'Default color',
 	},
 	OUT_OF_RANGE: {
 		color: outOfRange,
-		description: '',
+		description: 'Elements not in current range',
 	},
 	SMALL: {
 		color: currentColor,
-		description: '',
+		description: 'Smaller element, added to the subarray',
 	},
 	BIG: {
 		color: compareColor,
-		description: '',
+		description: 'Larger element, not added to the subarray',
 	},
 	SORTED: {
 		color: sortedColor,
-		description: '',
+		description: 'Elements added to subarray',
 	},
 };
 
 const quickDescription = {
 	DEFAULT: {
 		color: defaultColor,
-		description: '',
+		description: 'Default color',
 	},
 	OUT_OF_RANGE: {
 		color: outOfRange,
-		description: '',
+		description: 'Elements not in current range',
 	},
 	SWAP: {
 		color: swapColor,
@@ -83,9 +83,18 @@ const quickDescription = {
 };
 
 const countDescription = {
-	DEFAULT: defaultColor,
-	CURRENT: currentColor,
-	COMPARE: compareColor,
+	DEFAULT: {
+		color: defaultColor,
+		description: '',
+	},
+	CURRENT: {
+		color: currentColor,
+		description: '',
+	},
+	COMPARE: {
+		color: compareColor,
+		description: '',
+	},
 };
 
 //keeping this separate from countColors in case I want to change something in the future
@@ -114,7 +123,7 @@ const descriptions = {
 	selectionSort: basicDescription,
 	mergeSort: mergeDescription,
 	quickSort: quickDescription,
-	countingSorting: countDescription,
+	countingSort: countDescription,
 	radixSort: radixDescription,
 };
 

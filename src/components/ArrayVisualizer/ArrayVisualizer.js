@@ -262,7 +262,7 @@ class ArrayVisualizer extends React.Component {
 					/>
 				)}
 
-				<Legend currentAlgorithm={currentAlgorithm} />
+				<Legend algorithm={currentAlgorithm} />
 			</>
 		);
 	}

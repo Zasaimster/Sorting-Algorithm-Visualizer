@@ -27,7 +27,7 @@ const getTableInfo = (algorithm) => {
 
 export const Legend = ({algorithm}) => {
 	const [isOpen, setIsOpen] = useState(true);
-	console.log(isOpen);
+	setIsOpen(false);
 
 	return (
 		<Styled.Card>

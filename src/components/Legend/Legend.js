@@ -1,6 +1,9 @@
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 
 import {descriptions} from '../../constants/constants';
+import {CgChevronDoubleUpO, CgChevronDoubleDownO} from 'react-icons/cg';
+import {IoArrowDownCircleOutline, IoArrowUpCircleOutline} from 'react-icons/io5';
+
 import * as Styled from './Legend.styled';
 
 const getTableInfo = (algorithm) => {
@@ -35,7 +38,10 @@ export const Legend = ({algorithm}) => {
 	return (
 		<Styled.Card open={isOpen}>
 			<Styled.Header>
-				<span onClick={handleClick}> {isOpen ? ', ' : '^ '} Legend </span>
+				<span>
+					<Styled.DownArrow onClick={handleClick} open={isOpen} />
+					<div>Legend</div>
+				</span>
 			</Styled.Header>
 			<Styled.Table open={isOpen}>{getTableInfo(algorithm)}</Styled.Table>
 		</Styled.Card>

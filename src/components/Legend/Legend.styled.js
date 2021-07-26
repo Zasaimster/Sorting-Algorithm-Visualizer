@@ -9,6 +9,8 @@ export const Card = styled.div`
 	border: 1px solid black;
 	border-radius: 15px;
 	padding: 5px 15px 15px 15px;
+	background-color: white;
+	z-index: 10;
 `;
 
 export const Header = styled.div`

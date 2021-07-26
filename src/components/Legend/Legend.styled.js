@@ -4,9 +4,8 @@ export const Card = styled.div`
 	position: absolute;
 	bottom: 20px;
 	left: 100px;
-	width: ${(props) => (props.open ? '500px' : '30px')};
-	width: 500px;
-	max-height: ${(props) => (props.open ? '500px' : '6px')};
+	max-height: ${(props) => (props.open ? '200px' : '6px')};
+	width: ${(props) => (props.open ? '400px' : '15px')};
 	box-shadow: 0px 0px 4px black;
 	border: 1px solid black;
 	border-radius: 15px;
@@ -15,7 +14,9 @@ export const Card = styled.div`
 	z-index: 10;
 
 	overflow: hidden;
-	transition: max-height 300ms ease-in-out;
+
+	transition: ${(props) =>
+		props.open ? 'max-height 300ms ease-in-out 250ms, width 300ms ease-in-out' : 'width 300ms ease-in-out 250ms, max-height 300ms ease-in-out'};
 `;
 
 const card = keyframes`
@@ -30,9 +31,7 @@ export const Header = styled.div`
 	}
 `;
 
-export const Table = styled.table`
-	visibility: ${(props) => (props.open ? 'visible' : 'hidden')};
-`;
+export const Table = styled.table``;
 
 export const Row = styled.tr`
 	padding: 0;

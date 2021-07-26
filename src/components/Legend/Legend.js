@@ -1,5 +1,6 @@
+import {useState} from 'react';
+
 import {descriptions} from '../../constants/constants';
-import {countingSortAlgo} from '../../helper/algorithms';
 import * as Styled from './Legend.styled';
 
 const getTableInfo = (algorithm) => {
@@ -25,6 +26,9 @@ const getTableInfo = (algorithm) => {
 };
 
 export const Legend = ({algorithm}) => {
+	const [isOpen, setIsOpen] = useState(true);
+	console.log(isOpen);
+
 	return (
 		<Styled.Card>
 			<Styled.Header>

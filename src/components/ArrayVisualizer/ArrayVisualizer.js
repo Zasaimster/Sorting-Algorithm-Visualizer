@@ -119,9 +119,24 @@ class ArrayVisualizer extends React.Component {
 			}
 		}
 
+		if (!this.checkIfSorted(arr)) {
+			this.setState({isSorted: false}, () => console.log(this.state.isSorted));
+		}
+
 		this.setState({array: arr}, () => {
 			this.getVisualizedSteps();
 		});
+	};
+
+	checkIfSorted = (arr) => {
+		let sorted = [...arr].sort((a, b) => a - b);
+
+		for (var i = 0; i < arr.length; i++) {
+			if (arr[i] !== sorted[i]) {
+				return false;
+			}
+		}
+		return true;
 	};
 
 	reset = () => {

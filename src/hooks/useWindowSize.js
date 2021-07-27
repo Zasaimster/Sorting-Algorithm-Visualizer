@@ -1,5 +1,7 @@
 import {useEffect, useLayoutEffect, useState} from 'react';
 
+//inspired by https://usehooks.com/useWindowSize/ (used the basic layout/features of this hook to create my first custom hook)
+
 export function useWindowSize(array, algorithm) {
 	const [widthAndRows, setWidthAndRows] = useState([10, 1]);
 	const [totalPadding, setTotalPadding] = useState(0);

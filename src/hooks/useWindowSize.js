@@ -7,7 +7,7 @@ export function useWindowSize(array) {
 	const getRows = (barWidth) => {
 		let numRows = 1;
 		let totalWidth = (barWidth + 3) * array.length;
-		console.log(totalWidth, window.innerWidth - totalPadding);
+		console.log(totalPadding);
 		if (totalWidth > window.innerWidth - totalPadding) {
 			numRows = Math.ceil(totalWidth / (window.innerWidth - totalPadding));
 		}
@@ -32,7 +32,7 @@ export function useWindowSize(array) {
 		window.addEventListener('resize', updateSize);
 		updateSize();
 		return () => window.removeEventListener('resize', updateSize);
-	}, [array]); //
+	}, [array, totalPadding]); //
 
 	useEffect(() => {
 		let width = widthAndRows[0];

@@ -58,9 +58,15 @@ const ToolTip = styled.span`
 const Wrapper = styled.div`
 	position: relative;
 	margin-top: 5px;
+	width: 32px;
+	height: 32px;
 
 	&:hover ${ToolTip} {
 		visibility: visible;
 		opacity: 0.8;
+	}
+
+	&:hover {
+		width: 115px;
 	}
 `;

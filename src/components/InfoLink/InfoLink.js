@@ -57,7 +57,7 @@ const ToolTip = styled.span`
 
 const Wrapper = styled.div`
 	position: relative;
-	margin-top: 5px;
+	margin: 5px 0 0 15px;
 	width: 32px;
 	height: 32px;
 

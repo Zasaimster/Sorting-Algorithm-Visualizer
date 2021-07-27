@@ -5,6 +5,10 @@ export const NavContainer = styled.div`
 	width: 100%;
 	height: 125px;
 	background-color: #4d5061;
+
+	@media (max-width: 800px) {
+		height: 250px;
+	}
 `;
 
 export const NavHeader = styled.h2`
@@ -16,13 +20,20 @@ export const NavHeader = styled.h2`
 
 export const NavButtonContainer = styled.div`
 	position: relative;
-	padding: 0 0 0 20px;
-
+	padding-left: 20px;
 	display: grid;
 	gap: 1rem;
-	grid-template-columns: repeat(7, minmax(0, 1fr));
+	grid-template-columns: repeat(7, 1fr);
 
-	@media (max-width: 900px) {
+	@media (max-width: 1400px) {
+		grid-template-columns: repeat(2, 10%) repeat(5, 15%);
+	}
+
+	@media (max-width: 1100px) {
+		grid-template-columns: repeat(2, 5%) repeat(4, 18%) repeat(1, 5%);
+	}
+
+	@media (max-width: 800px) {
 		grid-template-columns: repeat(3, minmax(0, 1fr));
 	}
 `;
@@ -78,10 +89,12 @@ export const SliderWrapper = styled.div`
 	height: 80px;
 	font-family: 'Raleway';
 	text-align: center;
+	justify-content: center;
 	width: 150px;
 
+	margin: 0 auto;
+
 	@media (max-width: 1400px) {
-		width: 100%;
 	}
 `;
 
@@ -133,6 +146,7 @@ export const AlgoSelectWrapper = styled.div`
 	position: relative;
 	width: 171px;
 	height: 43px;
+	margin: 0 auto;
 
 	& select {
 		width: 100%;

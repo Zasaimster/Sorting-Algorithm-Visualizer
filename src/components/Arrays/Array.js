@@ -3,9 +3,6 @@ import {useWindowSize} from '../../hooks/useWindowSize';
 
 import './Array.css';
 
-const DEFAULT_NAV_HEIGHT = 125;
-let width = 10;
-
 const Array = ({algorithm, array}) => {
 	//const [barWidth, setBarWidth] = useState(10);
 	//const [numRows, setNumRows] = useState(1);

@@ -2,12 +2,14 @@ import {useEffect, useLayoutEffect, useState} from 'react';
 
 export function useWindowSize(array) {
 	const [widthAndRows, setWidthAndRows] = useState([10, 1]);
+	const [totalPadding, setTotalPadding] = useState(0);
 
 	const getRows = (barWidth) => {
 		let numRows = 1;
 		let totalWidth = (barWidth + 3) * array.length;
-		if (totalWidth > window.innerWidth) {
-			numRows = Math.ceil(totalWidth / window.innerWidth);
+		console.log(totalWidth, window.innerWidth - totalPadding);
+		if (totalWidth > window.innerWidth - totalPadding) {
+			numRows = Math.ceil(totalWidth / (window.innerWidth - totalPadding));
 		}
 
 		return numRows;
@@ -35,6 +37,12 @@ export function useWindowSize(array) {
 	useEffect(() => {
 		let width = widthAndRows[0];
 		let rows = widthAndRows[1];
+
+		let wrapper = document.getElementsByClassName('array-wrapper');
+		let padding =
+			parseInt(getComputedStyle(wrapper[0]).getPropertyValue('padding-left')) +
+			parseInt(getComputedStyle(wrapper[0]).getPropertyValue('padding-right'));
+		if (padding !== totalPadding) setTotalPadding(padding);
 
 		if (rows !== getRows(width)) setWidthAndRows([width, getRows(width)]);
 	});

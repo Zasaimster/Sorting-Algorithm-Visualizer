@@ -42,7 +42,6 @@ const MergeSort = forwardRef(({array, isSorting, updateArray, steps}, ref) => {
 		updateColors(index) {
 			let rects = document.getElementsByClassName('array-wrapper')[0].children;
 			const [smallIndex, bigIndex, range, sorted] = steps[index];
-			console.log(sorted);
 			if (range !== currentRange) {
 				setCurrentRange(range);
 				setSubArray([]);
@@ -93,7 +92,6 @@ const MergeSort = forwardRef(({array, isSorting, updateArray, steps}, ref) => {
 	const pushNewBar = (step) => {
 		let smallIndex = step[0];
 
-		console.log(subArray);
 		setSubArray((subArray) => [...subArray, array[smallIndex]]);
 	};
 

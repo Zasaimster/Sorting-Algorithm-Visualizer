@@ -52,7 +52,6 @@ const QuickSort = forwardRef(({array, isSorting, updateArray, steps}, ref) => {
 			rects[pivotIndex].style.backgroundColor = PIVOT;
 			const [low, high] = lowAndHighPointer;
 			if (comparisonIndicator === 0) {
-				console.log(lowAndHighPointer[0]);
 				if (low < array.length) rects[low].style.backgroundColor = LOW;
 				rects[high].style.backgroundColor = HIGH;
 			} else if (comparisonIndicator === -1) {

@@ -72,7 +72,6 @@ export const selectionSort = (arr) => {
 			iterations.push([i, minIndex, true]);
 		}
 	}
-	console.log(arr);
 	return iterations;
 };
 

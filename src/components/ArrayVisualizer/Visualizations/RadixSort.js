@@ -60,7 +60,6 @@ const RadixSort = forwardRef(({array, isSorting, updateArray, steps}, ref) => {
 			const digitVal = Math.floor(arrVal / digit) % 10;
 
 			if (digit !== digitsPlace) {
-				console.log('setting to 1');
 				if (digitsPlace !== 0) updateArray([...sortedArr]);
 				setDigitsPlace(digit);
 				resetSorted();
@@ -136,8 +135,6 @@ const RadixSort = forwardRef(({array, isSorting, updateArray, steps}, ref) => {
 	}));
 
 	const resetSorted = () => {
-		console.log('?');
-
 		setSortedArr([]);
 		for (var i = 0; i < array.length; i++) setSortedArr((sortedArr) => [...sortedArr, 0]);
 	};

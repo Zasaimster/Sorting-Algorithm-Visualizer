@@ -1,9 +1,7 @@
 import {useImperativeHandle, forwardRef, useState, useEffect} from 'react';
 
 import {resetAllColors, resetAllSpecificColors, resetAllCountColors} from '../../../helper/functions';
-import CountingSortArray from '../../Arrays/CountingSortArray';
 
-import Array from '../../Arrays/Array';
 import CountArray from '../../Arrays/CountArray';
 import RadixArray from '../../Arrays/RadixArray';
 import RadixSortedArray from '../../Arrays/RadixSortedArray';

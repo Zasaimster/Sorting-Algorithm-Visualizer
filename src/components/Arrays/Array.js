@@ -1,4 +1,3 @@
-import {useEffect, useState, useLayoutEffect} from 'react';
 import {useWindowSize} from '../../hooks/useWindowSize';
 
 import './Array.css';

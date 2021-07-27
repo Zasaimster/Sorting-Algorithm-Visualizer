@@ -1,4 +1,4 @@
-import {useImperativeHandle, forwardRef, useState, useEffect} from 'react';
+import {useImperativeHandle, forwardRef, useState} from 'react';
 import Array from '../../Arrays/Array';
 
 import {resetAllColors, setArrayColorByIndices, setArrayColorByRange} from '../../../helper/functions';

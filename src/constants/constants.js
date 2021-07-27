@@ -2,7 +2,7 @@ const defaultColor = '#006eff';
 const currentColor = 'green';
 const swapColor = 'red';
 const outOfRange = '#a8cdff';
-const compareColor = 'grey';
+const compareColor = '#545454';
 const sortedColor = 'purple';
 
 const basicDescription = {

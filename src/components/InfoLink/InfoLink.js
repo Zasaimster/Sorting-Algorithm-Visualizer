@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import {radixSort} from '../../helper/algorithms';
 import question from '../../img/question32.png';
 
 const links = {

@@ -1,6 +1,6 @@
-import styled, {keyframes} from 'styled-components';
+import styled from 'styled-components';
 
-import {IoArrowDownCircleOutline, IoArrowUpCircleOutline} from 'react-icons/io5';
+import {IoArrowDownCircleOutline} from 'react-icons/io5';
 
 export const Card = styled.div`
 	position: absolute;

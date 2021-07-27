@@ -6,13 +6,13 @@ import {default as QuickSortVisualization} from './Visualizations/QuickSort';
 import {default as CountingSortVisualization} from './Visualizations/CountingSort';
 import {default as RadixSortVisualization} from './Visualizations/RadixSort';
 
-import {bubbleSort, insertionSort, selectionSort, quickSort, mergeSort, countingSort, radixSort, testSort} from '../../helper/algorithms';
+import {bubbleSort, insertionSort, selectionSort, quickSort, mergeSort, countingSort, radixSort} from '../../helper/algorithms';
 
 import './ArrayVisualizer.css';
 import {Legend} from '../Legend/Legend';
 
 const DEFAULT_SIZE = 30;
-const MIN_ARR_SIZE = 10;
+//const MIN_ARR_SIZE = 10;
 const MAX_ARR_SIZE = 250;
 const ITERATION_SPEEDS = [1000, 500, 100, 15, 3];
 /*
@@ -177,7 +177,7 @@ class ArrayVisualizer extends React.Component {
 	}
 
 	render() {
-		const {currentAlgorithm, array, visualizedSteps, vsIndex, isSorting, arrSize, sortingSpeed, ref, isSorted} = this.state;
+		const {currentAlgorithm, array, visualizedSteps, isSorting, arrSize, ref, isSorted} = this.state;
 		return (
 			<>
 				<Nav

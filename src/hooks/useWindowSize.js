@@ -7,7 +7,6 @@ export function useWindowSize(array) {
 	const getRows = (barWidth) => {
 		let numRows = 1;
 		let totalWidth = (barWidth + 3) * array.length;
-		console.log(totalPadding);
 		if (totalWidth > window.innerWidth - totalPadding) {
 			numRows = Math.ceil(totalWidth / (window.innerWidth - totalPadding));
 		}
@@ -16,8 +15,6 @@ export function useWindowSize(array) {
 	};
 
 	useLayoutEffect(() => {
-		console.log('init layout');
-		//setArray(arr);
 		function updateSize() {
 			let barWidth = 10;
 			if (window.innerWidth < 400) {
@@ -32,8 +29,11 @@ export function useWindowSize(array) {
 		window.addEventListener('resize', updateSize);
 		updateSize();
 		return () => window.removeEventListener('resize', updateSize);
+
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [array, totalPadding]); //
 
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	useEffect(() => {
 		let width = widthAndRows[0];
 		let rows = widthAndRows[1];

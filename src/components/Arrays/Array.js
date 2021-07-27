@@ -50,12 +50,16 @@ const Array = ({algorithm, array}) => {
 
 	window.onload = () => {
 		let bars = document.getElementsByClassName('bar');
-		console.log(bars);
-
+		console.log(barWidth);
 		document.getElementsByClassName('array-wrapper')[0].className += ' loaded';
 		for (var i = 0; i < bars.length; i++) {
 			let bar = bars[i];
 			bar.className += ' loaded';
+
+			//bar starts in the 15th position (14 to left, 15 to right)
+			let margin = 3;
+
+			bar.style.setProperty('--left', `${(barWidth + margin) * (15 - i)}px`);
 		}
 
 		//document.getElementsByClassName('array-wrapper')[0].className += ' loaded';
@@ -67,7 +71,6 @@ const Array = ({algorithm, array}) => {
 			{array.map((val, index) => (
 				<div className='bar' key={index} style={{width: `${barWidth}px`, height: `${val / numRows / divider}px`}} />
 			))}
-			{console.log('finished drawing the stuff')}
 		</div>
 	);
 };

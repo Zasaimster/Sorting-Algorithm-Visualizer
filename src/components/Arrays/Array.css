@@ -4,13 +4,12 @@
 
 @keyframes slideFromCenter {
 	0% {
-		visibility: visible;
-		top: 1000px;
+		top: 700px;
+		left: var(--left, 0);
 	}
 	100% {
-		visibility: visible;
-		position: relative;
 		top: 0;
+		left: 0;
 	}
 }
 
@@ -21,8 +20,14 @@
 	margin-left: 3px;
 }
 
+.bar.loaded:first-child {
+}
+
+.bar.loaded:nth-child(n + 1):nth-child(-n + 30) {
+	animation: slideFromCenter 1s ease-out 0s 1 normal backwards;
+}
+
 .bar.loaded {
-	animation: 1s 0s 1 slideFromCenter forwards;
 }
 
 .radix-bar {
@@ -80,16 +85,9 @@
 }
 
 .array-wrapper {
-	overflow: hidden;
 	text-align: center;
 	margin-top: 50px;
 	padding: 0 100px 0 100px;
-
-	visibility: hidden;
-}
-
-.array-wrapper.loaded {
-	visibility: visible;
 }
 
 @media only screen and (max-width: 1440px) {

@@ -6,9 +6,9 @@ import * as Styled from './Legend.styled';
 const getTableInfo = (algorithm) => {
 	let description = descriptions[algorithm];
 
-	let toRet = Object.values(description).map((entry) => {
+	let toRet = Object.values(description).map((entry, index) => {
 		return (
-			<Styled.Row>
+			<Styled.Row key={index}>
 				<td>
 					<Styled.ColorEntry fill={entry.color} />
 				</td>
@@ -37,7 +37,9 @@ export const Legend = ({algorithm}) => {
 					<div>Color Legend</div>
 				</span>
 			</Styled.Header>
-			<Styled.Table open={isOpen}>{getTableInfo(algorithm)}</Styled.Table>
+			<Styled.Table open={isOpen}>
+				<tbody>{getTableInfo(algorithm)}</tbody>
+			</Styled.Table>
 		</Styled.Card>
 	);
 };

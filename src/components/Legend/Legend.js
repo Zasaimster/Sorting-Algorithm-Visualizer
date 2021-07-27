@@ -1,18 +1,12 @@
-import {useEffect, useState} from 'react';
+import {useState} from 'react';
 
 import {descriptions} from '../../constants/constants';
-import {CgChevronDoubleUpO, CgChevronDoubleDownO} from 'react-icons/cg';
-import {IoArrowDownCircleOutline, IoArrowUpCircleOutline} from 'react-icons/io5';
-
 import * as Styled from './Legend.styled';
 
 const getTableInfo = (algorithm) => {
 	let description = descriptions[algorithm];
-	console.log(description);
 
 	let toRet = Object.values(description).map((entry) => {
-		console.log(entry);
-
 		return (
 			<Styled.Row>
 				<td>
@@ -40,7 +34,7 @@ export const Legend = ({algorithm}) => {
 			<Styled.Header>
 				<span>
 					<Styled.DownArrow onClick={handleClick} open={isOpen} />
-					<div>Legend</div>
+					<div>Color Legend</div>
 				</span>
 			</Styled.Header>
 			<Styled.Table open={isOpen}>{getTableInfo(algorithm)}</Styled.Table>

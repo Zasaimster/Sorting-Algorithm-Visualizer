@@ -72,7 +72,8 @@ const Basic = forwardRef(({array, isSorting, updateArray, steps}, ref) => {
 		}
 	};
 
-	return <Array array={array} />;
+	const length = array.length;
+	return <>{array.length !== 0 && <Array array={array} />}</>;
 });
 
 export default Basic;

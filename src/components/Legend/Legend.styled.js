@@ -4,7 +4,7 @@ import {IoArrowDownCircleOutline, IoArrowUpCircleOutline} from 'react-icons/io5'
 
 export const Card = styled.div`
 	position: absolute;
-	bottom: 32px;
+	bottom: 22px;
 	left: 32px;
 	max-height: ${(props) => (props.open ? '500px' : '32px')};
 	width: ${(props) => (props.open ? '400px' : '32px')};

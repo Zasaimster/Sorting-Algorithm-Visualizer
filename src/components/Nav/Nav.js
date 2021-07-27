@@ -40,7 +40,7 @@ const Nav = ({
 	};
 
 	return (
-		<Styled.NavContainer>
+		<Styled.NavContainer id='nav'>
 			<Styled.NavHeader> Sorting Algorithm Visualizer </Styled.NavHeader>
 			<Styled.NavButtonContainer>
 				<Styled.Button onClick={!isSorted ? visualizeNextIteration : undefined} disabled={isSorted || isSorting}>

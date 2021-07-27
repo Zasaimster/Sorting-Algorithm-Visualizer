@@ -99,8 +99,8 @@ const MergeSort = forwardRef(({array, isSorting, updateArray, steps}, ref) => {
 
 	return (
 		<>
-			<Array array={array} />
-			<Array array={subArray} />
+			<Array algorithm='mergeSort' array={array} />
+			<Array algorithm='mergeSort' array={subArray} />
 		</>
 	);
 });

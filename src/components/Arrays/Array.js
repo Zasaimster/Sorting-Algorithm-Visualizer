@@ -47,12 +47,27 @@ const Array = ({algorithm, array}) => {
 	//const navHeight = document.getElementById('nav') === null ? DEFAULT_NAV_HEIGHT : document.getElementById('nav').offsetHeight;
 
 	//const subConst = algorithm === 'mergeSort' ? 0 : 0;
+
+	window.onload = () => {
+		let bars = document.getElementsByClassName('bar');
+		console.log(bars);
+
+		document.getElementsByClassName('array-wrapper')[0].className += ' loaded';
+		for (var i = 0; i < bars.length; i++) {
+			let bar = bars[i];
+			bar.className += ' loaded';
+		}
+
+		//document.getElementsByClassName('array-wrapper')[0].className += ' loaded';
+	};
+
 	const divider = algorithm === 'mergeSort' ? 2 : 1;
 	return (
 		<div className='array-wrapper'>
 			{array.map((val, index) => (
 				<div className='bar' key={index} style={{width: `${barWidth}px`, height: `${val / numRows / divider}px`}} />
 			))}
+			{console.log('finished drawing the stuff')}
 		</div>
 	);
 };

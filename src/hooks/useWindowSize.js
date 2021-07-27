@@ -7,7 +7,7 @@ export function useWindowSize(array, algorithm) {
 	const getRows = (barWidth) => {
 		let numRows = 1;
 		let totalWidth = algorithm !== 'radixSort' ? (barWidth + 3) * array.length : (75 + 15) * array.length;
-		console.log(totalWidth, totalPadding);
+
 		if (totalWidth > window.innerWidth - totalPadding) {
 			numRows = Math.ceil(totalWidth / (window.innerWidth - totalPadding));
 		}

@@ -2,10 +2,27 @@
 	margin-left: 3px;
 }
 
+@keyframes slideFromCenter {
+	0% {
+		visibility: visible;
+		top: 1000px;
+	}
+	100% {
+		visibility: visible;
+		position: relative;
+		top: 0;
+	}
+}
+
 .bar {
+	position: relative;
 	display: inline-block;
 	background-color: #006eff;
 	margin-left: 3px;
+}
+
+.bar.loaded {
+	animation: 1s 0s 1 slideFromCenter forwards;
 }
 
 .radix-bar {
@@ -63,9 +80,16 @@
 }
 
 .array-wrapper {
+	overflow: hidden;
 	text-align: center;
 	margin-top: 50px;
 	padding: 0 100px 0 100px;
+
+	visibility: hidden;
+}
+
+.array-wrapper.loaded {
+	visibility: visible;
 }
 
 @media only screen and (max-width: 1440px) {

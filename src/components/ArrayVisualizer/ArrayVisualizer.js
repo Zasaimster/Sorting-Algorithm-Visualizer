@@ -120,7 +120,7 @@ class ArrayVisualizer extends React.Component {
 		}
 
 		if (!this.checkIfSorted(arr)) {
-			this.setState({isSorted: false}, () => console.log(this.state.isSorted));
+			this.setState({isSorted: false});
 		}
 
 		this.setState({array: arr}, () => {

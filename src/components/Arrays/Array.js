@@ -50,7 +50,6 @@ const Array = ({algorithm, array}) => {
 
 	window.onload = () => {
 		let bars = document.getElementsByClassName('bar');
-		console.log(barWidth);
 		document.getElementsByClassName('array-wrapper')[0].className += ' loaded';
 		for (var i = 0; i < bars.length; i++) {
 			let bar = bars[i];

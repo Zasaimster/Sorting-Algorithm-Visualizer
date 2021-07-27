@@ -1,12 +1,13 @@
 import {useEffect, useLayoutEffect, useState} from 'react';
 
-export function useWindowSize(array) {
+export function useWindowSize(array, algorithm) {
 	const [widthAndRows, setWidthAndRows] = useState([10, 1]);
 	const [totalPadding, setTotalPadding] = useState(0);
 
 	const getRows = (barWidth) => {
 		let numRows = 1;
-		let totalWidth = (barWidth + 3) * array.length;
+		let totalWidth = algorithm !== 'radixSort' ? (barWidth + 3) * array.length : (75 + 15) * array.length;
+		console.log(totalWidth, totalPadding);
 		if (totalWidth > window.innerWidth - totalPadding) {
 			numRows = Math.ceil(totalWidth / (window.innerWidth - totalPadding));
 		}

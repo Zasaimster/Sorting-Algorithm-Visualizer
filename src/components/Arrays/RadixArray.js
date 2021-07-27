@@ -1,10 +1,13 @@
+import {useWindowSize} from '../../hooks/useWindowSize';
 import './Array.css';
 
 const RadixArray = ({array, digitsPlace, textColor}) => {
+	const numRows = useWindowSize(array, 'radixSort')[1];
+
 	return (
 		<div className='array-wrapper'>
 			{array.map((val, index) => (
-				<div className='radix-bar' key={index} style={{width: '75px', height: `${val / 3}px`}}>
+				<div className='radix-bar' key={index} style={{width: '75px', height: `${val / 3 / numRows}px`}}>
 					{getValWithColor(val, digitsPlace, textColor)}
 				</div>
 			))}

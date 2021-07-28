@@ -16,7 +16,7 @@
 .bar {
 	position: relative;
 	display: inline-block;
-	background-color: #5587c9;
+	background-color: #649fed;
 	margin-left: 3px;
 }
 
@@ -40,7 +40,7 @@
 .radix-bar {
 	position: relative;
 	display: inline-block;
-	background-color: #006eff;
+	background-color: #649fed;
 	margin-left: 15px;
 }
 
@@ -66,7 +66,7 @@
 
 .counting-bar {
 	display: inline-block;
-	background-color: #006eff;
+	background-color: #649fed;
 }
 
 .counting-wrapper {

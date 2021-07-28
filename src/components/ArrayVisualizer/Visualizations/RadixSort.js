@@ -80,8 +80,7 @@ const RadixSort = forwardRef(({array, isSorting, updateArray, steps}, ref) => {
 				}
 				tempArr[digitVal]++;
 				setCountArr(tempArr);
-
-				arrRects[arrIndex].style.backgroundColor = CURRENT;
+				if (arrRects.length !== 0) arrRects[arrIndex].style.backgroundColor = CURRENT;
 			} else if (state === states.summingCount) {
 				let tempArr = [...countArr];
 				tempArr[arrIndex] += tempArr[arrIndex - 1];
@@ -121,6 +120,7 @@ const RadixSort = forwardRef(({array, isSorting, updateArray, steps}, ref) => {
 		reset() {
 			resetAllColors(DEFAULT);
 			setCountArr(initialCountState);
+			setDigitsPlace(0);
 			setSortedArr([]);
 		},
 		handleLastStep() {

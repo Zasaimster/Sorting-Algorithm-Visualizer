@@ -2,7 +2,7 @@ import {useWindowSize} from '../../hooks/useWindowSize';
 
 import './Array.css';
 
-const Array = ({algorithm, array}) => {
+const Array = ({algorithm, array, maxHeight}) => {
 	//const [barWidth, setBarWidth] = useState(10);
 	//const [numRows, setNumRows] = useState(1);
 	const [barWidth, numRows] = useWindowSize(array);
@@ -65,8 +65,12 @@ const Array = ({algorithm, array}) => {
 	};
 
 	const divider = algorithm === 'mergeSort' ? 2 : 1;
+	const height = algorithm === 'mergeSort' ? `${maxHeight / numRows / divider}px` : 'auto';
+	const showHiddenBar = algorithm === 'mergeSort' ? true : false;
+
 	return (
-		<div className='array-wrapper'>
+		<div className='array-wrapper' style={{height: height}}>
+			{showHiddenBar && <div className='hiddenBar' style={{height: height}} />}
 			{array.map((val, index) => (
 				<div className='bar' key={index} style={{width: `${barWidth}px`, height: `${val / numRows / divider}px`}} />
 			))}

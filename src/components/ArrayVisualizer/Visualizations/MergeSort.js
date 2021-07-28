@@ -98,7 +98,7 @@ const MergeSort = forwardRef(({array, isSorting, updateArray, steps}, ref) => {
 	return (
 		<>
 			<Array algorithm='mergeSort' array={array} />
-			<Array algorithm='mergeSort' array={subArray} />
+			<Array algorithm='mergeSort' array={subArray} maxHeight={Math.max(...array)} />
 		</>
 	);
 });

@@ -4,7 +4,7 @@
 
 @keyframes slideFromCenter {
 	0% {
-		top: 700px;
+		top: 250px;
 		left: var(--left, 0);
 	}
 	100% {
@@ -17,6 +17,13 @@
 	position: relative;
 	display: inline-block;
 	background-color: #006eff;
+	margin-left: 3px;
+}
+
+.hiddenBar {
+	position: relative;
+	display: inline-block;
+	background-color: black;
 	margin-left: 3px;
 }
 
@@ -90,6 +97,9 @@
 	padding: 0 100px 0 100px;
 }
 
+.merge-wrapper {
+}
+
 @media only screen and (max-width: 1440px) {
 	.array-wrapper {
 		padding: 0 50px 0 50px;
@@ -99,5 +109,11 @@
 @media only screen and (max-width: 1050px) {
 	.array-wrapper {
 		padding: 0;
+	}
+}
+
+@media only screen and (max-width: 800px) {
+	.array-wrapper {
+		margin: 0;
 	}
 }

@@ -66,7 +66,7 @@ const Array = ({algorithm, array, maxHeight}) => {
 
 	const divider = algorithm === 'mergeSort' ? 2 : 1;
 	const height = algorithm === 'mergeSort' ? `${maxHeight / numRows / divider}px` : 'auto';
-	const showHiddenBar = algorithm === 'mergeSort' ? true : false;
+	const showHiddenBar = maxHeight !== undefined ? true : false;
 
 	return (
 		<div className='array-wrapper' style={{height: height}}>

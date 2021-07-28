@@ -1,9 +1,9 @@
-const defaultColor = '#006eff';
-const currentColor = 'green';
-const swapColor = 'red';
-const outOfRange = '#a8cdff';
-const compareColor = '#545454';
-const sortedColor = 'purple';
+const defaultColor = '#649fed';
+const currentColor = '#578f5f';
+const swapColor = '#d46868';
+const outOfRange = '#e6f0ff';
+const compareColor = '#636363';
+const sortedColor = '#a18bad';
 
 const basicDescription = {
 	DEFAULT: {
@@ -61,11 +61,11 @@ const quickDescription = {
 		description: 'Indicates two elements that are swapping',
 	},
 	LOW: {
-		color: 'pink',
+		color: '#ebe48d',
 		description: 'Points to the low index',
 	},
 	HIGH: {
-		color: 'hotpink',
+		color: '#c48b51',
 		description: 'Points to the high index',
 	},
 	COMPARED: {
@@ -77,7 +77,7 @@ const quickDescription = {
 		description: 'Sorted elements',
 	},
 	PIVOT: {
-		color: 'yellow',
+		color: '#96c47e',
 		description: 'Element that serves as a "pivot" for each section',
 	},
 };
@@ -112,7 +112,7 @@ const radixDescription = {
 		description: 'Element that the current is being compared to',
 	},
 	TEXT: {
-		color: 'red',
+		color: swapColor, //technically not the swap color, but I like the same red being used for swaps
 		description: 'Digits place',
 	},
 };
